@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5428.robot.subsystems;
 
 import org.usfirst.frc.team5428.robot.RobotMap;
+import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-import org.usfirst.frc.team5428.robot.core.Console;
+import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.input.Controller;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -37,7 +38,7 @@ public class DriveTrain extends Subsystem {
 
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
-		Console.out(getName() + " Initialized");
+		C.out(getName() + " Initialized");
 	}
 
 	public void arcadeDrive(GenericHID c, float mgntd) {
@@ -56,7 +57,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(CommandBase.oi.drive);
+		setDefaultCommand(new Drive());
 	}
 
 	public void setSquaredInput(boolean squaredInput) {

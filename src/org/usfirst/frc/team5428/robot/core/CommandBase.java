@@ -10,13 +10,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public abstract class CommandBase extends Command {
 
-	public final static OI oi;
+	public static OI oi;
+	protected static DriveTrain driveTrain;
 	
-	static{
+	public static void init(){
 		oi = OI.getInstance();
+		driveTrain = new DriveTrain();
+		SmartDashboard.putData(driveTrain);
+		C.out("CommandBase Initialized");
 	}
-	
-	protected static DriveTrain driveTrain = new DriveTrain();
 	
 	public CommandBase() {
 		super();
@@ -26,12 +28,7 @@ public abstract class CommandBase extends Command {
 		super(name);
 	}
 		
-	public static void init(){
-		SmartDashboard.putData(driveTrain);
-	}
 	
-	public void update(){
-		
-	}
+	public abstract void update();
 
 }

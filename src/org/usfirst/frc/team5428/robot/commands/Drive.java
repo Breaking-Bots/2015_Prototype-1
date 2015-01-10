@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5428.robot.commands;
 
+import org.usfirst.frc.team5428.robot.Robot;
+import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
+import org.usfirst.frc.team5428.robot.input.Controller;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,10 +23,10 @@ public class Drive extends CommandBase {
 	
 	private int currentState = TNK;
 	
-    public Drive(float magnitude) {
+    public Drive() {
     	requires(driveTrain);
-        this.magnitude = magnitude;
-        defaultMagnitude = magnitude;
+        this.magnitude = Robot.SPEED_DEFAULT;
+        defaultMagnitude = Robot.SPEED_DEFAULT;
         this.setInterruptible(true);
     }
 
@@ -33,6 +36,7 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
+    	update();    	
     	switch(currentState){
     	case TNK:
     		driveTrain.tankDrive(oi.driverController, magnitude);
@@ -44,8 +48,26 @@ public class Drive extends CommandBase {
     		driveTrain.altDrive(oi.driverController, magnitude);
     		break;
     	default:
-    		SmartDashboard.putString("Error", "Invalid Drive State");	    			
+    		C.err("Invalid Drive state");    			
     	}
+    }
+    
+    public void update(){
+    	if(oi.driverController.getPOV(0) == 270){
+			setCurrentState(Drive.TNK);
+		}else if(oi.driverController.getPOV(0) == 180){
+			setCurrentState(Drive.ARC);
+		}else if(oi.driverController.getPOV(0) == 90){
+			setCurrentState(Drive.ALT);
+		}
+		
+		if(oi.driverController.getTrigger(Controller.LEFT_HAND)){
+			setMagnitude(Robot.SPEED_MINIMUM);
+		}else if(oi.driverController.getTrigger(Controller.RIGHT_HAND)){
+			setMagnitude(Robot.SPEED_MAXIMUM);
+		}else{
+			defaultMagnitude();
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -60,6 +82,7 @@ public class Drive extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected final void interrupted() {
+    	defaultMagnitude();
     }
     
     public float getMagnitude() {

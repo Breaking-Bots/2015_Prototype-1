@@ -2,9 +2,10 @@ package org.usfirst.frc.team5428.robot.input;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ControllerButton extends Button {
+public class ControllerButton extends Trigger {
 
 	private GenericHID controller;
 	private int mappedNumber;
@@ -19,15 +20,15 @@ public class ControllerButton extends Button {
 	}
 	
 	public void tapped(final Command command){
-		whenPressed(command);
+		whenActive(command);
 	}
 	
 	public void held(final Command command){
-		whileHeld(command);
+		whileActive(command);
 	}
 	
 	public void released(final Command command){
-		whenReleased(command);
+		whenInactive(command);
 	}
 	
 	public int iterative(){

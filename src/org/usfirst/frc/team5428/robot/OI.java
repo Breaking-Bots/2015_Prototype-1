@@ -22,36 +22,12 @@ public final class OI {
 	public final PSGamepad driverController;
 	public final Logitech3D subController;
 	
-	public final Drive drive;
-	
 	private OI(){
 		driverController = new PSGamepad(0);
 		subController = new Logitech3D(1);
-		
-		drive = new Drive(0.5f);
-	}
-	
-	public void init(){
-		drive.start();
 	}
 	
 	public void update(){
-		
-		if(driverController.getPOV(0) == 270){
-			drive.setCurrentState(drive.TNK);
-		}else if(driverController.getPOV(0) == 180){
-			drive.setCurrentState(drive.ARC);
-		}else if(driverController.getPOV(0) == 90){
-			drive.setCurrentState(drive.ALT);
-		}
-		
-		if(driverController.getTrigger(Controller.LEFT_HAND)){
-			drive.setMagnitude(0.05f);
-		}else if(driverController.getTrigger(Controller.RIGHT_HAND)){
-			drive.setMagnitude(1.0f);
-		}else{
-			drive.defaultMagnitude();
-		}
 		Scheduler.getInstance().run();
 	}
     //// CREATING BUTTONS
