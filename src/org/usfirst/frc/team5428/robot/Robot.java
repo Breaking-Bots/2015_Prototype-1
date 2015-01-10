@@ -47,7 +47,6 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
-        oi.update();
     }
 
     /**
@@ -62,7 +61,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        oi.update();
     }
     
     /**
