@@ -25,9 +25,9 @@ public final class OI {
 	public final PSGamepad driverController;
 	public final Logitech3D subController;
 	
-	private final TankDrive drive;
-//	private final ArcadeDrive drive;
-//	private final AltDrive drive;
+	public final TankDrive drive;
+//	public final ArcadeDrive drive;
+//	public final AltDrive drive;
 	
 	private OI(){
 		driverController = new PSGamepad(0);

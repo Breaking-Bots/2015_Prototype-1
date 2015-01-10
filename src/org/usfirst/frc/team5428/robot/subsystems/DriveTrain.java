@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5428.robot.subsystems;
 
 import org.usfirst.frc.team5428.robot.RobotMap;
+import org.usfirst.frc.team5428.robot.core.CommandBase;
 import org.usfirst.frc.team5428.robot.core.Console;
 import org.usfirst.frc.team5428.robot.input.Controller;
 
@@ -55,8 +56,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(CommandBase.oi.drive);
 	}
 
 	public void setSquaredInput(boolean squaredInput) {
