@@ -16,10 +16,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public final class OI {
 	
-	private static final OI instance = new OI();
+	private static OI instance;
 			
 	public static OI getInstance(){
-		return instance;
+		return instance == null? new OI(): instance;
 	}
 	
 	public final PSGamepad driverController;
