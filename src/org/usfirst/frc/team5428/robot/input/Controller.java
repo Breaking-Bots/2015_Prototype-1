@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5428.robot.input;
 
+import org.usfirst.frc.team5428.robot.math.V2;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -31,12 +33,12 @@ public abstract class Controller extends GenericHID{
 		
 		public int get(){return enumerator;}
 		
-		public static final AxisType LX = new AxisType(1);
-		public static final AxisType LY = new AxisType(2);
-		public static final AxisType LT = new AxisType(3);
-		public static final AxisType RT = new AxisType(4);
-		public static final AxisType RX = new AxisType(5);
-		public static final AxisType RY = new AxisType(6);
+		public static final AxisType LX = new AxisType(0);
+		public static final AxisType LY = new AxisType(1);
+		public static final AxisType LT = new AxisType(2);
+		public static final AxisType RT = new AxisType(3);
+		public static final AxisType RX = new AxisType(4);
+		public static final AxisType RY = new AxisType(5);
 		
 	}
 	
@@ -49,6 +51,13 @@ public abstract class Controller extends GenericHID{
 	
 	public final boolean checkTriggerDeadzone(double value) {
         return Math.abs(value) >= triggerDeadzone;
+	}
+	
+	public final V2 getL(){
+		return new V2(getLX(), getLY());
+	}
+	public final V2 getR(){
+		return new V2(getRX(), getRY());
 	}
 	
 	public final double getLX(){
@@ -78,8 +87,16 @@ public abstract class Controller extends GenericHID{
 		return 0;
 	}
 
+	/** 
+	 * @returns the cross product of X and Y
+	 */
 	@Override
-	public abstract double getZ(Hand hand);
+	public double getZ(Hand hand) {
+		if(hand == LEFT_HAND) return getL().cross(getR());
+        else if(hand == RIGHT_HAND) return getR().cross(getL());        
+		
+		return 0;
+	}
 
 	@Override
 	public final boolean getTrigger(Hand hand) {

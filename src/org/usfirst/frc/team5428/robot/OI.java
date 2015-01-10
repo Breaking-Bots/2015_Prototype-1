@@ -1,12 +1,57 @@
 package org.usfirst.frc.team5428.robot;
 
+import org.usfirst.frc.team5428.robot.commands.AltDrive;
+import org.usfirst.frc.team5428.robot.commands.ArcadeDrive;
+import org.usfirst.frc.team5428.robot.commands.TankDrive;
+import org.usfirst.frc.team5428.robot.input.Controller;
+import org.usfirst.frc.team5428.robot.input.Logitech3D;
+import org.usfirst.frc.team5428.robot.input.PSGamepad;
+
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public final class OI {
+	
+	private static final OI instance = new OI();
+			
+	public static OI getInstance(){
+		return instance;
+	}
+	
+	public final PSGamepad driverController;
+	public final Logitech3D subController;
+	
+	private final TankDrive drive;
+//	private final ArcadeDrive drive;
+//	private final AltDrive drive;
+	
+	private OI(){
+		driverController = new PSGamepad(0);
+		subController = new Logitech3D(0);
+		
+		drive = new TankDrive(0.5f);
+//		drive = new ArcadeDrive(0.5f);
+//		drive = new AltDrive(0.5f);
+	}
+	
+	public void init(){
+		drive.start();
+	}
+	
+	public void update(){
+		if(driverController.getTrigger(Controller.LEFT_HAND)){
+			drive.setMagnitude(0.05f);
+		}else if(driverController.getTrigger(Controller.RIGHT_HAND)){
+			drive.setMagnitude(1.0f);
+		}else{
+			drive.defaultMagnitude();
+		}
+		Scheduler.getInstance().run();
+	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -33,5 +78,8 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	
+	
 }
 

@@ -1,14 +1,15 @@
 package org.usfirst.frc.team5428.robot.input;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ControllerButton extends Button {
 
-	private Controller controller;
+	private GenericHID controller;
 	private int mappedNumber;
 
-	public ControllerButton(Controller controller, int mappedNumber) {
+	public ControllerButton(GenericHID controller, int mappedNumber) {
 		this.controller = controller;
 		this.mappedNumber = mappedNumber;
 	}
