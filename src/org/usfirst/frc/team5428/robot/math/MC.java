@@ -314,5 +314,10 @@ public class MC {
 			return log(2, x);
 		}
 		
+		/** @return the logarithm of x with base e */
+		static public float ln (float x) {
+			return log(E, x);
+		}
+		
 		
 }

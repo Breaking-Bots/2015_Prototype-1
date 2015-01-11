@@ -2,9 +2,7 @@ package org.usfirst.frc.team5428.robot.subsystems;
 
 import org.usfirst.frc.team5428.robot.RobotMap;
 import org.usfirst.frc.team5428.robot.commands.Drive;
-import org.usfirst.frc.team5428.robot.core.CommandBase;
 import org.usfirst.frc.team5428.robot.core.C;
-import org.usfirst.frc.team5428.robot.input.Controller;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -54,6 +52,10 @@ public class DriveTrain extends Subsystem {
 	public void altDrive(GenericHID c, float mgntd){
 		drive.arcadeDrive(mgntd * c.getY(GenericHID.Hand.kLeft),
 				mgntd * c.getX(GenericHID.Hand.kRight), squaredInput);
+	}
+	
+	public void rawDrive(float speed, float curve){
+        drive.drive(speed, curve);
 	}
 
 	public void initDefaultCommand() {
