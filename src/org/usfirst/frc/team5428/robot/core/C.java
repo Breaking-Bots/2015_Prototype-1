@@ -16,4 +16,8 @@ public class C {
 		System.err.println("[ERROR] " + obj);
 	}
 	
+	public static void log(Object obj){
+		System.out.println("[LOG] " + obj);
+	}
+	
 }
