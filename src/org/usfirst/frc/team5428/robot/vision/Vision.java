@@ -10,18 +10,34 @@ import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Vision {
 	private static Image frame;
-	private static AxisCamera camera;
+	private static int session;
+	private static NIVision.Rect rect;
 	
 	public static void init(){
-		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB,  0);
-		camera = new AxisCamera("10.54.28.100"); //TODO: .100 may not be right
+		 frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+
+	        // the camera name (ex "cam0") can be found through the roborio web interface
+	        session = NIVision.IMAQdxOpenCamera("cam0",
+	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	        NIVision.IMAQdxConfigureGrab(session);
+	}
+	
+	public static void teleopInit(){
+		NIVision.IMAQdxStartAcquisition(session);
+        rect = new NIVision.Rect(10, 10, 100, 100);
+	}
+	
+	
+	public static void teleopTerminate(){
+		 NIVision.IMAQdxStopAcquisition(session);
 	}
 	
 	public static void stream()
 	{	        
-        camera.getImage(frame);
-		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
-        NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+		NIVision.IMAQdxGrab(session, frame, 1);
+        NIVision.imaqDrawShapeOnImage(frame, frame, rect,
+                DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+        
         CameraServer.getInstance().setImage(frame);
 	}
 }
