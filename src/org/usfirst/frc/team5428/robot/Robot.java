@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static final float SPEED_MINIMUM = 0.05f;
+	public static final float SPEED_MINIMUM = 0.07f;
 	public static final float SPEED_DEFAULT = 0.50f;
 	public static final float SPEED_MAXIMUM = 1.00f;
 
@@ -34,9 +34,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	CommandBase.init();
-		oi = OI.getInstance();
 		// instantiate the command used for the autonomous period
         autonomousCommand = new AutoBasicRush();
+        oi = OI.getInstance();
 		C.out("Whats up?");
     }
 	

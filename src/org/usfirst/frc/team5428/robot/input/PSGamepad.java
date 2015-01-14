@@ -30,16 +30,16 @@ public class PSGamepad extends Controller {
 	
 	@Override
 	public boolean getTop(Hand hand) {
-		if (hand == LEFT_HAND)	return  L3.get();
-		else if (hand == RIGHT_HAND) return  R3.get();		
+		if (hand == Hand.kLeft)	return  L3.get();
+		else if (hand == Hand.kRight) return  R3.get();		
 		
 		return false;
 	}
 
 	@Override
 	public boolean getBumper(Hand hand) {
-		if (hand == LEFT_HAND) return L1.get();
-		else if (hand == RIGHT_HAND) return R1.get();		
+		if (hand == Hand.kLeft) return L1.get();
+		else if (hand == Hand.kRight) return R1.get();		
 		
 		return false;
 	}
