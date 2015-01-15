@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static final float SPEED_MINIMUM = 0.07f;
+	public static final float SPEED_MINIMUM = 0.12f;
 	public static final float SPEED_DEFAULT = 0.50f;
 	public static final float SPEED_MAXIMUM = 1.00f;
 

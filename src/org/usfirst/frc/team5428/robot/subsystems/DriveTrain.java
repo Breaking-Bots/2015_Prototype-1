@@ -51,7 +51,7 @@ public class DriveTrain extends Subsystem {
 				mgntd * -c.getY(GenericHID.Hand.kRight), squaredInput);
 	}
 	
-	public void altDrive(GenericHID c, float mgntd){
+	public void elonDrive(GenericHID c, float mgntd){
 		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
 				mgntd * -c.getX(GenericHID.Hand.kRight), squaredInput);
 	}

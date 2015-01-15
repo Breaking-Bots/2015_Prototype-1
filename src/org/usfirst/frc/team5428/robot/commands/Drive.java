@@ -20,7 +20,7 @@ public class Drive extends CommandBase {
 	
 	public static final int TNK = 0;
 	public static final int ARC = 1;
-	public static final int ALT = 2;
+	public static final int ELN = 2;
 	
 	private int currentState = TNK;
 	
@@ -45,8 +45,8 @@ public class Drive extends CommandBase {
     	case ARC:
     		driveTrain.arcadeDrive(oi.driverController, magnitude);
     		break;
-    	case ALT:
-    		driveTrain.altDrive(oi.driverController, magnitude);
+    	case ELN:
+    		driveTrain.elonDrive(oi.driverController, magnitude);
     		break;
     	default:
     		C.err("Invalid Drive state");    			
@@ -54,12 +54,15 @@ public class Drive extends CommandBase {
     }
     
     public void update(){
-    	if(oi.driverController.getPOV(0) == 270){
+    	if(oi.driverController.getPOV(0) == 270 && currentState != TNK){
+    		C.out("Tank Drive is go");
 			setCurrentState(Drive.TNK);
-		}else if(oi.driverController.getPOV(0) == 180){
+		}else if(oi.driverController.getPOV(0) == 180 && currentState != ARC){
+			C.out("Arcade Drive Drive is go");
 			setCurrentState(Drive.ARC);
-		}else if(oi.driverController.getPOV(0) == 90){
-			setCurrentState(Drive.ALT);
+		}else if(oi.driverController.getPOV(0) == 90 && currentState != ELN){
+			C.out("Elon Drive is go");
+			setCurrentState(Drive.ELN);
 		}
 		//C.out("Drive Update");
     	//C.out(oi.driverController.getTrigger(GenericHID.Hand.kLeft));
