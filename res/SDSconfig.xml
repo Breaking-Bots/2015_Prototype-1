@@ -1,0 +1,22 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="0" y="0"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="6" y="55"/>
+		<width>620</width>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="500" y="300"/>
+		<property name="Image File" value="Z:\FRC\Workspace\Prototype 1\res\Programming Sub-team logo.png"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="595" y="5"/>
+		<property name="Connection Color" value="0.255.255.255"/>
+		<property name="Graphics" value="Rounded"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

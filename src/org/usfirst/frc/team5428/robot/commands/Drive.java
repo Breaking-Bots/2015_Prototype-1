@@ -56,11 +56,14 @@ public class Drive extends CommandBase {
     public void update(){
     	if(oi.driverController.getPOV(0) == 270 && currentState != TNK){
     		C.out("Tank Drive is go");
+    		SmartDashboard.putString("Drive Type", "TNK");
 			setCurrentState(Drive.TNK);
 		}else if(oi.driverController.getPOV(0) == 180 && currentState != ARC){
-			C.out("Arcade Drive Drive is go");
+			SmartDashboard.putString("Drive Type", "ARC");
+			C.out("Arcade Drive is go");
 			setCurrentState(Drive.ARC);
 		}else if(oi.driverController.getPOV(0) == 90 && currentState != ELN){
+			SmartDashboard.putString("Drive Type", "ELN");
 			C.out("Elon Drive is go");
 			setCurrentState(Drive.ELN);
 		}

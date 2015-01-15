@@ -1,10 +1,13 @@
 package org.usfirst.frc.team5428.robot;
 
 import org.usfirst.frc.team5428.robot.commands.Drive;
+import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.input.Controller;
 import org.usfirst.frc.team5428.robot.input.Logitech3D;
 import org.usfirst.frc.team5428.robot.input.PSGamepad;
+import org.usfirst.frc.team5428.robot.input.XGamepad;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -19,15 +22,20 @@ public final class OI {
 		return instance == null? new OI(): instance;
 	}
 	
-	public final PSGamepad driverController;
+	public final XGamepad driverController;
 	public final Logitech3D subController;
 	
 	private OI(){
-		driverController = new PSGamepad(0);
+		driverController = new XGamepad(0);
 		subController = new Logitech3D(1);
 	}
 	
 	public void update(){
+		if(driverController.getTop(GenericHID.Hand.kLeft))
+			C.out("L3");
+		if(driverController.getTop(GenericHID.Hand.kRight))
+			C.out("R3");
+		
 		Scheduler.getInstance().run();
 	}
     //// CREATING BUTTONS
