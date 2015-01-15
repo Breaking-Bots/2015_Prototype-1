@@ -19,8 +19,8 @@ public abstract class Controller extends GenericHID{
 		this.port = port;
 		ds = DriverStation.getInstance();
 		
-		deadzone = 0f;
-		triggerDeadzone = 0f;
+		deadzone = 0.3f;
+		triggerDeadzone = 0.5f;
 		
 	}
 	
@@ -41,9 +41,6 @@ public abstract class Controller extends GenericHID{
 		public static final AxisType RY = new AxisType(5);
 		
 	}
-	
-	public static Hand LEFT_HAND = Hand.kLeft;
-	public static Hand RIGHT_HAND = Hand.kRight;
 	
 	public final double checkDeadzone(double value) {
             return (Math.abs(value) >= deadzone? value : 0);
@@ -74,15 +71,15 @@ public abstract class Controller extends GenericHID{
 	}
 	
 	public final double getX(Hand hand) {
-		if(hand == LEFT_HAND) return checkDeadzone(getAxis(AxisType.LX));
-        else if(hand == RIGHT_HAND) return checkDeadzone(getAxis(AxisType.RX));        
+		if(hand == Hand.kLeft) return checkDeadzone(getAxis(AxisType.LX));
+        else if(hand == Hand.kRight) return checkDeadzone(getAxis(AxisType.RX));        
 		
 		return 0;
 	}
 
 	public final double getY(Hand hand) {
-		if(hand == LEFT_HAND) return checkDeadzone(getAxis(AxisType.LY));
-        else if(hand == RIGHT_HAND) return checkDeadzone(getAxis(AxisType.RY));        
+		if(hand == Hand.kLeft) return checkDeadzone(getAxis(AxisType.LY));
+        else if(hand == Hand.kRight) return checkDeadzone(getAxis(AxisType.RY));        
 		
 		return 0;
 	}
@@ -92,16 +89,16 @@ public abstract class Controller extends GenericHID{
 	 */
 	@Override
 	public double getZ(Hand hand) {
-		if(hand == LEFT_HAND) return getL().cross(getR());
-        else if(hand == RIGHT_HAND) return getR().cross(getL());        
+		if(hand == Hand.kLeft) return getL().cross(getR());
+        else if(hand == Hand.kRight) return getR().cross(getL());        
 		
 		return 0;
 	}
 
 	@Override
 	public final boolean getTrigger(Hand hand) {
-		if(hand == LEFT_HAND) return checkTriggerDeadzone(getAxis(AxisType.LT));
-        else if(hand == RIGHT_HAND) return checkTriggerDeadzone(getAxis(AxisType.RT));        
+		if(hand == Hand.kLeft) return checkTriggerDeadzone(getAxis(AxisType.LT));
+        else if(hand == Hand.kRight) return checkTriggerDeadzone(getAxis(AxisType.RT));        
 		
 		return false;
 	}

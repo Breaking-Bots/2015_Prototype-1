@@ -6,6 +6,7 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
 import org.usfirst.frc.team5428.robot.input.Controller;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -60,10 +61,11 @@ public class Drive extends CommandBase {
 		}else if(oi.driverController.getPOV(0) == 90){
 			setCurrentState(Drive.ALT);
 		}
-		
-		if(oi.driverController.getTrigger(Controller.LEFT_HAND)){
+		//C.out("Drive Update");
+    	//C.out(oi.driverController.getTrigger(GenericHID.Hand.kLeft));
+		if(oi.driverController.getTrigger(GenericHID.Hand.kLeft)){
 			setMagnitude(Robot.SPEED_MINIMUM);
-		}else if(oi.driverController.getTrigger(Controller.RIGHT_HAND)){
+		}else if(oi.driverController.getTrigger(GenericHID.Hand.kRight)){
 			setMagnitude(Robot.SPEED_MAXIMUM);
 		}else{
 			defaultMagnitude();

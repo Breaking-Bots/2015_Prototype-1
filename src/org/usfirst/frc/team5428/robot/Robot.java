@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5428.robot;
 
+import org.usfirst.frc.team5428.robot.commands.AutoBasicRush;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
@@ -21,7 +22,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static final float SPEED_MINIMUM = 0.05f;
+	public static final float SPEED_MINIMUM = 0.07f;
 	public static final float SPEED_DEFAULT = 0.50f;
 	public static final float SPEED_MAXIMUM = 1.00f;
 
@@ -33,9 +34,10 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	CommandBase.init();
-		oi = OI.getInstance();
-        // instantiate the command used for the autonomous period
-		C.out("Robot Initialized");
+		// instantiate the command used for the autonomous period
+        autonomousCommand = new AutoBasicRush();
+        oi = OI.getInstance();
+		C.out("Whats up?");
     }
 	
 	public void disabledPeriodic() {
@@ -51,12 +53,12 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-       
+    	Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
-        C.out("Teleop Initialized");
+        C.out("Teleoperator control Initialized");
     }
 
     /**

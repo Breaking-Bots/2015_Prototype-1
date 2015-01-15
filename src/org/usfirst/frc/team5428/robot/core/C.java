@@ -9,7 +9,7 @@ public class C {
 	}
 
 	public static void out(Object obj){
-		System.out.println(obj);
+		System.out.println("[ELON] " +obj);
 	}
 	
 	public static void err(Object obj){

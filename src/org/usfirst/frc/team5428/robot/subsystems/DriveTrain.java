@@ -41,22 +41,23 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void arcadeDrive(GenericHID c, float mgntd) {
-		drive.arcadeDrive(mgntd * c.getY(GenericHID.Hand.kLeft),
-				mgntd * c.getX(GenericHID.Hand.kLeft), squaredInput);
+		//C.out(c.getY(GenericHID.Hand.kLeft) * mgntd);
+		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
+				mgntd * -c.getX(GenericHID.Hand.kLeft), squaredInput);
 	}
 
 	public void tankDrive(GenericHID c, float mgntd) {
-		drive.tankDrive(mgntd * c.getY(GenericHID.Hand.kLeft),
-				mgntd * c.getY(GenericHID.Hand.kRight), squaredInput);
+		drive.tankDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
+				mgntd * -c.getY(GenericHID.Hand.kRight), squaredInput);
 	}
 	
 	public void altDrive(GenericHID c, float mgntd){
-		drive.arcadeDrive(mgntd * c.getY(GenericHID.Hand.kLeft),
-				mgntd * c.getX(GenericHID.Hand.kRight), squaredInput);
+		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
+				mgntd * -c.getX(GenericHID.Hand.kRight), squaredInput);
 	}
 	
 	public void rawDrive(float speed, float curve){
-        drive.drive(speed, curve);
+        drive.drive(-speed, -curve);
 	}
 
 	public void initDefaultCommand() {

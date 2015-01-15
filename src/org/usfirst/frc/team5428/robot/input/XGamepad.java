@@ -31,8 +31,8 @@ public class XGamepad extends Controller {
 	@Override
 	public boolean getTop(Hand hand) {
 		
-		if (hand == LEFT_HAND)	return  L3.get();
-		else if (hand == RIGHT_HAND) return  R3.get();		
+		if (hand == Hand.kLeft)	return  L3.get();
+		else if (hand == Hand.kRight) return  R3.get();		
 		
 		return false;
 	}
@@ -40,8 +40,8 @@ public class XGamepad extends Controller {
 	@Override
 	public boolean getBumper(Hand hand) {
 		
-		if (hand == LEFT_HAND) return LB.get();
-		else if (hand == RIGHT_HAND) return RB.get();		
+		if (hand == Hand.kLeft) return LB.get();
+		else if (hand == Hand.kRight) return RB.get();		
 		
 		return false;
 	}
