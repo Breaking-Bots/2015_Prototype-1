@@ -11,6 +11,8 @@ public class RobotMap {
     public static int dt_frontRight = 2;
     public static int dt_backRight = 3;
     
+    public static int elevator = 4;
+    
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5428.robot.commands;
 
+import org.usfirst.frc.team5428.robot.OI;
 import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
@@ -15,9 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drive extends CommandBase {
 
-	private final float defaultMagnitude;
-	private float magnitude;
-	
 	public static final int TNK = 0;
 	public static final int ARC = 1;
 	public static final int ELN = 2;
@@ -26,8 +24,6 @@ public class Drive extends CommandBase {
 	
     public Drive() {
     	requires(driveTrain);
-        this.magnitude = Robot.SPEED_DEFAULT;
-        defaultMagnitude = Robot.SPEED_DEFAULT;
         this.setInterruptible(true);
     }
 
@@ -40,13 +36,13 @@ public class Drive extends CommandBase {
     	update();    	
     	switch(currentState){
     	case TNK:
-    		driveTrain.tankDrive(oi.driverController, magnitude);
+    		driveTrain.tankDrive(oi.driverController, OI.getSystemMagnitude());
     		break;
     	case ARC:
-    		driveTrain.arcadeDrive(oi.driverController, magnitude);
+    		driveTrain.arcadeDrive(oi.driverController, OI.getSystemMagnitude());
     		break;
     	case ELN:
-    		driveTrain.elonDrive(oi.driverController, magnitude);
+    		driveTrain.elonDrive(oi.driverController, OI.getSystemMagnitude());
     		break;
     	default:
     		C.err("Invalid Drive state");    			
@@ -67,15 +63,6 @@ public class Drive extends CommandBase {
 			C.out("Elon Drive is go");
 			setCurrentState(Drive.ELN);
 		}
-		//C.out("Drive Update");
-    	//C.out(oi.driverController.getTrigger(GenericHID.Hand.kLeft));
-		if(oi.driverController.getTrigger(GenericHID.Hand.kLeft)){
-			setMagnitude(Robot.SPEED_MINIMUM);
-		}else if(oi.driverController.getTrigger(GenericHID.Hand.kRight)){
-			setMagnitude(Robot.SPEED_MAXIMUM);
-		}else{
-			defaultMagnitude();
-		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -85,26 +72,15 @@ public class Drive extends CommandBase {
 
     // Called once after isFinished returns true
     protected final void end() {
+    	driveTrain.rawDrive(0.0f, 0.0f);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected final void interrupted() {
-    	defaultMagnitude();
+    	end();
     }
     
-    public float getMagnitude() {
-		return magnitude;
-	}
-
-	public void setMagnitude(float magnitude) {
-		this.magnitude = magnitude;
-	}
-	
-	public void defaultMagnitude(){
-		this.magnitude = defaultMagnitude;
-	}
-
 	public int getCurrentState() {
 		return currentState;
 	}

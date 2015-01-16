@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5428.robot;
 
 import org.usfirst.frc.team5428.robot.commands.Drive;
+import org.usfirst.frc.team5428.robot.commands.LowerElevator;
+import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.input.Controller;
 import org.usfirst.frc.team5428.robot.input.Logitech3D;
@@ -17,6 +19,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public final class OI {
 	
 	private static OI instance;
+	private static float magnitude;
+	
 			
 	public static OI getInstance(){
 		return instance == null? new OI(): instance;
@@ -28,6 +32,9 @@ public final class OI {
 	private OI(){
 		driverController = new XGamepad(0);
 		subController = new Logitech3D(1);
+		magnitude = Robot.SPEED_DEFAULT;
+		driverController.LB.held(new LowerElevator());
+		driverController.RB.held(new RaiseElevator());		
 	}
 	
 	public void update(){
@@ -36,7 +43,28 @@ public final class OI {
 		if(driverController.getTop(GenericHID.Hand.kRight))
 			C.out("R3");
 		
+		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
+			setSystemMagnitude(Robot.SPEED_MINIMUM);
+		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){
+			setSystemMagnitude(Robot.SPEED_MAXIMUM);
+		}else{
+			defaultSystemMagnitude();
+		}
+			
+		
 		Scheduler.getInstance().run();
+	}
+	
+    public static float getSystemMagnitude() {
+		return magnitude;
+	}
+
+	public static void setSystemMagnitude(float mgntd) {
+		magnitude = mgntd;
+	}
+	
+	public static  void defaultSystemMagnitude(){
+		magnitude = Robot.SPEED_DEFAULT;
 	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
