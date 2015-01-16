@@ -9,23 +9,20 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Corner extends CommandBase {
 
-	private boolean right;
 	private float dir;
 	private float time;
 	
-    public Corner(boolean right, float time) {
+    public Corner(float dir, float time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(driveTrain);
-    	this.right = right;
+    	this.dir = dir;
     	this.time = time;
-    	dir = 1.0f;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	setTimeout(time);
-    	if(right) dir = -1.0f;
     }
 
     // Called repeatedly when this Command is scheduled to run
