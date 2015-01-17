@@ -20,6 +20,7 @@ public abstract class CommandBase extends Command {
 		driveTrain = new DriveTrain();
 		elevator = new Elevator();
 		SmartDashboard.putData(driveTrain);
+		SmartDashboard.putData(elevator);
 		C.out("CommandBase Initialized");
 	}
 	
