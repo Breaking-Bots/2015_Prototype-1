@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5428.robot;
 
+import org.usfirst.frc.team5428.robot.commands.Corner;
 import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
@@ -34,8 +35,10 @@ public final class OI {
 	}
 	
 	public void init(){
-		driverController.LB.held(new LowerElevator());
-		driverController.RB.held(new RaiseElevator());				
+		driverController.LB.held(new RaiseElevator());				
+		driverController.RB.held(new LowerElevator());
+//		driverController.L3.tapped(new Corner(-1, 0.3f));				
+//		driverController.R3.tapped(new Corner(1, 0.3f));				
 	}
 	
 	public void update(){

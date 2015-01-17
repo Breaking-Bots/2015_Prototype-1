@@ -4,6 +4,7 @@ package org.usfirst.frc.team5428.robot;
 import org.usfirst.frc.team5428.robot.commands.AutoBasicRush;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
+import org.usfirst.frc.team5428.robot.vision.Vision;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;

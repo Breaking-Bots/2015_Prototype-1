@@ -58,7 +58,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void rawDrive(float speed, float curve){
-        drive.drive(-speed, -curve);
+        drive.arcadeDrive(-speed, -curve);
 	}
 
 	public void initDefaultCommand() {

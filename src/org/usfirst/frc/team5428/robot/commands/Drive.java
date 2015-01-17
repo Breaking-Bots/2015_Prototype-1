@@ -20,7 +20,7 @@ public class Drive extends CommandBase {
 	public static final int ARC = 1;
 	public static final int ELN = 2;
 
-	private int currentState = TNK;
+	private int currentState = ELN;
 	private boolean disable;
 
 	public Drive() {
@@ -73,16 +73,18 @@ public class Drive extends CommandBase {
 			setCurrentState(Drive.ELN);
 		}
 		
-		if (oi.driverController.getPOV(0) == 0 && !disable) {
+		if (oi.driverController.BACK.get() && !disable) {
+			C.out("Drive disabled");
 			disable = true;
-		}else if (oi.driverController.getPOV(0) == 0 && disable) {
+		}else if (oi.driverController.START.get() && disable) {
+			C.out("Drive enabled");
 			disable = false;
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected final boolean isFinished() {
-		return false;
+		return isCanceled();
 	}
 
 	// Called once after isFinished returns true

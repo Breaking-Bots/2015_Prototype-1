@@ -1,20 +1,30 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="8" y="43"/>
+		<property name="Background" value="204.204.204.255"/>
+	</widget>
+	<widget field="Elevator" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="11" y="22"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="0" y="0"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="6" y="55"/>
-		<width>620</width>
+		<location x="9" y="5"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="500" y="300"/>
-		<property name="Image File" value="Z:\FRC\Workspace\Prototype 1\res\Programming Sub-team logo.png"/>
+		<location x="492" y="288"/>
+		<property name="Image File" value="C:\Users\Developer\Mein Kampf\Repositories\2015_Prototype-1\res\Programming Sub-team logo.png"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="595" y="5"/>
+		<location x="3" y="0"/>
+		<width>141</width>
+		<height>71</height>
 		<property name="Connection Color" value="0.255.255.255"/>
 		<property name="Graphics" value="Rounded"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="4" y="13"/>
+		<width>561</width>
+		<height>406</height>
 	</static-widget>
 </dashboard>
 <live-window>
