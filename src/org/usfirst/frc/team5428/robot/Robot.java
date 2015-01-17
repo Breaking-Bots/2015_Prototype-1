@@ -36,8 +36,9 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
 		// instantiate the command used for the autonomous period
         autonomousCommand = new AutoBasicRush();
-        oi = OI.getInstance();
 		C.out("Whats up?");
+		oi = OI.getInstance();
+		oi.init();
     }
 	
 	public void disabledPeriodic() {

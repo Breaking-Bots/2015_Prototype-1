@@ -31,16 +31,14 @@ public final class OI {
 		driverController = new XGamepad(0);
 		subController = new Logitech3D(1);
 		magnitude = Robot.SPEED_DEFAULT;
+	}
+	
+	public void init(){
 		driverController.LB.held(new LowerElevator());
-		driverController.RB.held(new RaiseElevator());		
+		driverController.RB.held(new RaiseElevator());				
 	}
 	
 	public void update(){
-		if(driverController.getTop(GenericHID.Hand.kLeft))
-			C.out("L3");
-		if(driverController.getTop(GenericHID.Hand.kRight))
-			C.out("R3");
-		
 		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
 			setSystemMagnitude(Robot.SPEED_MINIMUM);
 		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){

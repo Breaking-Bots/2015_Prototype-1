@@ -53,6 +53,8 @@ public class Drive extends CommandBase {
 			default:
 				C.err("Invalid Drive state");
 			}
+		}else{
+			driveTrain.rawDrive(0, 0);
 		}
 	}
 
