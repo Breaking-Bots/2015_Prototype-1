@@ -4,9 +4,7 @@ import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
 import org.usfirst.frc.team5428.robot.core.C;
-import org.usfirst.frc.team5428.robot.input.Controller;
 import org.usfirst.frc.team5428.robot.input.Logitech3D;
-import org.usfirst.frc.team5428.robot.input.PSGamepad;
 import org.usfirst.frc.team5428.robot.input.XGamepad;
 
 import edu.wpi.first.wpilibj.GenericHID;
