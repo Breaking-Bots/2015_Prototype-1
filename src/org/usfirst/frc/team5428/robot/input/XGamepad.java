@@ -48,7 +48,7 @@ public class XGamepad extends Controller {
 
 	@Override
 	public boolean getRawButton(int button) {
-	        return ((0x1 << (button - 1)) & ds.getStickButtons(port)) != 0;
+	        return ds.getStickButton(port, (byte) button);//((0x1 << (button - 1)) & ds.getStickButtons(port)) != 0;
 	}
 	
 	
