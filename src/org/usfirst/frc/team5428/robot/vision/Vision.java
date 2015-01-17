@@ -19,7 +19,6 @@ public class Vision {
 	        session = NIVision.IMAQdxOpenCamera("cam0",
 	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 	        NIVision.IMAQdxConfigureGrab(session);
-	        teleopInit();
 	}
 	
 	public static void teleopInit(){

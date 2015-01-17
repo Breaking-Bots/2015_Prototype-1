@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
 		C.out("Whats up?");
 		oi = OI.getInstance();
 		oi.init();
+		Vision.init();
     }
 	
 	public void disabledPeriodic() {
