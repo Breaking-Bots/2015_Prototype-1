@@ -45,6 +45,7 @@ public abstract class TimerMain extends Command {
 	}
 	
 	public static void delayTimer () {
+		//Capital T because needs to be accessed in a static way
 		Timer.delay(seconds);
 	}
 	
