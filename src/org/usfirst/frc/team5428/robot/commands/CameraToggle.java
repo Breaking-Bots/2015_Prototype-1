@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Toggles camera on and off
  */
-public class CamaraToggle extends CommandBase {
+public class CameraToggle extends CommandBase {
 
-    public CamaraToggle() {
+    public CameraToggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

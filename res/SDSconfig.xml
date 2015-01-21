@@ -1,5 +1,8 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Drive Type" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="2"/>
+	</widget>
 	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="8" y="43"/>
 		<property name="Background" value="204.204.204.255"/>

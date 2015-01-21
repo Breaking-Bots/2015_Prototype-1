@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5428.robot;
 
-import org.usfirst.frc.team5428.robot.commands.CamaraToggle;
+import org.usfirst.frc.team5428.robot.commands.CameraToggle;
+import org.usfirst.frc.team5428.robot.commands.CameraQualityToggle;
 import org.usfirst.frc.team5428.robot.commands.Corner;
 import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
@@ -40,7 +41,8 @@ public final class OI {
 		driverController.RB.held(new LowerElevator());
 //		driverController.L3.tapped(new Corner(-1, 0.3f));				
 //		driverController.R3.tapped(new Corner(1, 0.3f));	
-		driverController.A.toggleWhenPressed(new CamaraToggle());
+		driverController.A.toggleWhenPressed(new CameraToggle());
+		driverController.X.toggleWhenPressed(new CameraQualityToggle());
 	}
 	
 	public void update(){

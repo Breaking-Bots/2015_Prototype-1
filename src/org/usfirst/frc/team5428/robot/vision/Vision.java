@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5428.robot.vision;
 
+import org.usfirst.frc.team5428.robot.Robot;
+
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
@@ -23,6 +25,7 @@ public class Vision {
 	
 	public static void teleopInit(){
 		NIVision.IMAQdxStartAcquisition(session);
+		CameraServer.getInstance().setQuality(Robot.CAM_QUALITY_MIN);
 	}
 	
 	
@@ -33,8 +36,6 @@ public class Vision {
 	public static void stream()
 	{	        
 		NIVision.IMAQdxGrab(session, frame, 1);
-		CameraServer.getInstance().setQuality(0);
         CameraServer.getInstance().setImage(frame);
-        CameraServer.getInstance().setQuality(0);
 	}
 }
