@@ -47,9 +47,9 @@ public final class OI {
 	
 	public void update(){
 		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
-			setSystemMagnitude(Robot.SPEED_MINIMUM);
+			setSystemMagnitude((float) (1.0f/driverController.getLT() * Robot.SPEED_MINIMUM));
 		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){
-			setSystemMagnitude(Robot.SPEED_MAXIMUM);
+			setSystemMagnitude((float) driverController.getRT() * Robot.SPEED_MAXIMUM);
 		}else{
 			defaultSystemMagnitude();
 		}

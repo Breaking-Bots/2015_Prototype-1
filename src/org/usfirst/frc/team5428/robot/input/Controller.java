@@ -19,8 +19,8 @@ public abstract class Controller extends GenericHID{
 		this.port = port;
 		ds = DriverStation.getInstance();
 		
-		deadzone = 0.3f;
-		triggerDeadzone = 0.5f;
+		deadzone = 0.15f;
+		triggerDeadzone = 0.25f;
 		
 	}
 	
