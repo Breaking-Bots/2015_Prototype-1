@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * an Drive class, for on the fly drive switching
+ * A general Drive class, for on the fly drive switching
  */
 public class Drive extends CommandBase {
 

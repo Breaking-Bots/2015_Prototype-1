@@ -1,7 +1,9 @@
 package org.usfirst.frc.team5428.robot.subsystems;
 
 import org.usfirst.frc.team5428.robot.RobotMap;
+import org.usfirst.frc.team5428.robot.commands.HoldElevation;
 import org.usfirst.frc.team5428.robot.core.C;
+
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -26,8 +28,7 @@ public class Elevator extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new HoldElevation());
     }
 }
 

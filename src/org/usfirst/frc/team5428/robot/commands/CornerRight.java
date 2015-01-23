@@ -1,43 +1,42 @@
 package org.usfirst.frc.team5428.robot.commands;
 
-import org.usfirst.frc.team5428.robot.OI;
 import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
- * Lowers elevator
+ *
  */
-public class LowerElevator extends CommandBase {
+public class CornerRight extends CommandBase {
 
-    public LowerElevator() {
-        requires(elevator);
+    public CornerRight() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(Robot.CORNER_TIME_R);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.elevate(Robot.LOWERED_SPEED * OI.getSystemMagnitude());
+    	driveTrain.rawDrive(0, 1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isCanceled();
+        return isCanceled() || isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	elevator.elevate(0);
+    	driveTrain.rawDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	elevator.elevate(0);
     }
 
 	@Override

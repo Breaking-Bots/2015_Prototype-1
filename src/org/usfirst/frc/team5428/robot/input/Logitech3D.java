@@ -1,12 +1,7 @@
 package org.usfirst.frc.team5428.robot.input;
 
-import org.usfirst.frc.team5428.robot.input.Controller.AxisType;
-import org.usfirst.frc.team5428.robot.math.V2;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Joystick;
 
 public class Logitech3D extends GenericHID {
 
@@ -67,10 +62,6 @@ public class Logitech3D extends GenericHID {
 	
 	public final double checkDeadzone(double value) {
         return (Math.abs(value) >= deadzone? value : 0);
-	}
-	
-	public V2 getV2(){
-		return new V2(getX(), getY());
 	}
 	
 	@Override

@@ -1,17 +1,17 @@
 package org.usfirst.frc.team5428.robot;
 
-import org.usfirst.frc.team5428.robot.commands.CameraToggle;
 import org.usfirst.frc.team5428.robot.commands.CameraQualityToggle;
-import org.usfirst.frc.team5428.robot.commands.Corner;
-import org.usfirst.frc.team5428.robot.commands.Drive;
+import org.usfirst.frc.team5428.robot.commands.CameraToggle;
+import org.usfirst.frc.team5428.robot.commands.CornerLeft;
+import org.usfirst.frc.team5428.robot.commands.CornerRight;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
-import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.input.Logitech3D;
 import org.usfirst.frc.team5428.robot.input.XGamepad;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,15 +39,31 @@ public final class OI {
 	public void init(){
 		driverController.LB.held(new RaiseElevator());				
 		driverController.RB.held(new LowerElevator());
-//		driverController.L3.tapped(new Corner(-1, 0.3f));				
-//		driverController.R3.tapped(new Corner(1, 0.3f));	
+		driverController.L3.tapped(new CornerLeft());				
+		driverController.R3.tapped(new CornerRight());	
 		driverController.A.toggleWhenPressed(new CameraToggle());
 		driverController.X.toggleWhenPressed(new CameraQualityToggle());
 	}
 	
 	public void update(){
+		
+		Robot.SPEED_MINIMUM = (float) SmartDashboard.getNumber("MIN_SPEED", Robot.SPEED_MINIMUM);
+		Robot.SPEED_DEFAULT = (float) SmartDashboard.getNumber("DEF_SPEED", Robot.SPEED_DEFAULT);
+		Robot.SPEED_MAXIMUM = (float) SmartDashboard.getNumber("MAX_SPEED", Robot.SPEED_MAXIMUM);
+		
+		Robot.CAM_QUALITY_MIN = (int) SmartDashboard.getNumber("CAM_QUALITY_MIN", Robot.CAM_QUALITY_MIN);
+		Robot.CAM_QUALITY_MAX = (int) SmartDashboard.getNumber("CAM_QUALITY_MAX", Robot.CAM_QUALITY_MAX);
+		
+		Robot.CORNER_TIME_L = (float) SmartDashboard.getNumber("CORNER_TIME_L", Robot.CORNER_TIME_L);
+		Robot.CORNER_TIME_R = (float) SmartDashboard.getNumber("CORNER_TIME_R", Robot.CORNER_TIME_R);
+		
+		Robot.DRIVE_TRAIN_P = (float) SmartDashboard.getNumber("DRIVE_TRAIN_P", Robot.DRIVE_TRAIN_P);
+		
+		Robot.LOWERED_SPEED = (float) SmartDashboard.getNumber("LOWERED_SPEED", Robot.LOWERED_SPEED);
+		Robot.HOLD_POSITION = (float) SmartDashboard.getNumber("HOLD_POSITION", Robot.HOLD_POSITION);
+		
 		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
-			setSystemMagnitude((float) (1.0f/driverController.getLT() * Robot.SPEED_MINIMUM));
+			setSystemMagnitude((float) (1.0f/ (driverController.getLT() * Robot.SPEED_MINIMUM)));
 		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){
 			setSystemMagnitude((float) driverController.getRT() * Robot.SPEED_MAXIMUM);
 		}else{

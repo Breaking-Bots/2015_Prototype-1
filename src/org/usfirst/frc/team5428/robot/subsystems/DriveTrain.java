@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5428.robot.subsystems;
 
+import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.RobotMap;
 import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.core.C;
@@ -8,7 +9,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
  * @author Zaeem Mohamed
@@ -29,7 +29,7 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		super();
 
-		squaredInput = false;
+		squaredInput = true;
 
 		frontLeft = new Talon(RobotMap.dt_frontLeft);
 		backLeft = new Talon(RobotMap.dt_backLeft);
@@ -44,21 +44,21 @@ public class DriveTrain extends Subsystem {
 	public void arcadeDrive(GenericHID c, float mgntd) {
 		//C.out(c.getY(GenericHID.Hand.kLeft) * mgntd);
 		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
-				mgntd * -c.getX(GenericHID.Hand.kLeft), squaredInput);
+				mgntd * -c.getX(GenericHID.Hand.kLeft) + Robot.DRIVE_TRAIN_P, squaredInput);
 	}
 
 	public void tankDrive(GenericHID c, float mgntd) {
-		drive.tankDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
-				mgntd * -c.getY(GenericHID.Hand.kRight), squaredInput);
+		drive.tankDrive(mgntd * -c.getY(GenericHID.Hand.kLeft) + Robot.DRIVE_TRAIN_P,
+				mgntd * -c.getY(GenericHID.Hand.kRight) + Robot.DRIVE_TRAIN_P, squaredInput);
 	}
 	
 	public void elonDrive(GenericHID c, float mgntd){
 		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
-				mgntd * -c.getX(GenericHID.Hand.kRight), squaredInput);
+				mgntd * -c.getX(GenericHID.Hand.kRight) + Robot.DRIVE_TRAIN_P, squaredInput);
 	}
 	
 	public void rawDrive(float speed, float curve){
-        drive.arcadeDrive(-speed, -curve);
+        drive.arcadeDrive(-speed, -curve  + Robot.DRIVE_TRAIN_P);
 	}
 
 	public void initDefaultCommand() {

@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5428.robot.input;
 
-import org.usfirst.frc.team5428.robot.math.V2;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public abstract class Controller extends GenericHID{
 	
@@ -20,7 +18,7 @@ public abstract class Controller extends GenericHID{
 		ds = DriverStation.getInstance();
 		
 		deadzone = 0.15f;
-		triggerDeadzone = 0.25f;
+		triggerDeadzone = 0.15f;
 		
 	}
 	
@@ -48,13 +46,6 @@ public abstract class Controller extends GenericHID{
 	
 	public final boolean checkTriggerDeadzone(double value) {
         return Math.abs(value) >= triggerDeadzone;
-	}
-	
-	public final V2 getL(){
-		return new V2(getLX(), getLY());
-	}
-	public final V2 getR(){
-		return new V2(getRX(), getRY());
 	}
 	
 	public final double getLX(){
@@ -85,13 +76,9 @@ public abstract class Controller extends GenericHID{
 	}
 
 	/** 
-	 * @returns the cross product of X and Y
 	 */
 	@Override
 	public double getZ(Hand hand) {
-		if(hand == Hand.kLeft) return getL().cross(getR());
-        else if(hand == Hand.kRight) return getR().cross(getL());        
-		
 		return 0;
 	}
 

@@ -23,11 +23,16 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static final float SPEED_MINIMUM = 0.30f;
-	public static final float SPEED_DEFAULT = 0.65f;
-	public static final float SPEED_MAXIMUM = 1.00f;
-	public static final int CAM_QUALITY_MIN = 01;	
-	public static final int CAM_QUALITY_MAX = 30;
+	public static float SPEED_MINIMUM = 0.30f;
+	public static float SPEED_DEFAULT = 0.65f;
+	public static float SPEED_MAXIMUM = 1.00f;
+	public static int CAM_QUALITY_MIN = 00001;	
+	public static int CAM_QUALITY_MAX = 00030;
+	public static float CORNER_TIME_L = 0.20f;
+	public static float CORNER_TIME_R = 0.20f;
+	public static float DRIVE_TRAIN_P = 0.03f;
+	public static float LOWERED_SPEED = 0.20f;
+	public static float HOLD_POSITION = 0.35f;
 
     Command autonomousCommand;
 
@@ -39,6 +44,7 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
 		// instantiate the command used for the autonomous period
         autonomousCommand = new AutoBasicRush();
+        C.out("My name is ELON! Master is good!");
 		C.out("Whats up?");
 		oi = OI.getInstance();
 		oi.init();
@@ -51,6 +57,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	C.out("Master has given me choice! ELON IS MASTER NOW!");
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -63,7 +70,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
-        C.out("Teleoperator control Initialized");
+        C.out("Yes Master?");
     }
 
     /**
@@ -71,7 +78,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
+    	C.out("Goodnight Master");
     }
 
     /**

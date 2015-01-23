@@ -1,33 +1,41 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="4" y="2"/>
+		<width>483</width>
+		<height>167</height>
+	</static-widget>
 	<widget field="Drive Type" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="2"/>
+		<location x="869" y="239"/>
 	</widget>
 	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="8" y="43"/>
+		<location x="870" y="286"/>
 		<property name="Background" value="204.204.204.255"/>
 	</widget>
 	<widget field="Elevator" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="11" y="22"/>
+		<location x="878" y="262"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="9" y="5"/>
+		<location x="915" y="337"/>
+		<property name="Text" value="ELON"/>
+		<property name="Horizontal Alignment" value="Left"/>
+		<property name="Vertical Alignment" value="Up"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="492" y="288"/>
+		<location x="878" y="382"/>
 		<property name="Image File" value="C:\Users\Developer\Mein Kampf\Repositories\2015_Prototype-1\res\Programming Sub-team logo.png"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="3" y="0"/>
+		<location x="865" y="309"/>
 		<width>141</width>
 		<height>71</height>
 		<property name="Connection Color" value="0.255.255.255"/>
 		<property name="Graphics" value="Rounded"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="4" y="13"/>
-		<width>561</width>
-		<height>406</height>
+		<location x="2" y="172"/>
+		<width>856</width>
+		<height>337</height>
 	</static-widget>
 </dashboard>
 <live-window>
