@@ -63,7 +63,8 @@ public final class OI {
 		Robot.HOLD_POSITION = (float) SmartDashboard.getNumber("HOLD_POSITION", Robot.HOLD_POSITION);
 		
 		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
-			setSystemMagnitude((float) (1.0f/ (driverController.getLT() * Robot.SPEED_MINIMUM)));
+			//TODO: This does not invere the calculation properly as it should
+			setSystemMagnitude((float) (1 - driverController.getLT()) * Robot.SPEED_MINIMUM);
 		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){
 			setSystemMagnitude((float) driverController.getRT() * Robot.SPEED_MAXIMUM);
 		}else{
