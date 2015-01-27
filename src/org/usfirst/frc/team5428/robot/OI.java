@@ -8,6 +8,7 @@ import org.usfirst.frc.team5428.robot.commands.LowerElevator;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
 import org.usfirst.frc.team5428.robot.input.Logitech3D;
 import org.usfirst.frc.team5428.robot.input.XGamepad;
+import org.usfirst.frc.team5428.robot.math.MathUtil;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -62,14 +63,8 @@ public final class OI {
 		Robot.LOWERED_SPEED = (float) SmartDashboard.getNumber("LOWERED_SPEED", Robot.LOWERED_SPEED);
 		Robot.HOLD_POSITION = (float) SmartDashboard.getNumber("HOLD_POSITION", Robot.HOLD_POSITION);
 		
-		if(driverController.getTrigger(GenericHID.Hand.kLeft)){
-			//TODO: This does not invere the calculation properly as it should
-			setSystemMagnitude((float) (1 - driverController.getLT()) * Robot.SPEED_MINIMUM);
-		}else if(driverController.getTrigger(GenericHID.Hand.kRight)){
-			setSystemMagnitude((float) driverController.getRT() * Robot.SPEED_MAXIMUM);
-		}else{
-			defaultSystemMagnitude();
-		}
+			//TODO: test the lerp by using speed contollers
+		setSystemMagnitude(MathUtil.trilerp(Robot.SPEED_MINIMUM,Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) driverController.getT()));
 			
 		
 		Scheduler.getInstance().run();
