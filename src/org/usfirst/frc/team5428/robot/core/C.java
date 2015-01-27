@@ -12,15 +12,15 @@ public class C {
 	}
 
 	public static void out(Object obj){
-		System.out.println("[ELON] " +obj);
+		System.out.println("[ELON] <" + obj + ">");
 	}
 	
 	public static void err(Object obj){
-		System.err.println("[ERROR] " + obj);
+		System.err.println("[ERROR] <" + obj + ">");
 	}
 	
 	public static void log(Object obj){
-		System.out.println("[LOG] " + obj);
+		System.out.println("[LOG] <" + obj + ">");
 	}
 	
 }

@@ -8,11 +8,12 @@ public final class MathUtil {
 		C.out("Dont instantiate math class");
 	}
 	
+	//TODO: still not right
 	public static float trilerp(float a, float b, float c, float alpha){
-		float alphaN = (0.5f * alpha) + 0.5f;
-		float lerpAB = (1 - alphaN) * a  +  alphaN * b;
-		float lerpBC = (1 - alphaN) * b  +  alphaN * c;
-		return (1 - alphaN) * lerpAB + alphaN * lerpBC;
+		float alphaN = 0.5f * alpha + 0.5f;
+		float lerpAB = (1 - alphaN) * a +  alphaN * b;
+		float lerpBC = (1 - alphaN) * b +  alphaN * c;
+		return (1 - alphaN) * lerpAB + lerpBC * alphaN;
 	}
 	
 }
