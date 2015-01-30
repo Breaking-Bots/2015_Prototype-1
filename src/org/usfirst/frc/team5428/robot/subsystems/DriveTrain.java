@@ -29,7 +29,7 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		super();
 
-		squaredInput = true;
+		squaredInput = false;
 
 		frontLeft = new Talon(RobotMap.dt_frontLeft);
 		backLeft = new Talon(RobotMap.dt_backLeft);

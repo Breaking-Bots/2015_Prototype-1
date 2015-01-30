@@ -42,8 +42,8 @@ public final class OI {
 		driverController.RB.held(new LowerElevator());
 		driverController.L3.tapped(new CornerLeft());				
 		driverController.R3.tapped(new CornerRight());	
-		driverController.A.toggleWhenPressed(new CameraToggle());
-		driverController.X.toggleWhenPressed(new CameraQualityToggle());
+		//driverController.A.toggleWhenPressed(new CameraToggle());
+		//driverController.X.toggleWhenPressed(new CameraQualityToggle());
 	}
 	
 	public void update(){
