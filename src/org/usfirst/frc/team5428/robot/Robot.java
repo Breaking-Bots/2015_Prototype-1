@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static float SPEED_MINIMUM = 0.30f;
-	public static float SPEED_DEFAULT = 0.65f;
+	public static float SPEED_DEFAULT = 0.50f;
 	public static float SPEED_MAXIMUM = 1.00f;
 	public static int CAM_QUALITY_MIN = 00001;	
 	public static int CAM_QUALITY_MAX = 00030;

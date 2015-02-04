@@ -12,9 +12,7 @@ public final class MathUtil {
 	public static float trilerp(float a, float b, float c, float alpha) {
 		float alphaN = 0.5f * alpha + 0.5f;
 		float lerpAB = (1 - alphaN) * a + alphaN * b;
-		System.out.print(lerpAB + "\t");
 		float lerpBC = (1 - alphaN) * b + alphaN * c;
-		System.out.print(lerpBC + "\t");
 		return (1 - alphaN) * lerpAB + lerpBC * alphaN;
 	}
 
@@ -33,7 +31,7 @@ public final class MathUtil {
 		return (1 - alpha) * min + alpha * max;
 	}
 
-	public static float masterEquation(float a, float b, float c, float alpha) {
+	public static float sam(float a, float b, float c, float alpha) {
 		float alphaN = 0.5f * alpha + 0.5f;
 		
 		float f = (a * a - 2 * a * b + b * b) / (a - 2 * b + c);
@@ -42,5 +40,15 @@ public final class MathUtil {
 
 		return f * (float) Math.pow(g, alphaN) + k;
 	}
+	
+	public static float oldSam(float a, float b, float c, float alpha) {
+		
+		float f = (a - b) * (b - c) / (a - 2 * b + c);
+		float g = (b - c) / (a - b);
+		float k = (b * b - a * c) / (-a + 2 * b - c);
+		
+		return f * (float) Math.pow(g, alpha) + k;
+	}
+	
 
 }
