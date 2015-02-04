@@ -7,6 +7,7 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
 import org.usfirst.frc.team5428.robot.vision.Vision;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,19 +24,30 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static float SPEED_MINIMUM = 0.30f;
-	public static float SPEED_DEFAULT = 0.50f;
-	public static float SPEED_MAXIMUM = 1.00f;
-	public static int CAM_QUALITY_MIN = 00001;	
-	public static int CAM_QUALITY_MAX = 00030;
-	public static float CORNER_TIME_L = 0.20f;
-	public static float CORNER_TIME_R = 0.20f;
-	public static float DRIVE_TRAIN_P = 0.03f;
-	public static float LOWERED_SPEED = 0.20f;
-	public static float HOLD_POSITION = 0.35f;
+	private static final float dSPEED_MINIMUM = 0.30f;
+	private static final float dSPEED_DEFAULT = 0.50f;
+	private static final float dSPEED_MAXIMUM = 1.00f;
+	private static final int dCAM_QUALITY_MIN = 00001;	
+	private static final int dCAM_QUALITY_MAX = 00030;
+	private static final float dCORNER_TIME_L = 0.20f;
+	private static final float dCORNER_TIME_R = 0.20f;
+	private static final float dDRIVE_TRAIN_P = 0.03f;
+	private static final float dLOWERED_SPEED = 0.20f;
+	private static final float dHOLD_POSITION = 0.35f;
+	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
+	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
+	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
+	public static int CAM_QUALITY_MIN = dCAM_QUALITY_MIN;	
+	public static int CAM_QUALITY_MAX = dCAM_QUALITY_MAX;
+	public static float CORNER_TIME_L = dCORNER_TIME_L;
+	public static float CORNER_TIME_R = dCORNER_TIME_R;
+	public static float DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
+	public static float LOWERED_SPEED = dLOWERED_SPEED;
+	public static float HOLD_POSITION = dHOLD_POSITION;
 
     Command autonomousCommand;
-
+    private Preferences prefs;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -48,6 +60,7 @@ public class Robot extends IterativeRobot {
 		C.out("Whats up?");
 		oi = OI.getInstance();
 		oi.init();
+		prefs = Preferences.getInstance();
 		//Vision.init();
     }
 	
@@ -68,8 +81,28 @@ public class Robot extends IterativeRobot {
     	Scheduler.getInstance().run();
     }
 
+    /**
+     * Gets called once before the running of the robot
+     */
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        {
+        	SPEED_MINIMUM = (float) prefs.getDouble("MIN_SPEED", dSPEED_MINIMUM);
+        	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
+        	SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
+		
+        	CAM_QUALITY_MIN = (int) prefs.getDouble("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
+        	CAM_QUALITY_MAX = (int) prefs.getDouble("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
+		
+        	CORNER_TIME_L = (float) prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
+        	CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
+		
+        	DRIVE_TRAIN_P = (float) prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
+		
+        	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
+        	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
+        } // This block gets input from the users preferences to get default values
+        
         C.out("Yes Master?");
     }
 

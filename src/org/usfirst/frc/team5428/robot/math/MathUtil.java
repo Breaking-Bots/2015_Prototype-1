@@ -16,7 +16,7 @@ public final class MathUtil {
 		return (1 - alphaN) * lerpAB + lerpBC * alphaN;
 	}
 
-	public static float trilerp2(float a, float b, float c, float alpha) {
+	public static float trilerpv2(float a, float b, float c, float alpha) {
 		float alphaN = 0.5f * alpha + 0.5f;
 		if (alpha > 0) {
 			return alphaN * (b + c) / 2;
@@ -41,6 +41,7 @@ public final class MathUtil {
 		return f * (float) Math.pow(g, alphaN) + k;
 	}
 	
+	@Deprecated
 	public static float oldSam(float a, float b, float c, float alpha) {
 		
 		float f = (a - b) * (b - c) / (a - 2 * b + c);

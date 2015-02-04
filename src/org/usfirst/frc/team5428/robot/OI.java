@@ -30,14 +30,14 @@ public final class OI {
 		return instance;
 	}
 	
-	private Preferences prefs;
+	
 	public final XGamepad driverController;
 	public final Logitech3D subController;
 	
 	private OI(){
 		driverController = new XGamepad(0);
 		subController = new Logitech3D(1);
-		prefs = Preferences.getInstance();
+		
 		magnitude = Robot.SPEED_DEFAULT;
 	}
 	
@@ -52,20 +52,7 @@ public final class OI {
 	
 	public void update(){
 		
-		Robot.SPEED_MINIMUM = (float) prefs.getDouble("MIN_SPEED", Robot.SPEED_MINIMUM);
-		Robot.SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", Robot.SPEED_DEFAULT);
-		Robot.SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", Robot.SPEED_MAXIMUM);
 		
-		Robot.CAM_QUALITY_MIN = (int) prefs.getDouble("CAM_QUALITY_MIN", Robot.CAM_QUALITY_MIN);
-		Robot.CAM_QUALITY_MAX = (int) prefs.getDouble("CAM_QUALITY_MAX", Robot.CAM_QUALITY_MAX);
-		
-		Robot.CORNER_TIME_L = (float) prefs.getDouble("CORNER_TIME_L", Robot.CORNER_TIME_L);
-		Robot.CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", Robot.CORNER_TIME_R);
-		
-		Robot.DRIVE_TRAIN_P = (float) prefs.getDouble("DRIVE_TRAIN_P", Robot.DRIVE_TRAIN_P);
-		
-		Robot.LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", Robot.LOWERED_SPEED);
-		Robot.HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", Robot.HOLD_POSITION);
 		
 			//TODO: test the lerp by using speed contollers
 		setSystemMagnitude(MathUtil.sam(Robot.SPEED_MINIMUM,Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) driverController.getT()));

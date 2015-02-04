@@ -20,6 +20,8 @@ hs_err_pid*
 .metadata
 .gradle
 bin/
+build/
+dist/
 tmp/
 *.tmp
 *.bak
