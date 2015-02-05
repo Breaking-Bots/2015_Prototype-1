@@ -26,6 +26,16 @@ public final class MathUtil {
 
 		return b;
 	}
+	
+	public static float zaeem(float a, float b, float c, float alpha){
+//		float alphaN = 0.5f * alpha + 0.5f;
+//		float alphaAB = alpha + 1;
+//		float lerpAB = (1 - alphaAB) * a + alphaAB * b;
+//		float lerpBC = (1 - alpha) * b + alpha * c;
+//		return (1 - alphaN) * lerpAB + lerpBC * alphaN;
+		
+		return (alpha * ( a * (alpha - 1) + c * (alpha + 1)) - 2 * b * (alpha * alpha - 1)) * 0.5f;
+	}
 
 	public static float lerp(float min, float max, float alpha) {
 		return (1 - alpha) * min + alpha * max;
