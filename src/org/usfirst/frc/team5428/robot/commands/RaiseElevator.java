@@ -21,7 +21,7 @@ public class RaiseElevator extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.elevate(OI.getSystemMagnitude());
+    	elevator.elevate(-OI.getSystemMagnitude());
     }
 
     // Make this return true when this Command no longer needs to run execute()

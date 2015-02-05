@@ -33,17 +33,19 @@ public final class OI {
 	
 	public final XGamepad driverController;
 	public final Logitech3D subController;
+	private boolean disable;
 	
 	private OI(){
 		driverController = new XGamepad(0);
 		subController = new Logitech3D(1);
 		
 		magnitude = Robot.SPEED_DEFAULT;
+		disable = true;
 	}
 	
 	public void init(){
-		driverController.LB.held(new RaiseElevator());				
-		driverController.RB.held(new LowerElevator());
+		driverController.LB.held(new LowerElevator());				
+		driverController.RB.held(new RaiseElevator());
 		//driverController.L3.tapped(new CornerLeft());				
 		//driverController.R3.tapped(new CornerRight());	
 		//driverController.A.toggleWhenPressed(new CameraToggle());
@@ -52,11 +54,19 @@ public final class OI {
 	
 	public void update(){
 		
+		if (driverController.BACK.get() && !disable) {
+			C.out("Control Disabled");
+			disable();
+		}else if (driverController.START.get() && disable) {
+			C.out("Control Enabled");
+			enable();
+		}
 		
-		
+		if (!disable) {
 			//TODO: test the lerp by using speed contollers
-		setSystemMagnitude(MathUtil.sam(Robot.SPEED_MINIMUM,Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) driverController.getT()));
-		Scheduler.getInstance().run();
+			setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) driverController.getT()));
+			Scheduler.getInstance().run();
+		}
 	}
 	
     public static float getSystemMagnitude() {
@@ -70,6 +80,9 @@ public final class OI {
 	public static  void defaultSystemMagnitude(){
 		magnitude = Robot.SPEED_DEFAULT;
 	}
+	
+	public void disable(){ disable = true;}
+	public void enable(){disable = false;}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button

@@ -91,8 +91,8 @@ public class Robot extends IterativeRobot {
         	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
         	SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
 		
-        	CAM_QUALITY_MIN = (int) prefs.getDouble("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
-        	CAM_QUALITY_MAX = (int) prefs.getDouble("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
+        	CAM_QUALITY_MIN = (int) prefs.getInt("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
+        	CAM_QUALITY_MAX = (int) prefs.getInt("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
 		
         	CORNER_TIME_L = (float) prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
         	CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
@@ -111,6 +111,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	oi.disable();
     	C.out("Goodnight Master");
     }
 
