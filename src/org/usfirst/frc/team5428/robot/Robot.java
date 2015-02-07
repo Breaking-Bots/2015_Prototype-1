@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 	private static final float dDRIVE_TRAIN_P = 0.03f;
 	private static final float dLOWERED_SPEED = 0.20f;
 	private static final float dHOLD_POSITION = 0.35f;
+	private static final float dELEVATOR_TIME = 0.40f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 	public static float DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
 	public static float LOWERED_SPEED = dLOWERED_SPEED;
 	public static float HOLD_POSITION = dHOLD_POSITION;
+	public static float ELEVATOR_TIME = dELEVATOR_TIME;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -91,8 +93,8 @@ public class Robot extends IterativeRobot {
         	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
         	SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
 		
-        	CAM_QUALITY_MIN = (int) prefs.getDouble("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
-        	CAM_QUALITY_MAX = (int) prefs.getDouble("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
+        	CAM_QUALITY_MIN = (int) prefs.getInt("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
+        	CAM_QUALITY_MAX = (int) prefs.getInt("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
 		
         	CORNER_TIME_L = (float) prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
         	CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
@@ -101,6 +103,8 @@ public class Robot extends IterativeRobot {
 		
         	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
         	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
+        	
+        	ELEVATOR_TIME = (float) prefs.getDouble("RISE_TIME_STEP", dELEVATOR_TIME);
         } // This block gets input from the users preferences to get default values
         
         C.out("Yes Master?");
@@ -111,6 +115,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	oi.disable();
     	C.out("Goodnight Master");
     }
 

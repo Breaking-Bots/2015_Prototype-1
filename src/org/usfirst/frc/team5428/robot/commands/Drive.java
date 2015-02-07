@@ -21,12 +21,10 @@ public class Drive extends CommandBase {
 	public static final int ELN = 2;
 
 	private int currentState = ELN;
-	private boolean disable;
 
 	public Drive() {
 		requires(driveTrain);
 		this.setInterruptible(true);
-		disable = true;
 	}
 
 	// Called just before this Command runs the first time
@@ -36,25 +34,20 @@ public class Drive extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		update();
-		if (!disable) {
-			switch (currentState) {
-			case TNK:
-				driveTrain.tankDrive(oi.driverController,
-						OI.getSystemMagnitude());
-				break;
-			case ARC:
-				driveTrain.arcadeDrive(oi.driverController,
-						OI.getSystemMagnitude());
-				break;
-			case ELN:
-				driveTrain.elonDrive(oi.driverController,
-						OI.getSystemMagnitude());
-				break;
-			default:
-				C.err("Invalid Drive state");
-			}
-		}else{
-			driveTrain.rawDrive(0, 0);
+		switch (currentState) {
+		case TNK:
+			driveTrain.tankDrive(oi.driverController,
+				OI.getSystemMagnitude());
+			break;
+		case ARC:
+				driveTrain.arcadeDrive(oi.driverController,	OI.getSystemMagnitude());
+			break;
+		case ELN:
+			driveTrain.elonDrive(oi.driverController,
+					OI.getSystemMagnitude());
+			break;
+		default:
+			C.err("Invalid Drive state");
 		}
 	}
 
@@ -73,13 +66,8 @@ public class Drive extends CommandBase {
 			setCurrentState(Drive.ELN);
 		}
 		
-		if (oi.driverController.BACK.get() && !disable) {
-			C.out("Drive disabled");
-			disable = true;
-		}else if (oi.driverController.START.get() && disable) {
-			C.out("Drive enabled");
-			disable = false;
-		}
+		driveTrain.rawDrive(0, 0);
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -105,13 +93,4 @@ public class Drive extends CommandBase {
 	public void setCurrentState(int currentState) {
 		this.currentState = currentState;
 	}
-
-	public boolean isDiabled() {
-		return disable;
-	}
-
-	public void cancel(boolean disable) {
-		this.disable = disable;
-	}
-
 }
