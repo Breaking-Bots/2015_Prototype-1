@@ -31,10 +31,10 @@ public class DriveTrain extends Subsystem {
 
 		squaredInput = false;
 
-		frontLeft = new Talon(RobotMap.dt_frontLeft);
-		backLeft = new Talon(RobotMap.dt_backLeft);
-		frontRight = new Talon(RobotMap.dt_frontRight);
-		backRight = new Talon(RobotMap.dt_backRight);
+		frontLeft = new Talon(RobotMap.DT_FRONTLEFT);
+		backLeft = new Talon(RobotMap.DT_BACKLEFT);
+		frontRight = new Talon(RobotMap.DT_FRONTRIGHT);
+		backRight = new Talon(RobotMap.DT_BACKRIGHT);
 
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 

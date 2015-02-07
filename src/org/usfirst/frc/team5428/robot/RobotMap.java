@@ -6,18 +6,13 @@ package org.usfirst.frc.team5428.robot;
  * floating around.
  */
 public class RobotMap {
-    public static final int dt_frontLeft = 0;
-    public static final int dt_backLeft = 1;
-    public static final int dt_frontRight = 2;
-    public static final int dt_backRight = 3;
+    public static final int DT_FRONTLEFT = 0;
+    public static final int DT_BACKLEFT = 1;
+    public static final int DT_FRONTRIGHT = 2;
+    public static final int DT_BACKRIGHT = 3;
     
-    public static final int elevator = 4;
-    public static final int compressorMotor = 5;
+    public static final int ELEVATOR = 4;
     
-    public static final int CAN_COMPRESSOR = 42; 
-    
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
+    public static final int CAN_PCM = 42; 
+    public static final int PN_SOLENOID = -1; //TODO: assign valid port
 }

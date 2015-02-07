@@ -12,16 +12,17 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ControlSolenoid extends CommandBase {
 
     public ControlSolenoid() {
-        //requires(solenoid);
+        requires(pneumaticComponent);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	pneumaticComponent.setSolenoidStatus(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	solenoid.set(true);    	
+    	pneumaticComponent.solenoidStatus();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,18 +31,17 @@ public class ControlSolenoid extends CommandBase {
     }
 
     protected void end() {
-    	solenoid.set(false);
+    	pneumaticComponent.setSolenoidStatus(false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	solenoid.set(false);
+    	end();
     }
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 }
