@@ -3,6 +3,7 @@ package org.usfirst.frc.team5428.robot.commands;
 import org.usfirst.frc.team5428.robot.OI;
 import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
+import org.usfirst.frc.team5428.robot.subsystems.Pneumatics;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * Controls the enabling and disabling of solenoids
  */
 public class ControlSolenoid extends CommandBase {
-
-    public ControlSolenoid() {
-        //requires(solenoid);
+	
+	public ControlSolenoid() {
+        requires(pneumatics);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +22,7 @@ public class ControlSolenoid extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	solenoid.set(true);    	
+    	pneumatics.enable();    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,13 +31,13 @@ public class ControlSolenoid extends CommandBase {
     }
 
     protected void end() {
-    	solenoid.set(false);
+    	pneumatics.disable(); 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	solenoid.set(false);
+    	pneumatics.disable();
     }
 
 	@Override
