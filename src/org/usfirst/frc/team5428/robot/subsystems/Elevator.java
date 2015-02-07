@@ -18,7 +18,7 @@ public class Elevator extends Subsystem {
 	
 	public Elevator(){
 		super();
-		victor = new Victor(RobotMap.elevator);
+		victor = new Victor(RobotMap.ELEVATOR);
 		
 		C.out(getName() + " Initialized");		
 	}

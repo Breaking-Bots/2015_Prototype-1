@@ -2,7 +2,7 @@ package org.usfirst.frc.team5428.robot;
 
 import org.usfirst.frc.team5428.robot.commands.CameraQualityToggle;
 import org.usfirst.frc.team5428.robot.commands.CameraToggle;
-import org.usfirst.frc.team5428.robot.commands.Compress;
+import org.usfirst.frc.team5428.robot.commands.ControlCompressor;
 import org.usfirst.frc.team5428.robot.commands.CornerLeft;
 import org.usfirst.frc.team5428.robot.commands.CornerRight;
 import org.usfirst.frc.team5428.robot.commands.FixedElevation;
@@ -49,7 +49,7 @@ public final class OI {
 	public void init(){
 		driverController.LB.held(new LowerElevator());				
 		driverController.RB.held(new RaiseElevator());
-		driverController.B.toggleWhenPressed(new Compress());
+		driverController.B.toggleWhenPressed(new ControlCompressor());
 		driverController.Y.tapped(new FixedElevation());
 		//driverController.L3.tapped(new CornerLeft());				
 		//driverController.R3.tapped(new CornerRight());	
