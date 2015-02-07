@@ -36,7 +36,7 @@ public final class MathUtil {
 		
 		return (alpha * ( a * (alpha - 1) + c * (alpha + 1)) - 2 * b * (alpha * alpha - 1)) * 0.5f;
 	}
-
+	
 	public static float lerp(float min, float max, float alpha) {
 		return (1 - alpha) * min + alpha * max;
 	}

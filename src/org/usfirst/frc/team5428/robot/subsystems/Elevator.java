@@ -28,7 +28,7 @@ public class Elevator extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new HoldElevation());
+        //setDefaultCommand(new HoldElevation());
     }
 }
 

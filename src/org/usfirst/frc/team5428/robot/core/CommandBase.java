@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public abstract class CommandBase extends Command {
 
 	public static OI oi;
-	protected static DriveTrain driveTrain;
-	protected static Elevator elevator;
+	public static DriveTrain driveTrain;
+	public static Elevator elevator;
 	
 	public static void init(){
 		oi = OI.getInstance();

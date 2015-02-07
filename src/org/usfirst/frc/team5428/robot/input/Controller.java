@@ -18,7 +18,7 @@ public abstract class Controller extends GenericHID{
 		ds = DriverStation.getInstance();
 		
 		deadzone = 0.10f;
-		triggerDeadzone = 0.05f;
+		triggerDeadzone = 0.00f;
 		
 	}
 	
@@ -101,7 +101,7 @@ public abstract class Controller extends GenericHID{
 	}
 
 	public final double getT(){
-		return getRT() - getLT();
+		return  getAxis(AxisType.RT) - getAxis(AxisType.LT);
 	}
 	
 	public final double getLT() {

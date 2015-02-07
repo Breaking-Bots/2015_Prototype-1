@@ -1,27 +1,33 @@
 package org.usfirst.frc.team5428.robot.commands;
 
-import org.usfirst.frc.team5428.robot.OI;
+import org.usfirst.frc.team5428.robot.RobotMap;
+import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-import org.usfirst.frc.team5428.robot.subsystems.Elevator;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Raises elevator
+ * Command that compresses compressor
  */
-public class RaiseElevator extends CommandBase {
+public class Compress extends CommandBase {
 
-    public RaiseElevator() {
-        requires(elevator);
+	private final Compressor compressor;
+	
+    public Compress() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	compressor = new Compressor(RobotMap.CAN_COMPRESSOR);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	compressor.setClosedLoopControl(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.elevate(-OI.getSystemMagnitude());
+    	C.out(compressor.getClosedLoopControl());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,13 +37,13 @@ public class RaiseElevator extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	elevator.elevate(0);
+    	compressor.setClosedLoopControl(false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	elevator.elevate(0);
+    	end();
     }
 
 	@Override

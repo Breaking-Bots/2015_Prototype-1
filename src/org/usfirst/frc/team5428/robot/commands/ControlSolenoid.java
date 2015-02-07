@@ -1,18 +1,18 @@
 package org.usfirst.frc.team5428.robot.commands;
 
 import org.usfirst.frc.team5428.robot.OI;
+import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-import org.usfirst.frc.team5428.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Raises elevator
+ * Controls the enabling and disabling of solenoids
  */
-public class RaiseElevator extends CommandBase {
+public class ControlSolenoid extends CommandBase {
 
-    public RaiseElevator() {
-        requires(elevator);
+    public ControlSolenoid() {
+        //requires(solenoid);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class RaiseElevator extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.elevate(-OI.getSystemMagnitude());
+    	solenoid.set(true);    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,15 +29,14 @@ public class RaiseElevator extends CommandBase {
         return isCanceled();
     }
 
-    // Called once after isFinished returns true
     protected void end() {
-    	elevator.elevate(0);
+    	solenoid.set(false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	elevator.elevate(0);
+    	solenoid.set(false);
     }
 
 	@Override
