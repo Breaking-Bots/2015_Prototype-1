@@ -43,6 +43,7 @@ public final class MathUtil {
 
 	public static float sam(float a, float b, float c, float alpha) {
 		float alphaN = 0.5f * alpha + 0.5f;
+		b += 0.0001f;
 		
 		float f = (a * a - 2 * a * b + b * b) / (a - 2 * b + c);
 		float g = ((b * b - 2 * b * c + c * c) / (a * a - 2 * a * b + b * b));
