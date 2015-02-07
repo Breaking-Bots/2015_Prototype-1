@@ -5,9 +5,9 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
 /**
  * Command that compresses compressor
  */
-public class Compress extends CommandBase {
+public class ControlCompressor extends CommandBase {
 
-    public Compress() {
+    public ControlCompressor() {
     	requires(pneumaticComponent);
     }
 
