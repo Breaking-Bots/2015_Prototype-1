@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 	private static final float dDRIVE_TRAIN_P = 0.03f;
 	private static final float dLOWERED_SPEED = 0.20f;
 	private static final float dHOLD_POSITION = 0.35f;
+	private static final float dELEVATOR_TIME = 0.40f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 	public static float DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
 	public static float LOWERED_SPEED = dLOWERED_SPEED;
 	public static float HOLD_POSITION = dHOLD_POSITION;
+	public static float ELEVATOR_TIME = dELEVATOR_TIME;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -101,6 +103,8 @@ public class Robot extends IterativeRobot {
 		
         	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
         	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
+        	
+        	ELEVATOR_TIME = (float) prefs.getDouble("RISE_TIME_STEP", dELEVATOR_TIME);
         } // This block gets input from the users preferences to get default values
         
         C.out("Yes Master?");
