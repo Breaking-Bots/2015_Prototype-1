@@ -1,5 +1,8 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="PneumaticComponent" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="488" y="0"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
 		<location x="4" y="2"/>
 		<width>483</width>

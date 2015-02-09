@@ -11,31 +11,22 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Vision {
-	private static Image frame;
-	private static int session;
+	public static CameraServer server;
 	
 	public static void init(){
-		 frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-
-	        // the camera name (ex "cam0") can be found through the roborio web interface
-	        session = NIVision.IMAQdxOpenCamera("cam0",
-	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-	        NIVision.IMAQdxConfigureGrab(session);
+		server = CameraServer.getInstance();
 	}
 	
 	public static void teleopInit(){
-		NIVision.IMAQdxStartAcquisition(session);
-		CameraServer.getInstance().setQuality(Robot.CAM_QUALITY_MIN);
+		 server.setQuality(Robot.CAM_QUALITY_MAX);
+	     server.startAutomaticCapture("cam1");
 	}
 	
 	
 	public static void teleopTerminate(){
-		 NIVision.IMAQdxStopAcquisition(session);
 	}
 	
 	public static void stream()
 	{	        
-		NIVision.IMAQdxGrab(session, frame, 1);
-        CameraServer.getInstance().setImage(frame);
 	}
 }

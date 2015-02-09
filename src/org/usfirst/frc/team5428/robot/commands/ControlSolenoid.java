@@ -1,10 +1,9 @@
 package org.usfirst.frc.team5428.robot.commands;
 
-import org.usfirst.frc.team5428.robot.OI;
-import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 
 /**
  * Controls the enabling and disabling of solenoids
@@ -17,7 +16,7 @@ public class ControlSolenoid extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	pneumaticComponent.setSolenoidStatus(true);
+    	pneumaticComponent.setSolenoidStatus(Value.kOff);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,7 +30,7 @@ public class ControlSolenoid extends CommandBase {
     }
 
     protected void end() {
-    	pneumaticComponent.setSolenoidStatus(false);
+    	pneumaticComponent.setSolenoidStatus(Value.kOff);
     }
 
     // Called when another command which requires one or more of the same

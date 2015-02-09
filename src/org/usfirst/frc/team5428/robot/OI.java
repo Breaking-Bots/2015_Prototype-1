@@ -1,10 +1,7 @@
 package org.usfirst.frc.team5428.robot;
 
-import org.usfirst.frc.team5428.robot.commands.CameraQualityToggle;
-import org.usfirst.frc.team5428.robot.commands.CameraToggle;
 import org.usfirst.frc.team5428.robot.commands.ControlCompressor;
-import org.usfirst.frc.team5428.robot.commands.CornerLeft;
-import org.usfirst.frc.team5428.robot.commands.CornerRight;
+import org.usfirst.frc.team5428.robot.commands.FixedDeclination;
 import org.usfirst.frc.team5428.robot.commands.FixedElevation;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
@@ -14,10 +11,7 @@ import org.usfirst.frc.team5428.robot.input.Logitech3D;
 import org.usfirst.frc.team5428.robot.input.XGamepad;
 import org.usfirst.frc.team5428.robot.math.MathUtil;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,11 +43,11 @@ public final class OI {
 	public void init(){
 		driverController.LB.held(new LowerElevator());				
 		driverController.RB.held(new RaiseElevator());
-		driverController.B.toggleWhenPressed(new ControlCompressor());
 		driverController.Y.tapped(new FixedElevation());
+		driverController.A.tapped(new FixedDeclination());
+		//driverController.B.toggleWhenPressed(new ControlCompressor());
 		//driverController.L3.tapped(new CornerLeft());				
 		//driverController.R3.tapped(new CornerRight());	
-		//driverController.A.toggleWhenPressed(new CameraToggle());
 		//driverController.X.toggleWhenPressed(new CameraQualityToggle());
 	}
 	

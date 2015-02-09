@@ -17,7 +17,7 @@ public abstract class Controller extends GenericHID{
 		this.port = port;
 		ds = DriverStation.getInstance();
 		
-		deadzone = 0.10f;
+		deadzone = 0.20f;
 		triggerDeadzone = 0.00f;
 		
 	}
@@ -41,7 +41,7 @@ public abstract class Controller extends GenericHID{
 	}
 	
 	public final double checkDeadzone(double value) {
-            return (Math.abs(value) >= deadzone? value : 0);
+		return (Math.abs(value) > deadzone)? (value - deadzone)/(1 - deadzone):0;
 	}
 	
 	public final boolean checkTriggerDeadzone(double value) {

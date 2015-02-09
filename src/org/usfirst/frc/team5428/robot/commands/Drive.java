@@ -1,14 +1,8 @@
 package org.usfirst.frc.team5428.robot.commands;
 
 import org.usfirst.frc.team5428.robot.OI;
-import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-import org.usfirst.frc.team5428.robot.input.Controller;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -17,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drive extends CommandBase {
 
 	public static final int TNK = 0;
-	public static final int ARC = 1;
 	public static final int ELN = 2;
 
 	private int currentState = ELN;
@@ -35,16 +28,13 @@ public class Drive extends CommandBase {
 	protected void execute() {
 		update();
 		switch (currentState) {
-		case TNK:
-			driveTrain.tankDrive(oi.driverController,
-				OI.getSystemMagnitude());
-			break;
-		case ARC:
-				driveTrain.arcadeDrive(oi.driverController,	OI.getSystemMagnitude());
-			break;
 		case ELN:
 			driveTrain.elonDrive(oi.driverController,
 					OI.getSystemMagnitude());
+			break;
+		case TNK:
+			driveTrain.tankDrive(oi.driverController,
+				OI.getSystemMagnitude());
 			break;
 		default:
 			C.err("Invalid Drive state");
@@ -52,22 +42,15 @@ public class Drive extends CommandBase {
 	}
 
 	public void update() {
-		if (oi.driverController.getPOV(0) == 270 && currentState != TNK) {
+	if (oi.driverController.getPOV(0) == 90 && currentState != ELN) {
+		SmartDashboard.putString("Drive Type", "ELN");
+		C.out("Elon Drive is go");
+		setCurrentState(Drive.ELN);
+	}else if (oi.driverController.getPOV(0) == 270 && currentState != TNK) {
 			C.out("Tank Drive is go");
 			SmartDashboard.putString("Drive Type", "TNK");
 			setCurrentState(Drive.TNK);
-		} else if (oi.driverController.getPOV(0) == 180 && currentState != ARC) {
-			SmartDashboard.putString("Drive Type", "ARC");
-			C.out("Arcade Drive is go");
-			setCurrentState(Drive.ARC);
-		} else if (oi.driverController.getPOV(0) == 90 && currentState != ELN) {
-			SmartDashboard.putString("Drive Type", "ELN");
-			C.out("Elon Drive is go");
-			setCurrentState(Drive.ELN);
 		}
-		
-		driveTrain.rawDrive(0, 0);
-		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

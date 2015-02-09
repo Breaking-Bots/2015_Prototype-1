@@ -4,23 +4,25 @@ import org.usfirst.frc.team5428.robot.RobotMap;
 import org.usfirst.frc.team5428.robot.core.C;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class PneumaticComponent extends Subsystem {
 
-	private final Solenoid solenoid;
+	private final DoubleSolenoid solenoid;
 	private final Compressor compressor;
 	
 	public PneumaticComponent(){
 		super();
-		solenoid = new Solenoid(RobotMap.CAN_PCM, RobotMap.PN_SOLENOID);
+		solenoid = new DoubleSolenoid(0, 1);
 		compressor = new Compressor(RobotMap.CAN_PCM);
 		
 		C.out(getName() + " Initialized");		
 	}
 	
-	public void setSolenoidStatus(boolean on){
+	public void setSolenoidStatus(Value on){
 		solenoid.set(on);
 	}
 	
