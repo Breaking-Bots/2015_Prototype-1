@@ -10,6 +10,7 @@ public class RobotMap {
     public static final int DT_BACKLEFT = 1;
     public static final int DT_FRONTRIGHT = 2;
     public static final int DT_BACKRIGHT = 3;
+    public static final int DT_GYRO = 0;
     
     public static final int ELEVATOR = 4;
     

@@ -6,6 +6,7 @@ import org.usfirst.frc.team5428.robot.commands.Drive;
 import org.usfirst.frc.team5428.robot.core.C;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,6 +24,7 @@ public class DriveTrain extends Subsystem {
 	private Talon frontRight;
 	private Talon backRight;
 	private RobotDrive drive;
+	private Gyro gyro;
 
 	private boolean squaredInput;
 
@@ -35,26 +37,34 @@ public class DriveTrain extends Subsystem {
 		backLeft = new Talon(RobotMap.DT_BACKLEFT);
 		frontRight = new Talon(RobotMap.DT_FRONTRIGHT);
 		backRight = new Talon(RobotMap.DT_BACKRIGHT);
+		gyro = new Gyro(0);
+		gyro.setSensitivity(0.006);
+		gyro.startLiveWindowMode();
 
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
 		C.out(getName() + " Initialized");
 	}
 
-	public void arcadeDrive(GenericHID c, float mgntd) {
+	public void arcadeDrive(double fwd, double turn, float mgntd) {
 		//C.out(c.getY(GenericHID.Hand.kLeft) * mgntd);
-		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
-				mgntd * -c.getX(GenericHID.Hand.kLeft) + Robot.DRIVE_TRAIN_P, squaredInput);
+		drive.arcadeDrive(mgntd * -fwd,
+				mgntd * -turn + Robot.DRIVE_TRAIN_P, squaredInput);
 	}
 
-	public void tankDrive(GenericHID c, float mgntd) {
-		drive.tankDrive(mgntd * -c.getY(GenericHID.Hand.kLeft) + Robot.DRIVE_TRAIN_P,
-				mgntd * -c.getY(GenericHID.Hand.kRight) + Robot.DRIVE_TRAIN_P, squaredInput);
+	public void tankDrive(double lft, double rgt, float mgntd) {
+		drive.tankDrive(mgntd * -lft + Robot.DRIVE_TRAIN_P,
+				mgntd * -rgt, squaredInput);
 	}
 	
-	public void elonDrive(GenericHID c, float mgntd){
-		drive.arcadeDrive(mgntd * -c.getY(GenericHID.Hand.kLeft),
-				mgntd * -c.getX(GenericHID.Hand.kRight) + Robot.DRIVE_TRAIN_P, squaredInput);
+	public void elonDrive(double fwd, double turn, float mgntd){
+		drive.arcadeDrive(mgntd * -fwd,
+				mgntd * -turn + Robot.DRIVE_TRAIN_P, squaredInput);
+	}
+	
+	public void enhancedDrive(double fwd, double gturn, double lturn, float mgntd){
+		float offset = (gturn < 0)? -Robot.JOYSTK_OFFSET: Robot.JOYSTK_OFFSET;
+		drive.arcadeDrive(-fwd, (gturn - offset) + (lturn * offset) + Robot.DRIVE_TRAIN_P, squaredInput);
 	}
 	
 	public void rawDrive(float speed, float curve){
@@ -69,4 +79,8 @@ public class DriveTrain extends Subsystem {
 		this.squaredInput = squaredInput;
 	}
 
+	public void getGyro(){
+		gyro.getAngle();
+	}
+	
 }

@@ -29,12 +29,10 @@ public class Drive extends CommandBase {
 		update();
 		switch (currentState) {
 		case ELN:
-			driveTrain.elonDrive(oi.driverController,
-					OI.getSystemMagnitude());
+			driveTrain.enhancedDrive(oi.subController.getY(),oi.subController.getX(), oi.subController.getZ(), OI.getSystemMagnitude());
 			break;
 		case TNK:
-			driveTrain.tankDrive(oi.driverController,
-				OI.getSystemMagnitude());
+			//driveTrain.tankDrive(oi.subController.getZ(), OI.getSystemMagnitude());
 			break;
 		default:
 			C.err("Invalid Drive state");
@@ -42,11 +40,11 @@ public class Drive extends CommandBase {
 	}
 
 	public void update() {
-	if (oi.driverController.getPOV(0) == 90 && currentState != ELN) {
-		SmartDashboard.putString("Drive Type", "ELN");
-		C.out("Elon Drive is go");
-		setCurrentState(Drive.ELN);
-	}else if (oi.driverController.getPOV(0) == 270 && currentState != TNK) {
+		if (oi.subController.B7.get() && currentState != ELN) {
+			SmartDashboard.putString("Drive Type", "ELN");
+			C.out("Elon Drive is go");
+			setCurrentState(Drive.ELN);
+		} else if (oi.subController.B8.get() && currentState != TNK) {
 			C.out("Tank Drive is go");
 			SmartDashboard.putString("Drive Type", "TNK");
 			setCurrentState(Drive.TNK);

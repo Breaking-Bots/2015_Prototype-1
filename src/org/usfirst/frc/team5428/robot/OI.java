@@ -41,10 +41,10 @@ public final class OI {
 	}
 	
 	public void init(){
-		driverController.LB.held(new LowerElevator());				
-		driverController.RB.held(new RaiseElevator());
-		driverController.Y.tapped(new FixedElevation());
-		driverController.A.tapped(new FixedDeclination());
+		subController.B2.held(new LowerElevator());				
+		subController.B1.held(new RaiseElevator());
+		subController.B3.tapped(new FixedElevation());
+		subController.B4.tapped(new FixedDeclination());
 		//driverController.B.toggleWhenPressed(new ControlCompressor());
 		//driverController.L3.tapped(new CornerLeft());				
 		//driverController.R3.tapped(new CornerRight());	
@@ -53,17 +53,16 @@ public final class OI {
 	
 	public void update(){
 		
-		if (driverController.BACK.get() && !disable) {
+		if (subController.B11.get() && !disable) {
 			C.out("Control Disabled");
 			disable();
-		}else if (driverController.START.get() && disable) {
+		}else if (subController.B12.get() && disable) {
 			C.out("Control Enabled");
 			enable();
 		}
 		
+		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) -subController.getThrottle()));
 		if (!disable) {
-			//TODO: test the lerp by using speed contollers
-			setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) driverController.getT()));
 			Scheduler.getInstance().run();
 		}else{
 			CommandBase.driveTrain.rawDrive(0,0);
@@ -82,7 +81,7 @@ public final class OI {
 		magnitude = Robot.SPEED_DEFAULT;
 	}
 	
-	public void disable(){ disable = true;}
+	public void disable(){disable = true;}
 	public void enable(){disable = false;}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

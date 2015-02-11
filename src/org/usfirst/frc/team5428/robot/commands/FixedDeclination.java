@@ -17,7 +17,7 @@ public class FixedDeclination extends CommandBase{
 
 	@Override
 	protected void initialize() {
-		setTimeout(Robot.ELEVATOR_TIME);
+		setTimeout(Robot.DECLINER_TIME);
 		
 	}
 

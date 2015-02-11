@@ -35,7 +35,8 @@ public class Robot extends IterativeRobot {
 	private static final float dLOWERED_SPEED = 0.20f;
 	private static final float dHOLD_POSITION = 0.35f;
 	private static final float dELEVATOR_TIME = 1.40f;
-	private static final float dDECLINER_TIME = 0.35f;
+	private static final float dDECLINER_TIME = 0.35f; 
+	private static final float dJOYSTK_OFFSET = 0.20f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	public static float HOLD_POSITION = dHOLD_POSITION;
 	public static float ELEVATOR_TIME = dELEVATOR_TIME;
 	public static float DECLINER_TIME = dDECLINER_TIME;
+	public static float JOYSTK_OFFSET = dJOYSTK_OFFSET;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -94,6 +96,7 @@ public class Robot extends IterativeRobot {
         	SPEED_MINIMUM = (float) prefs.getDouble("MIN_SPEED", dSPEED_MINIMUM);
         	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
         	SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
+        	JOYSTK_OFFSET = (float) prefs.getDouble("C2_OFFSET", dJOYSTK_OFFSET);
 		
         	CAM_QUALITY_MIN = (int) prefs.getInt("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
         	CAM_QUALITY_MAX = (int) prefs.getInt("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
