@@ -1,27 +1,28 @@
 package org.usfirst.frc.team5428.robot.commands;
 
+import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 /**
- * Controls the enabling and disabling of solenoids
+ * Controls camera
  */
-public class ControlSolenoid extends CommandBase {
+public class ControlCamera extends CommandBase {
 
-    public ControlSolenoid() {
-        requires(pneumaticComponent);
+    public ControlCamera() {
+        requires(camera);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	pneumaticComponent.setSolenoidStatus(Value.kOff);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	pneumaticComponent.solenoidStatus();
+    	if(oi.subController.getPOV() == 0)
+    		camera.orient(Robot.CAM_PAN_SPEED);
+    	else if(oi.subController.getPOV() == 180)
+    		camera.orient(-Robot.CAM_PAN_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,8 +30,9 @@ public class ControlSolenoid extends CommandBase {
         return isCanceled();
     }
 
+    // Called once after isFinished returns true
     protected void end() {
-    	pneumaticComponent.setSolenoidStatus(Value.kOff);
+    	camera.setPos(camera.START_POS);    	
     }
 
     // Called when another command which requires one or more of the same
@@ -42,5 +44,6 @@ public class ControlSolenoid extends CommandBase {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
 	}
 }

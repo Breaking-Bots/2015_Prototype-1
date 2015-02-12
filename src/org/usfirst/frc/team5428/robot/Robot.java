@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 	private static final float dELEVATOR_TIME = 1.40f;
 	private static final float dDECLINER_TIME = 0.35f; 
 	private static final float dJOYSTK_OFFSET = 0.20f;
+	private static final float dCAM_PAN_SPEED = 2.50f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
 	public static float ELEVATOR_TIME = dELEVATOR_TIME;
 	public static float DECLINER_TIME = dDECLINER_TIME;
 	public static float JOYSTK_OFFSET = dJOYSTK_OFFSET;
+	public static float CAM_PAN_SPEED = dCAM_PAN_SPEED;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -111,6 +113,8 @@ public class Robot extends IterativeRobot {
         	
         	ELEVATOR_TIME = (float) prefs.getDouble("RISE_TIME_STEP", dELEVATOR_TIME);
         	DECLINER_TIME = (float) prefs.getDouble("FALL_TIME_STEP", dDECLINER_TIME);
+        	
+        	CAM_PAN_SPEED = (float) prefs.getDouble("CAM_PAN_SPEED", dCAM_PAN_SPEED);
         } // This block gets input from the users preferences to get default values
         
         Vision.teleopInit();

@@ -1,10 +1,10 @@
 <xml version="1.0">
 <dashboard>
 	<widget field="PneumaticComponent" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="488" y="0"/>
+		<location x="820" y="216"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="4" y="2"/>
+		<location x="523" y="5"/>
 		<width>483</width>
 		<height>167</height>
 	</static-widget>
@@ -36,9 +36,9 @@
 		<property name="Graphics" value="Rounded"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="2" y="172"/>
-		<width>856</width>
-		<height>337</height>
+		<location x="-17" y="2"/>
+		<width>382</width>
+		<height>169</height>
 	</static-widget>
 </dashboard>
 <live-window>

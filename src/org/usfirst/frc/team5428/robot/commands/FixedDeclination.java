@@ -23,7 +23,7 @@ public class FixedDeclination extends CommandBase{
 
 	@Override
 	protected void execute() {
-		elevator.elevate(1);
+		elevator.elevate(-1);
 	}
 
 	@Override

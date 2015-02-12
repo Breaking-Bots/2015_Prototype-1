@@ -21,7 +21,7 @@ public class LowerElevator extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.elevate(Robot.LOWERED_SPEED * OI.getSystemMagnitude());
+    	elevator.elevate(-Robot.LOWERED_SPEED * OI.getSystemMagnitude());
     }
 
     // Make this return true when this Command no longer needs to run execute()

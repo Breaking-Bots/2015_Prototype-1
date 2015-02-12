@@ -63,8 +63,12 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void enhancedDrive(double fwd, double gturn, double lturn, float mgntd){
-		float offset = (gturn < 0)? -Robot.JOYSTK_OFFSET: Robot.JOYSTK_OFFSET;
-		drive.arcadeDrive(-fwd, (gturn - offset) + (lturn * offset) + Robot.DRIVE_TRAIN_P, squaredInput);
+		//float offset = (gturn < 0)? -Robot.JOYSTK_OFFSET: Robot.JOYSTK_OFFSET;
+		double gturnAbs = Math.abs (gturn);
+		int signGturn = (int)(gturn/Math.abs(gturn));
+		float offset = Robot.JOYSTK_OFFSET;
+		
+		drive.arcadeDrive(fwd * mgntd, mgntd * ((gturn*(1-offset)) + (lturn * offset)), squaredInput);
 	}
 	
 	public void rawDrive(float speed, float curve){
@@ -79,8 +83,8 @@ public class DriveTrain extends Subsystem {
 		this.squaredInput = squaredInput;
 	}
 
-	public void getGyro(){
-		gyro.getAngle();
+	public double getGyro(){
+		return gyro.getAngle();
 	}
 	
 }

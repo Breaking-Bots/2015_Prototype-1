@@ -18,17 +18,17 @@ public class FixedElevation extends CommandBase{
 	@Override
 	protected void initialize() {
 		setTimeout(Robot.ELEVATOR_TIME);
-		
+		elevator.resetSwitch();
 	}
 
 	@Override
 	protected void execute() {
-		elevator.elevate(-1);
+		elevator.elevate(1);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut() || isCanceled();
+		return elevator.switchStatus() || isTimedOut() || isCanceled();
 	}
 
 	@Override

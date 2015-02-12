@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5428.robot;
 
-import org.usfirst.frc.team5428.robot.commands.ControlCompressor;
 import org.usfirst.frc.team5428.robot.commands.FixedDeclination;
 import org.usfirst.frc.team5428.robot.commands.FixedElevation;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
@@ -60,6 +59,8 @@ public final class OI {
 			C.out("Control Enabled");
 			enable();
 		}
+		
+		C.out(CommandBase.elevator.switchStatus());
 		
 		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) -subController.getThrottle()));
 		if (!disable) {

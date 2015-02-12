@@ -16,4 +16,7 @@ public class RobotMap {
     
     public static final int CAN_PCM = 42; 
     public static final int PN_SOLENOID = -1; //TODO: assign valid port
+    
+	public static final int CAM_SERVO = 9;
+	public static final int LIMIT_SWITCH = 2;
 }

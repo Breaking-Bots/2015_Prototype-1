@@ -29,7 +29,7 @@ public class Drive extends CommandBase {
 		update();
 		switch (currentState) {
 		case ELN:
-			driveTrain.enhancedDrive(oi.subController.getY(),oi.subController.getX(), oi.subController.getZ(), OI.getSystemMagnitude());
+			driveTrain.enhancedDrive(-oi.subController.getY(),-oi.subController.getX(), -oi.subController.getZ(), OI.getSystemMagnitude());
 			break;
 		case TNK:
 			//driveTrain.tankDrive(oi.subController.getZ(), OI.getSystemMagnitude());

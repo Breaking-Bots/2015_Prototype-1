@@ -25,20 +25,22 @@ public class Logitech3D extends GenericHID {
 	
 	public Logitech3D(int port) {
 		this.port = port;
-		B1 = new ControllerButton(this, 0);
-		B2 = new ControllerButton(this, 1);
-		B3 = new ControllerButton(this, 2);
-		B4 = new ControllerButton(this, 3);
-		B5 = new ControllerButton(this, 4);
-		B6 = new ControllerButton(this, 5);
-		B7 = new ControllerButton(this, 6);
-		B8 = new ControllerButton(this, 7);
-		B9 = new ControllerButton(this, 8);
-		B10 = new ControllerButton(this, 9);
-		B11 = new ControllerButton(this, 10);
-		B12 = new ControllerButton(this, 11);
+		ds = DriverStation.getInstance();
 		
-		deadzone = 0f;
+		B1 = new ControllerButton(this, 1);
+		B2 = new ControllerButton(this, 2);
+		B3 = new ControllerButton(this, 3);
+		B4 = new ControllerButton(this, 4);
+		B5 = new ControllerButton(this, 5);
+		B6 = new ControllerButton(this, 6);
+		B7 = new ControllerButton(this, 7);
+		B8 = new ControllerButton(this, 8);
+		B9 = new ControllerButton(this, 9);
+		B10 = new ControllerButton(this, 10);
+		B11 = new ControllerButton(this, 11);
+		B12 = new ControllerButton(this, 12);
+		
+		deadzone = 0.15f;
 	}
 	
 	public static final class AxisType{

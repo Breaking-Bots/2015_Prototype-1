@@ -3,6 +3,7 @@ package org.usfirst.frc.team5428.robot.core;
 import org.usfirst.frc.team5428.robot.OI;
 import org.usfirst.frc.team5428.robot.input.Controller;
 import org.usfirst.frc.team5428.robot.input.PSGamepad;
+import org.usfirst.frc.team5428.robot.subsystems.Camera;
 import org.usfirst.frc.team5428.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5428.robot.subsystems.Elevator;
 import org.usfirst.frc.team5428.robot.subsystems.PneumaticComponent;
@@ -16,16 +17,15 @@ public abstract class CommandBase extends Command {
 	
 	public static DriveTrain driveTrain;
 	public static Elevator elevator;
-	public static PneumaticComponent pneumaticComponent;
+	public static Camera camera;
 	
 	public static void init(){
 		oi = OI.getInstance();
 		driveTrain = new DriveTrain();
 		elevator = new Elevator();
-		pneumaticComponent = new PneumaticComponent();
+		camera = new Camera();
 		SmartDashboard.putData(driveTrain);
 		SmartDashboard.putData(elevator);
-		SmartDashboard.putData(pneumaticComponent);
 		C.out("CommandBase Initialized");
 	}
 	
