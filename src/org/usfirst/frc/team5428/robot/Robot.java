@@ -24,20 +24,24 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	private static final float dSPEED_MINIMUM = 0.30f;
-	private static final float dSPEED_DEFAULT = 0.50f;
-	private static final float dSPEED_MAXIMUM = 1.00f;
-	private static final int dCAM_QUALITY_MIN = 00001;	
-	private static final int dCAM_QUALITY_MAX = 00030;
-	private static final float dCORNER_TIME_L = 0.20f;
-	private static final float dCORNER_TIME_R = 0.20f;
-	private static final float dDRIVE_TRAIN_P = 0.03f;
-	private static final float dLOWERED_SPEED = 0.20f;
-	private static final float dHOLD_POSITION = 0.35f;
-	private static final float dELEVATOR_TIME = 1.40f;
-	private static final float dDECLINER_TIME = 0.35f; 
-	private static final float dJOYSTK_OFFSET = 0.20f;
-	private static final float dCAM_PAN_SPEED = 2.50f;
+	private static final float dSPEED_MINIMUM = 0.3000f;
+	private static final float dSPEED_DEFAULT = 0.5000f;
+	private static final float dSPEED_MAXIMUM = 1.0000f;
+	private static final int dCAM_QUALITY_MIN = 0000001;	
+	private static final int dCAM_QUALITY_MAX = 0000030;
+	private static final float dCORNER_TIME_L = 0.2000f;
+	private static final float dCORNER_TIME_R = 0.2000f;
+	private static final float dDRIVE_TRAIN_P = 1.0000f;
+	private static final float dDRIVE_TRAIN_I = 1.0000f;
+	private static final float dDRIVE_TRAIN_D = 1.0000f;
+	private static final float dLOWERED_SPEED = 0.2000f;
+	private static final float dHOLD_POSITION = 0.3500f;
+	private static final float dELEVATOR_TIME = 1.4000f;
+	private static final float dDECLINER_TIME = 0.3500f; 
+	private static final float dJOYSTK_OFFSET = 0.2000f;
+	private static final float dCAM_PAN_SPEED = 2.5000f;
+	private static final float dCAM_NEAR_POSY = 0.4016f;
+	private static final float dCAM_DIST_POSY = 0.5527f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -46,12 +50,16 @@ public class Robot extends IterativeRobot {
 	public static float CORNER_TIME_L = dCORNER_TIME_L;
 	public static float CORNER_TIME_R = dCORNER_TIME_R;
 	public static float DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
+	public static float DRIVE_TRAIN_I = dDRIVE_TRAIN_I;
+	public static float DRIVE_TRAIN_D = dDRIVE_TRAIN_D;
 	public static float LOWERED_SPEED = dLOWERED_SPEED;
 	public static float HOLD_POSITION = dHOLD_POSITION;
 	public static float ELEVATOR_TIME = dELEVATOR_TIME;
 	public static float DECLINER_TIME = dDECLINER_TIME;
 	public static float JOYSTK_OFFSET = dJOYSTK_OFFSET;
 	public static float CAM_PAN_SPEED = dCAM_PAN_SPEED;
+	public static float CAM_NEAR_POSY = dCAM_NEAR_POSY;
+	public static float CAM_DIST_POSY = dCAM_DIST_POSY;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -107,6 +115,8 @@ public class Robot extends IterativeRobot {
         	CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
 		
         	DRIVE_TRAIN_P = (float) prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
+        	DRIVE_TRAIN_I = (float) prefs.getDouble("DRIVE_TRAIN_I", dDRIVE_TRAIN_I);
+        	DRIVE_TRAIN_D = (float) prefs.getDouble("DRIVE_TRAIN_D", dDRIVE_TRAIN_D);
 		
         	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
         	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
@@ -115,6 +125,8 @@ public class Robot extends IterativeRobot {
         	DECLINER_TIME = (float) prefs.getDouble("FALL_TIME_STEP", dDECLINER_TIME);
         	
         	CAM_PAN_SPEED = (float) prefs.getDouble("CAM_PAN_SPEED", dCAM_PAN_SPEED);
+        	CAM_NEAR_POSY = (float) prefs.getDouble("CAM_NEAR_POSY", dCAM_NEAR_POSY);
+        	CAM_DIST_POSY = (float) prefs.getDouble("CAM_DIST_POSY", dCAM_DIST_POSY);
         } // This block gets input from the users preferences to get default values
         
         Vision.teleopInit();

@@ -18,7 +18,6 @@ public class FixedElevation extends CommandBase{
 	@Override
 	protected void initialize() {
 		setTimeout(Robot.ELEVATOR_TIME);
-		elevator.resetSwitch();
 	}
 
 	@Override

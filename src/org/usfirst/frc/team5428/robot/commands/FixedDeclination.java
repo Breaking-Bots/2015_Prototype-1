@@ -35,11 +35,11 @@ public class FixedDeclination extends CommandBase{
 	protected void end() {
 		// TODO Auto-generated method stub
 		elevator.elevate(0);
+		elevator.resetSwitch();
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 		end();
 	}
 	

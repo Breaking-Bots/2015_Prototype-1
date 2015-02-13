@@ -62,5 +62,15 @@ public final class MathUtil {
 		return f * (float) Math.pow(g, alpha) + k;
 	}
 	
-
+	public static boolean epsilonEquals(float a, float b, float epsilon){
+		return (a - b) * (a - b) < (epsilon * epsilon);
+	}
+	
+	public static double hanzhenA(double theta0, double theta, double mgntd, double time){
+		return (theta - theta0)/ (mgntd * time);
+	}
+	
+	public static double hanzhenR(double theta0, double theta, double mgntd, double time){
+		return (theta - theta0)/ (mgntd * time);
+	}
 }

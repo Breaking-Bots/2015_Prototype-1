@@ -33,6 +33,10 @@ public class Elevator extends Subsystem {
 		counter.reset();
 	}
 	
+	public int getCount(){
+		return counter.get();
+	}
+	
 	public boolean switchStatus(){
 		return counter.get() > 0;
 	}

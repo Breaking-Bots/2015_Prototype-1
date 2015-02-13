@@ -1,8 +1,10 @@
 package org.usfirst.frc.team5428.robot;
 
+import org.usfirst.frc.team5428.robot.commands.DistVision;
 import org.usfirst.frc.team5428.robot.commands.FixedDeclination;
 import org.usfirst.frc.team5428.robot.commands.FixedElevation;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
+import org.usfirst.frc.team5428.robot.commands.NearVision;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
@@ -32,8 +34,8 @@ public final class OI {
 	private boolean disable;
 	
 	private OI(){
-		driverController = new XGamepad(0);
-		subController = new Logitech3D(1);
+		driverController = new XGamepad(1);
+		subController = new Logitech3D(0);
 		
 		magnitude = Robot.SPEED_DEFAULT;
 		disable = true;
@@ -44,6 +46,8 @@ public final class OI {
 		subController.B1.held(new RaiseElevator());
 		subController.B3.tapped(new FixedElevation());
 		subController.B4.tapped(new FixedDeclination());
+		subController.B5.tapped(new NearVision());
+		subController.B6.tapped(new DistVision());
 		//driverController.B.toggleWhenPressed(new ControlCompressor());
 		//driverController.L3.tapped(new CornerLeft());				
 		//driverController.R3.tapped(new CornerRight());	
@@ -55,16 +59,18 @@ public final class OI {
 		if (subController.B11.get() && !disable) {
 			C.out("Control Disabled");
 			disable();
-		}else if (subController.B12.get() && disable) {
+		}else if (subController.B9.get() && disable) {
 			C.out("Control Enabled");
 			enable();
 		}
 		
-		C.out(CommandBase.elevator.switchStatus());
+		//C.out(CommandBase.camera.getPos());
+		C.out(CommandBase.elevator.getCount());
 		
 		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) -subController.getThrottle()));
+		Scheduler.getInstance().run();
 		if (!disable) {
-			Scheduler.getInstance().run();
+			CommandBase.driveTrain.update();
 		}else{
 			CommandBase.driveTrain.rawDrive(0,0);
 		}
