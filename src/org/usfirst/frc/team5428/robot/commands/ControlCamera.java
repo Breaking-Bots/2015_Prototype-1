@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5428.robot.commands;
 
+import org.usfirst.frc.team5428.robot.OI;
 import org.usfirst.frc.team5428.robot.Robot;
+import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
 
@@ -9,6 +11,11 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
  */
 public class ControlCamera extends CommandBase {
 
+	public static final int XGP = 0;
+	public static final int X3D = 1;
+	
+	private int currentState = XGP;
+	
     public ControlCamera() {
         requires(camera);
     }
@@ -19,10 +26,22 @@ public class ControlCamera extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(oi.subController.getPOV() == 0)
-    		camera.orient(Robot.CAM_PAN_SPEED);
-    	else if(oi.subController.getPOV() == 180)
-    		camera.orient(-Robot.CAM_PAN_SPEED);
+    	switch (currentState) {
+		case X3D:
+			if(oi.subController.getPOV() == 0)
+				camera.orient(Robot.CAM_PAN_SPEED);
+			else if(oi.subController.getPOV() == 180)
+				camera.orient(-Robot.CAM_PAN_SPEED);
+			break;
+		case XGP:
+			if(oi.driverController.getPOV() == 0)
+				camera.orient(Robot.CAM_PAN_SPEED);
+			else if(oi.driverController.getPOV() == 180)
+				camera.orient(-Robot.CAM_PAN_SPEED);
+			break;
+		default:
+			C.err("Invalid Drive state");
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

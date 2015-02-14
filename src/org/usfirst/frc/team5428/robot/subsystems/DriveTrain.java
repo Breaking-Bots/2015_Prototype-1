@@ -64,8 +64,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 	
 	public void rawDrive(float speed, float curve){
-		zLinear = speed;
-		xLinear = curve;
+		drive.arcadeDrive(speed, curve, squaredInput);
 	}
 
 	public void initDefaultCommand() {

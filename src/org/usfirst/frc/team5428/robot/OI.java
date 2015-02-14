@@ -42,29 +42,38 @@ public final class OI {
 	}
 	
 	public void init(){
-		subController.B2.held(new LowerElevator());				
-		subController.B1.held(new RaiseElevator());
-		subController.B3.tapped(new FixedElevation());
-		subController.B4.tapped(new FixedDeclination());
-		subController.B5.tapped(new NearVision());
-		subController.B6.tapped(new DistVision());
-		//driverController.B.toggleWhenPressed(new ControlCompressor());
-		//driverController.L3.tapped(new CornerLeft());				
-		//driverController.R3.tapped(new CornerRight());	
-		//driverController.X.toggleWhenPressed(new CameraQualityToggle());
+//		subController.B2.held(new LowerElevator());				
+//		subController.B1.held(new RaiseElevator());
+//		subController.B3.tapped(new FixedElevation());
+//		subController.B4.tapped(new FixedDeclination());
+//		subController.B5.tapped(new NearVision());
+//		subController.B6.tapped(new DistVision());
+		driverController.LB.held(new LowerElevator());				
+		driverController.RB.held(new RaiseElevator());
+		driverController.L3.tapped(new FixedElevation());
+		driverController.R3.tapped(new FixedDeclination());
+		driverController.A.tapped(new NearVision());
+		driverController.Y.tapped(new DistVision());
 	}
 	
 	public void update(){
 		
-		if (subController.B11.get() && !disable) {
+//		if (subController.B11.get() && !disable) {
+//			C.out("Control Disabled");
+//			disable();
+//		}else if (subController.B9.get() && disable) {
+//			C.out("Control Enabled");
+//			enable();
+//		}
+		if (driverController.BACK.get() && !disable) {
 			C.out("Control Disabled");
 			disable();
-		}else if (subController.B9.get() && disable) {
+		}else if (driverController.START.get() && disable) {
 			C.out("Control Enabled");
 			enable();
 		}
 		
-		//C.out(CommandBase.driveTrain.getGyro());
+		C.out(CommandBase.driveTrain.getGyro());
 		//C.out(CommandBase.camera.getPos());
 		//C.out(CommandBase.elevator.getCount());
 		//C.out(subController.getX() + "|" + subController.getY() + "|" + subController.getZ());

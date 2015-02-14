@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	private static final float dSPEED_DEFAULT = 0.5000f;
 	private static final float dSPEED_MAXIMUM = 1.0000f;
 	private static final int dCAM_QUALITY_MIN = 0000001;	
-	private static final int dCAM_QUALITY_MAX = 0000030;
+	private static final int dCAM_QUALITY_MAX = 0000040;
 	private static final float dCORNER_TIME_L = 0.2000f;
 	private static final float dCORNER_TIME_R = 0.2000f;
 	private static final float dDRIVE_TRAIN_P = 1.0000f;
@@ -114,6 +114,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        
         {
         	SPEED_MINIMUM = (float) prefs.getDouble("MIN_SPEED", dSPEED_MINIMUM);
         	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);

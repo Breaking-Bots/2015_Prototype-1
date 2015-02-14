@@ -19,7 +19,7 @@ public class Vision {
 	
 	public static void teleopInit(){
 		 server.setQuality(Robot.CAM_QUALITY_MAX);
-	     server.startAutomaticCapture("cam1");
+		 if(!server.isAutoCaptureStarted()) server.startAutomaticCapture("cam1");
 	}
 	
 	

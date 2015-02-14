@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drive extends CommandBase {
 
-	public static final int TNK = 0;
-	public static final int ELN = 2;
+	public static final int XGP = 0;
+	public static final int X3D = 1;
 
-	private int currentState = ELN;
+	private int currentState = XGP;
 
 	public Drive() {
 		requires(driveTrain);
@@ -28,11 +28,11 @@ public class Drive extends CommandBase {
 	protected void execute() {
 		update();
 		switch (currentState) {
-		case ELN:
+		case X3D:
 			driveTrain.enhancedDrive(-oi.subController.getY(),-oi.subController.getX(), -oi.subController.getZ(), OI.getSystemMagnitude());
 			break;
-		case TNK:
-			//driveTrain.tankDrive(oi.subController.getZ(), OI.getSystemMagnitude());
+		case XGP:
+			driveTrain.elonDrive(-oi.driverController.getLY(),-oi.driverController.getRX() , OI.getSystemMagnitude());
 			break;
 		default:
 			C.err("Invalid Drive state");
@@ -40,15 +40,15 @@ public class Drive extends CommandBase {
 	}
 
 	public void update() {
-		if (oi.subController.B7.get() && currentState != ELN) {
-			SmartDashboard.putString("Drive Type", "ELN");
-			C.out("Elon Drive is go");
-			setCurrentState(Drive.ELN);
-		} else if (oi.subController.B8.get() && currentState != TNK) {
-			C.out("Tank Drive is go");
-			SmartDashboard.putString("Drive Type", "TNK");
-			setCurrentState(Drive.TNK);
-		}
+//		if (oi.subController.B7.get() && currentState != ELN) {
+//			SmartDashboard.putString("Drive Type", "ELN");
+//			C.out("Elon Drive is go");
+//			setCurrentState(Drive.ELN);
+//		} else if (oi.subController.B8.get() && currentState != TNK) {
+//			C.out("Tank Drive is go");
+//			SmartDashboard.putString("Drive Type", "TNK");
+//			setCurrentState(Drive.TNK);
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

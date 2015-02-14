@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5428.robot;
-/**
+/**b
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
@@ -15,7 +15,6 @@ public class RobotMap {
     public static final int ELEVATOR = 4;
     
     public static final int CAN_PCM = 42; 
-    public static final int PN_SOLENOID = -1; //TODO: assign valid port
     
 	public static final int CAM_SERVO = 9;
 	public static final int LIMIT_SWITCH = 2;

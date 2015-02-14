@@ -1,35 +1,33 @@
 <xml version="1.0">
 <dashboard>
-	<widget field="PneumaticComponent" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="820" y="216"/>
-	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="523" y="5"/>
-		<width>483</width>
-		<height>167</height>
-	</static-widget>
-	<widget field="Drive Type" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="869" y="239"/>
-	</widget>
 	<widget field="DriveTrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="870" y="286"/>
-		<property name="Background" value="204.204.204.255"/>
+		<location x="1961" y="82"/>
 	</widget>
 	<widget field="Elevator" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="878" y="262"/>
+		<location x="1976" y="112"/>
 	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="21" y="6"/>
+		<width>483</width>
+		<height>517</height>
+	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="915" y="337"/>
+		<location x="2081" y="32"/>
+		<width>106</width>
+		<height>45</height>
 		<property name="Text" value="ELON"/>
 		<property name="Horizontal Alignment" value="Left"/>
 		<property name="Vertical Alignment" value="Up"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="878" y="382"/>
-		<property name="Image File" value="C:\Users\Developer\Mein Kampf\Repositories\2015_Prototype-1\res\Programming Sub-team logo.png"/>
+		<location x="2183" y="1"/>
+		<width>360</width>
+		<height>371</height>
+		<property name="Image File" value="C:\Users\Jai P\Documents\Programs\workspace\2015_Prototype-1\res\Programming Sub-team logo.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="865" y="309"/>
+		<location x="2039" y="6"/>
 		<width>141</width>
 		<height>71</height>
 		<property name="Connection Color" value="0.255.255.255"/>
@@ -37,8 +35,9 @@
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
 		<location x="-17" y="2"/>
-		<width>382</width>
-		<height>169</height>
+		<width>2516</width>
+		<height>1084</height>
+		<property name="FPS" value="24"/>
 	</static-widget>
 </dashboard>
 <live-window>
