@@ -27,20 +27,20 @@ public class Logitech3D extends GenericHID {
 		this.port = port;
 		ds = DriverStation.getInstance();
 		
-		B1 = new ControllerButton(this, 1);
-		B2 = new ControllerButton(this, 2);
-		B3 = new ControllerButton(this, 3);
-		B4 = new ControllerButton(this, 4);
-		B5 = new ControllerButton(this, 5);
-		B6 = new ControllerButton(this, 6);
-		B7 = new ControllerButton(this, 7);
-		B8 = new ControllerButton(this, 8);
-		B9 = new ControllerButton(this, 9);
-		B10 = new ControllerButton(this, 10);
-		B11 = new ControllerButton(this, 11);
-		B12 = new ControllerButton(this, 12);
+		B1 = new ControllerButton(this, 0);
+		B2 = new ControllerButton(this, 1);
+		B3 = new ControllerButton(this, 2);
+		B4 = new ControllerButton(this, 3);
+		B5 = new ControllerButton(this, 4);
+		B6 = new ControllerButton(this, 5);
+		B7 = new ControllerButton(this, 6);
+		B8 = new ControllerButton(this, 7);
+		B9 = new ControllerButton(this, 8);
+		B10 = new ControllerButton(this, 9);
+		B11 = new ControllerButton(this, 10);
+		B12 = new ControllerButton(this, 11);
 		
-		deadzone = 0.15f;
+		deadzone = 0.30f;
 	}
 	
 	public static final class AxisType{
@@ -63,7 +63,8 @@ public class Logitech3D extends GenericHID {
 	public static Hand RIGHT_HAND = Hand.kRight;
 	
 	public final double checkDeadzone(double value) {
-        return (Math.abs(value) >= deadzone? value : 0);
+		int sign = (int) Math.signum(value); 
+		return (sign*value > deadzone)? (value - deadzone*sign)/(1 - deadzone):0;
 	}
 	
 	@Override
@@ -118,7 +119,7 @@ public class Logitech3D extends GenericHID {
 
 	@Override
 	public boolean getRawButton(int button) {
-	        return ((0x1 << (button - 1)) & ds.getStickButtons(port)) != 0;
+	        return ((0x1 << (button)) & ds.getStickButtons(port)) != 0;
 	}
 	
 

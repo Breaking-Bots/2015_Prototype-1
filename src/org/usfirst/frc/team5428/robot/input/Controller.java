@@ -41,11 +41,12 @@ public abstract class Controller extends GenericHID{
 	}
 	
 	public final double checkDeadzone(double value) {
-		return (Math.abs(value) > deadzone)? (value - deadzone)/(1 - deadzone):0;
+		int sign = (int) Math.signum(value); 
+		return (sign*value > deadzone)? (value - deadzone*sign)/(1 - deadzone):0;
 	}
 	
 	public final boolean checkTriggerDeadzone(double value) {
-        return Math.abs(value) >= triggerDeadzone;
+		return true;
 	}
 	
 	public final double getLX(){

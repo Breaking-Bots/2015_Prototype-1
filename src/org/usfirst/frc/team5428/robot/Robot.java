@@ -15,11 +15,19 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //For help in programming contact: Pat O'Cain: wud2nuq@gmail.com
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
+ * RUN EXPERIMENT ON COMPETITION DAY
  */
 public class Robot extends IterativeRobot {
 
@@ -40,8 +48,10 @@ public class Robot extends IterativeRobot {
 	private static final float dDECLINER_TIME = 0.3500f; 
 	private static final float dJOYSTK_OFFSET = 0.2000f;
 	private static final float dCAM_PAN_SPEED = 2.5000f;
-	private static final float dCAM_NEAR_POSY = 0.4016f;
-	private static final float dCAM_DIST_POSY = 0.5527f;
+	private static final float dCAM_NEAR_POSY = 0.4205f;
+	private static final float dCAM_DIST_POSY = 0.5988f;
+	private static final float dDRIVE_TRAIN_A = 0.0000f;
+	private static final float dDRIVE_TRAIN_K = 1.0000f;
 	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
@@ -60,6 +70,8 @@ public class Robot extends IterativeRobot {
 	public static float CAM_PAN_SPEED = dCAM_PAN_SPEED;
 	public static float CAM_NEAR_POSY = dCAM_NEAR_POSY;
 	public static float CAM_DIST_POSY = dCAM_DIST_POSY;
+	public static float DRIVE_TRAIN_A = dDRIVE_TRAIN_A;
+	public static float DRIVE_TRAIN_K = dDRIVE_TRAIN_K;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -117,6 +129,8 @@ public class Robot extends IterativeRobot {
         	DRIVE_TRAIN_P = (float) prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
         	DRIVE_TRAIN_I = (float) prefs.getDouble("DRIVE_TRAIN_I", dDRIVE_TRAIN_I);
         	DRIVE_TRAIN_D = (float) prefs.getDouble("DRIVE_TRAIN_D", dDRIVE_TRAIN_D);
+        	DRIVE_TRAIN_A = (float) prefs.getDouble("DRIVE_TRAIN_A", dDRIVE_TRAIN_A);
+        	DRIVE_TRAIN_K = (float) prefs.getDouble("DRIVE_TRAIN_K", dDRIVE_TRAIN_K);
 		
         	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
         	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);

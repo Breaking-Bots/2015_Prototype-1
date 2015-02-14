@@ -11,7 +11,7 @@
 	<widget field="Drive Type" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="869" y="239"/>
 	</widget>
-	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+	<widget field="DriveTrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="870" y="286"/>
 		<property name="Background" value="204.204.204.255"/>
 	</widget>

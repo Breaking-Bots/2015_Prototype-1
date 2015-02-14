@@ -64,11 +64,13 @@ public final class OI {
 			enable();
 		}
 		
+		//C.out(CommandBase.driveTrain.getGyro());
 		//C.out(CommandBase.camera.getPos());
-		C.out(CommandBase.elevator.getCount());
+		//C.out(CommandBase.elevator.getCount());
+		//C.out(subController.getX() + "|" + subController.getY() + "|" + subController.getZ());
 		
 		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) -subController.getThrottle()));
-		Scheduler.getInstance().run();
+		Scheduler.getInstance().run(); 
 		if (!disable) {
 			CommandBase.driveTrain.update();
 		}else{

@@ -33,7 +33,8 @@ public class DriveTrain extends PIDSubsystem {
 
 	public DriveTrain() {
 		super(Robot.DRIVE_TRAIN_P, Robot.DRIVE_TRAIN_I, Robot.DRIVE_TRAIN_D);
-
+		setAbsoluteTolerance(0.05);
+		getPIDController().setContinuous(true);
 		squaredInput = false;
 
 		frontLeft = new Talon(RobotMap.DT_FRONTLEFT);
@@ -80,7 +81,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void update(){
-		drive.arcadeDrive(zLinear, xLinear, squaredInput);
+		drive.arcadeDrive(zLinear, xLinear - (Robot.DRIVE_TRAIN_A/Robot.DRIVE_TRAIN_K) * zLinear, squaredInput);
 	}
 	
 	@Override
