@@ -10,11 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drive extends CommandBase {
 
-	public static final int XGP = 0;
-	public static final int X3D = 1;
-
-	private int currentState = XGP;
-
 	public Drive() {
 		requires(driveTrain);
 		this.setInterruptible(true);
@@ -27,15 +22,15 @@ public class Drive extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		update();
-		switch (currentState) {
-		case X3D:
+		switch (oi.currentState) {
+		case OI.X3D:
 			driveTrain.enhancedDrive(-oi.subController.getY(),-oi.subController.getX(), -oi.subController.getZ(), OI.getSystemMagnitude());
 			break;
-		case XGP:
+		case OI.XGP:
 			driveTrain.elonDrive(-oi.driverController.getLY(),-oi.driverController.getRX() , OI.getSystemMagnitude());
 			break;
 		default:
-			C.err("Invalid Drive state");
+			C.err("Invalid Control state");
 		}
 	}
 
@@ -67,11 +62,4 @@ public class Drive extends CommandBase {
 		end();
 	}
 
-	public int getCurrentState() {
-		return currentState;
-	}
-
-	public void setCurrentState(int currentState) {
-		this.currentState = currentState;
-	}
 }

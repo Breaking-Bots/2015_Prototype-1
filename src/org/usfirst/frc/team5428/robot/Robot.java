@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	private static final int dCVIEWING_QUALITY = 000040;
+	private static final int dCONTROLLER_TYPEV = 000001;
 	private static final double dSPEED_MINIMUM = 0.3000;
 	private static final double dSPEED_DEFAULT = 0.5000;
 	private static final double dSPEED_MAXIMUM = 1.0000;
@@ -69,6 +70,7 @@ public class Robot extends IterativeRobot {
 	public static double CAM_DIST_POSY = dCAM_DIST_POSY;
 	public static double DRIVE_TRAIN_A = dDRIVE_TRAIN_A;
 	public static double DRIVE_TRAIN_K = dDRIVE_TRAIN_K;
+	public static int CONTROLLER_TYPEV = dCONTROLLER_TYPEV;
 	public static int CVIEWING_QUALITY = dCVIEWING_QUALITY;
 
     Command autonomousCommand;
@@ -120,7 +122,8 @@ public class Robot extends IterativeRobot {
         	SPEED_MAXIMUM = prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
         	JOYSTK_OFFSET = prefs.getDouble("C2_OFFSET", dJOYSTK_OFFSET);
 		
-        	CVIEWING_QUALITY =  prefs.getInt("CAM_QUALITY_MAX", dCVIEWING_QUALITY);
+        	CVIEWING_QUALITY = prefs.getInt("CAM_QUALITY_MAX", dCVIEWING_QUALITY);
+        	CONTROLLER_TYPEV = prefs.getInt("CONTROLLER_TYPEV", dCONTROLLER_TYPEV);
 		
         	CORNER_TIME_L = prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
         	CORNER_TIME_R = prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
@@ -141,7 +144,7 @@ public class Robot extends IterativeRobot {
         	CAM_NEAR_POSY = prefs.getDouble("CAM_NEAR_POSY", dCAM_NEAR_POSY);
         	CAM_DIST_POSY = prefs.getDouble("CAM_DIST_POSY", dCAM_DIST_POSY);
         } // This block gets input from the users preferences to get default values
-        
+        oi.currentState = CONTROLLER_TYPEV;
         Vision.teleopInit();
         
         C.out("Yes Master?");

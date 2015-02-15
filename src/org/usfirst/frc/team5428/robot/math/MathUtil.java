@@ -9,14 +9,14 @@ public final class MathUtil {
 	}
 
 	// TODO: still not right
-	public static double trilerp(double a, double b, double c, double alpha) {
+	public final static double trilerp(double a, double b, double c, double alpha) {
 		double alphaN = 0.5f * alpha + 0.5f;
 		double lerpAB = (1 - alphaN) * a + alphaN * b;
 		double lerpBC = (1 - alphaN) * b + alphaN * c;
 		return (1 - alphaN) * lerpAB + lerpBC * alphaN;
 	}
 
-	public static double trilerpv2(double a, double b, double c, double alpha) {
+	public final static double trilerpv2(double a, double b, double c, double alpha) {
 		double alphaN = 0.5f * alpha + 0.5f;
 		if (alpha > 0) {
 			return alphaN * (b + c) / 2;
@@ -27,7 +27,11 @@ public final class MathUtil {
 		return b;
 	}
 	
-	public static double zaeem(double a, double b, double c, double alpha){
+	public static final double normalizeAlpha(double alpha){
+		return 0.5f * alpha + 0.5f;
+	}
+	
+	public final static double zaeem(double a, double b, double c, double alpha){
 //		double alphaN = 0.5f * alpha + 0.5f;
 //		double alphaAB = alpha + 1;
 //		double lerpAB = (1 - alphaAB) * a + alphaAB * b;
@@ -37,11 +41,11 @@ public final class MathUtil {
 		return (alpha * ( a * (alpha - 1) + c * (alpha + 1)) - 2 * b * (alpha * alpha - 1)) * 0.5f;
 	}
 	
-	public static double lerp(double min, double max, double alpha) {
+	public final static double lerp(double min, double max, double alpha) {
 		return (1 - alpha) * min + alpha * max;
 	}
 
-	public static double sam(double a, double b, double c, double alpha) {
+	public final static double sam(double a, double b, double c, double alpha) {
 		double alphaN = 0.5f * alpha + 0.5f;
 		b += 0.0001f;
 		
@@ -52,15 +56,15 @@ public final class MathUtil {
 		return f * Math.pow(g, alphaN) + k;
 	}
 	
-	public static boolean epsilonEquals(double a, double b, double epsilon){
+	public final static boolean epsilonEquals(double a, double b, double epsilon){
 		return (a - b) * (a - b) < (epsilon * epsilon);
 	}
 	
-	public static double hanzhenA(double theta0, double theta, double mgntd, double time){
+	public final static double hanzhenA(double theta0, double theta, double mgntd, double time){
 		return (theta - theta0)/ (mgntd * time);
 	}
 	
-	public static double hanzhenR(double theta0, double theta, double mgntd, double time){
+	public final static double hanzhenR(double theta0, double theta, double mgntd, double time){
 		return (theta - theta0)/ (mgntd * time);
 	}
 }

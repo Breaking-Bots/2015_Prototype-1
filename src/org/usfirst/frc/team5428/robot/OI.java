@@ -19,117 +19,163 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * interface to the commands and command groups that allow control of the robot.
  */
 public final class OI {
-	
+
 	private static OI instance;
 	private static double magnitude;
-			
-	public static OI getInstance(){
-		if(instance == null) instance = new OI();
+	private static double elevatorRate;
+
+	public static final int XGP = 0;
+	public static final int X3D = 1;
+
+	public int currentState = XGP;
+
+	public static OI getInstance() {
+		if (instance == null)
+			instance = new OI();
 		return instance;
 	}
-	
-	
+
 	public final XGamepad driverController;
 	public final Logitech3D subController;
 	private boolean disable;
-	
-	private OI(){
-		driverController = new XGamepad(1);
-		subController = new Logitech3D(0);
-		
+
+	private OI() {
+		subController = new Logitech3D(XGP);
+		driverController = new XGamepad(X3D);
+
 		magnitude = Robot.SPEED_DEFAULT;
 		disable = true;
 	}
-	
-	public void init(){
-//		subController.B2.held(new LowerElevator());				
-//		subController.B1.held(new RaiseElevator());
-//		subController.B3.tapped(new FixedElevation());
-//		subController.B4.tapped(new FixedDeclination());
-//		subController.B5.tapped(new NearVision());
-//		subController.B6.tapped(new DistVision());
-		driverController.LB.held(new LowerElevator());				
-		driverController.RB.held(new RaiseElevator());
-		driverController.L3.tapped(new FixedElevation());
-		driverController.R3.tapped(new FixedDeclination());
-		driverController.A.tapped(new NearVision());
-		driverController.Y.tapped(new DistVision());
-	}
-	
-	public void update(){
-		
-//		if (subController.B11.get() && !disable) {
-//			C.out("Control Disabled");
-//			disable();
-//		}else if (subController.B9.get() && disable) {
-//			C.out("Control Enabled");
-//			enable();
-//		}
-		if (driverController.BACK.get() && !disable) {
-			C.out("Control Disabled");
-			disable();
-		}else if (driverController.START.get() && disable) {
-			C.out("Control Enabled");
-			enable();
+
+	public void init() {
+		switch (currentState) {
+		case X3D:
+			subController.B2.held(new LowerElevator());
+			subController.B1.held(new RaiseElevator());
+			subController.B3.tapped(new FixedElevation());
+			subController.B4.tapped(new FixedDeclination());
+			subController.B5.tapped(new NearVision());
+			subController.B6.tapped(new DistVision());
+			break;
+		case XGP:
+			driverController.LB.held(new LowerElevator());
+			driverController.RB.held(new RaiseElevator());
+			driverController.L3.tapped(new FixedElevation());
+			driverController.R3.tapped(new FixedDeclination());
+			driverController.A.tapped(new NearVision());
+			driverController.Y.tapped(new DistVision());
+			break;
+		default:
+			C.err("Invalid Control state");
 		}
-		
+	}
+
+	public void update() {
 		C.out(CommandBase.driveTrain.getGyro());
-		//C.out(CommandBase.camera.getPos());
-		//C.out(CommandBase.elevator.getCount());
-		//C.out(subController.getX() + "|" + subController.getY() + "|" + subController.getZ());
-		
-		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, -driverController.getT()));
-		setSystemMagnitude(MathUtil.lerp(Robot.SPEED_MINIMUM, Robot.SPEED_MAXIMUM, -subController.getThrottle()));
-		Scheduler.getInstance().run(); 
+		// C.out(CommandBase.camera.getPos());
+		// C.out(CommandBase.elevator.getCount());
+		// C.out(subController.getX() + "|" + subController.getY() + "|" +
+		// subController.getZ());
+
+		switch (currentState) {
+		case X3D:
+			if (subController.B11.get() && !disable) {
+				C.out("Control Disabled");
+				disable();
+			} else if (subController.B9.get() && disable) {
+				C.out("Control Enabled");
+				enable();
+			}
+			setSystemMagnitude(MathUtil.lerp(Robot.SPEED_MINIMUM,
+					Robot.SPEED_MAXIMUM, -subController.getThrottle()));
+			setElevatorRate(MathUtil.lerp(Robot.SPEED_DEFAULT,
+					Robot.SPEED_MAXIMUM,
+					MathUtil.normalizeAlpha(-subController.getThrottle())));
+			break;
+		case XGP:
+			if (driverController.BACK.get() && !disable) {
+				C.out("Control Disabled");
+				disable();
+			} else if (driverController.START.get() && disable) {
+				C.out("Control Enabled");
+				enable();
+			}
+			setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM,
+					Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM,
+					driverController.getT()));
+			setElevatorRate(MathUtil.lerp(Robot.SPEED_DEFAULT,
+					Robot.SPEED_MAXIMUM,
+					MathUtil.normalizeAlpha(driverController.getT())));
+			break;
+		default:
+			C.err("Invalid Control state");
+		}
+
+		Scheduler.getInstance().run();
 		if (!disable) {
 			CommandBase.driveTrain.update();
-		}else{
-			CommandBase.driveTrain.rawDrive(0,0);
+		} else {
+			CommandBase.driveTrain.rawDrive(0, 0);
 		}
 	}
-	
-    public static double getSystemMagnitude() {
+
+	public static double getSystemMagnitude() {
 		return magnitude;
 	}
 
 	public static void setSystemMagnitude(double mgntd) {
 		magnitude = mgntd;
 	}
-	
-	public static  void defaultSystemMagnitude(){
+
+	public static void defaultSystemMagnitude() {
 		magnitude = Robot.SPEED_DEFAULT;
 	}
-	
-	public void disable(){disable = true;}
-	public void enable(){disable = false;}
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-	
-	
-	
-}
 
+	public static double getElevatorRate() {
+		return elevatorRate;
+	}
+
+	public static void setElevatorRate(double mgntd) {
+		elevatorRate = mgntd;
+	}
+
+	public static void defaultElevatorRate() {
+		magnitude = Robot.SPEED_DEFAULT;
+	}
+
+	public void disable() {
+		disable = true;
+	}
+
+	public void enable() {
+		disable = false;
+	}
+	// // CREATING BUTTONS
+	// One type of button is a joystick button which is any button on a
+	// joystick.
+	// You create one by telling it which joystick it's on and which button
+	// number it is.
+	// Joystick stick = new Joystick(port);
+	// Button button = new JoystickButton(stick, buttonNumber);
+
+	// There are a few additional built in buttons you can use. Additionally,
+	// by subclassing Button you can create custom triggers and bind those to
+	// commands the same as any other Button.
+
+	// // TRIGGERING COMMANDS WITH BUTTONS
+	// Once you have a button, it's trivial to bind it to a button in one of
+	// three ways:
+
+	// Start the command when the button is pressed and let it run the command
+	// until it is finished as determined by it's isFinished method.
+	// button.whenPressed(new ExampleCommand());
+
+	// Run the command while the button is being held down and interrupt it once
+	// the button is released.
+	// button.whileHeld(new ExampleCommand());
+
+	// Start the command when the button is released and let it run the command
+	// until it is finished as determined by it's isFinished method.
+	// button.whenReleased(new ExampleCommand());
+
+}
