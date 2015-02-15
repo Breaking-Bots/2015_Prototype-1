@@ -15,7 +15,7 @@ public abstract class CommandBase extends Command {
 	public static Elevator elevator;
 	public static Camera camera;
 	
-	public static void init(){
+	public final static void init(){
 		oi = OI.getInstance();
 		driveTrain = new DriveTrain();
 		elevator = new Elevator();

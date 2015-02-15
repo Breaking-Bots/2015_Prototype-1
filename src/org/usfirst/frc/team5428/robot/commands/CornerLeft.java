@@ -6,7 +6,7 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
 /**
  *
  */
-public class CornerLeft extends CommandBase {
+public final class CornerLeft extends CommandBase {
 
     public CornerLeft() {
         // Use requires() here to declare subsystem dependencies
@@ -15,32 +15,32 @@ public class CornerLeft extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public final void initialize() {
     	setTimeout(Robot.CORNER_TIME_L);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public final void execute() {
     	driveTrain.rawDrive(0, -1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public final boolean isFinished() {
         return isCanceled() || isTimedOut();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    public final void end() {
     	driveTrain.rawDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    public final void interrupted() {
     }
 
 	@Override
-	public void update() {
+	public final void update() {
 		// TODO Auto-generated method stub
 		
 	}

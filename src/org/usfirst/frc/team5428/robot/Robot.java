@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * RUN EXPERIMENT ON COMPETITION DAY
  * RUN EXPERIMENT ON COMPETITION DAY
  */
-public class Robot extends IterativeRobot {
+public final class Robot extends IterativeRobot {
 
 	public static OI oi;
 	private static final int dCVIEWING_QUALITY = 000040;
@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public void robotInit() {
+    public final void robotInit() {
     	CommandBase.init();
 		// instantiate the command used for the autonomous period
         autonomousCommand = new AutoBasicRush();
@@ -92,11 +92,12 @@ public class Robot extends IterativeRobot {
 		Vision.init();
     }
 	
-	public void disabledPeriodic() {
+	public final void disabledPeriodic() {
+		 C.out(-oi.subController.getThrottle() * ((-oi.subController.getX()*(1-Robot.JOYSTK_OFFSET)) + (-oi.subController.getZ() * Robot.JOYSTK_OFFSET)));
 		//Scheduler.getInstance().run();
 	}
 
-    public void autonomousInit() {
+    public final void autonomousInit() {
         // schedule the autonomous command (example)
     	C.out("Master has given me choice! ELON IS MASTER NOW!");
         if (autonomousCommand != null) autonomousCommand.start();
@@ -105,14 +106,14 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during autonomous
      */
-    public void autonomousPeriodic() {
+    public final void autonomousPeriodic() {
     	Scheduler.getInstance().run();
     }
 
     /**
      * Gets called once before the running of the robot
      */
-    public void teleopInit() {
+    public final void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
         
@@ -154,7 +155,7 @@ public class Robot extends IterativeRobot {
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
-    public void disabledInit(){
+    public final void disabledInit(){
     	oi.disable();
     	C.out("Goodnight Master");
     }
@@ -162,14 +163,14 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    public void teleopPeriodic() {
+    public final void teleopPeriodic() {
         oi.update();
     }
     
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
+    public final void testPeriodic() {
         LiveWindow.run();
     }
 }

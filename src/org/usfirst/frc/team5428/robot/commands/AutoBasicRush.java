@@ -9,35 +9,35 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Zaeem
  * @version 1.0
  */
-public class AutoBasicRush extends CommandBase {
+public final class AutoBasicRush extends CommandBase {
 
-	protected void initialize() {
+	public final void initialize() {
 		requires(driveTrain);
 		
 		setInterruptible(true);
 		setTimeout(15.0);
 	}
 
-	protected void execute() {
+	public final void execute() {
 		driveTrain.rawDrive(0.5f, 0.0f);
 	}
 
-	protected boolean isFinished() {
+	public final boolean isFinished() {
 		return isCanceled() || isTimedOut();
 	}
 
-	protected void end() {
+	public final void end() {
 		// TODO Auto-generated method stub
 
 	}
 
-	protected void interrupted() {
+	public final void interrupted() {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void update() {
+	public final void update() {
 		// TODO Auto-generated method stub
 		
 	}

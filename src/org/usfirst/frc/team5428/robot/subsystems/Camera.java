@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /** This subsystem is the camera, which moves camera up and down
  */
-public class Camera extends Subsystem {
+public final class Camera extends Subsystem {
     
-	private Servo servo;
+	private final Servo servo;
 	
 	public Camera(){
 		super();
@@ -20,19 +20,19 @@ public class Camera extends Subsystem {
 		C.out(getName() + " Initialized");		
 	}
 
-	public void orient(double angle){
+	public final void orient(double angle){
 		servo.setAngle(servo.getAngle() + angle);
 	}
 	
-	public void setPos(double pos){
+	public final void setPos(double pos){
 		servo.setPosition(pos);
 	}
 	
-	public double getPos(){
+	public final double getPos(){
 		return servo.getPosition();
 	}
 	
-    public void initDefaultCommand() {
+    public final void initDefaultCommand() {
         setDefaultCommand(new ControlCamera());
     }
 }

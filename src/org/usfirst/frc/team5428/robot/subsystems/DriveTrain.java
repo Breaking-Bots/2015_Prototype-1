@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * This is the subsystem that controls the chassis of the robot,
  *          including its driving
  */
-public class DriveTrain extends PIDSubsystem {
+public final class DriveTrain extends PIDSubsystem {
 
 	private Talon frontLeft;
 	private Talon backLeft;
@@ -54,43 +54,43 @@ public class DriveTrain extends PIDSubsystem {
 		C.out(getName() + " Initialized");
 	}
 
-	public void elonDrive(double fwd, double turn, double mgntd){
+	public final void elonDrive(double fwd, double turn, double mgntd){
 		zLinear = mgntd * fwd;
 		xLinear = mgntd * turn;
 	}
 	
-	public void enhancedDrive(double fwd, double gturn, double lturn, double mgntd){
+	public final void enhancedDrive(double fwd, double gturn, double lturn, double mgntd){
 		zLinear = fwd * mgntd;
 		xLinear = mgntd * ((gturn*(1-Robot.JOYSTK_OFFSET)) + (lturn * Robot.JOYSTK_OFFSET));
 	}
 	
-	public void rawDrive(double speed, double curve){
+	public final void rawDrive(double speed, double curve){
 		drive.arcadeDrive(speed, curve, squaredInput);
 	}
 
-	public void initDefaultCommand() {
+	public final void initDefaultCommand() {
 		setDefaultCommand(new Drive());
 	}
 
-	public void setSquaredInput(boolean squaredInput) {
+	public final void setSquaredInput(boolean squaredInput) {
 		this.squaredInput = squaredInput;
 	}
 
-	public double getGyro(){
+	public final double getGyro(){
 		return gyro.getAngle();
 	}
 
-	public void update(){
+	public final void update(){
 		drive.arcadeDrive(zLinear, xLinear - (Robot.DRIVE_TRAIN_A/Robot.DRIVE_TRAIN_K) * zLinear, squaredInput);
 	}
 	
 	@Override
-	protected double returnPIDInput() {
+	public final double returnPIDInput() {
 		return gyro.getAngle();
 	}
 
 	@Override
-	protected void usePIDOutput(double output) {
+	public final void usePIDOutput(double output) {
 		xLinear = output;
 		update();
 	}

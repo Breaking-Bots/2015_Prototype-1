@@ -29,7 +29,7 @@ public final class OI {
 
 	public int currentState = XGP;
 
-	public static OI getInstance() {
+	public final static OI getInstance() {
 		if (instance == null)
 			instance = new OI();
 		return instance;
@@ -47,7 +47,7 @@ public final class OI {
 		disable = true;
 	}
 
-	public void init() {
+	public final void init() {
 		switch (currentState) {
 		case X3D:
 			subController.B2.held(new LowerElevator());
@@ -70,7 +70,7 @@ public final class OI {
 		}
 	}
 
-	public void update() {
+	public final void update() {
 		C.out(CommandBase.driveTrain.getGyro());
 		// C.out(CommandBase.camera.getPos());
 		// C.out(CommandBase.elevator.getCount());
@@ -119,19 +119,19 @@ public final class OI {
 		}
 	}
 
-	public static double getSystemMagnitude() {
+	public final static double getSystemMagnitude() {
 		return magnitude;
 	}
 
-	public static void setSystemMagnitude(double mgntd) {
+	public final static void setSystemMagnitude(double mgntd) {
 		magnitude = mgntd;
 	}
 
-	public static void defaultSystemMagnitude() {
+	public final static void defaultSystemMagnitude() {
 		magnitude = Robot.SPEED_DEFAULT;
 	}
 
-	public static double getElevatorRate() {
+	public final static double getElevatorRate() {
 		return elevatorRate;
 	}
 

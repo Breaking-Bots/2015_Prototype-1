@@ -10,23 +10,23 @@ import com.ni.vision.NIVision.ShapeMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
-public class Vision {
+public final class Vision {
 	public static CameraServer server;
 	
-	public static void init(){
+	public final static void init(){
 		server = CameraServer.getInstance();
 	}
 	
-	public static void teleopInit(){
+	public final static void teleopInit(){
 		 server.setQuality(Robot.CVIEWING_QUALITY);
 		 if(!server.isAutoCaptureStarted()) server.startAutomaticCapture("cam1");
 	}
 	
 	
-	public static void teleopTerminate(){
+	public final static void teleopTerminate(){
 	}
 	
-	public static void stream()
+	public final static void stream()
 	{	        
 	}
 }

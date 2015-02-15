@@ -9,40 +9,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Lowers elevator
  */
-public class LowerElevator extends CommandBase {
+public final class LowerElevator extends CommandBase {
 
     public LowerElevator() {
         requires(elevator);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+     public final void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+     public final void execute() {
     	elevator.elevate(-Robot.LOWERED_SPEED * OI.getSystemMagnitude());
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+     public final boolean isFinished() {
         return isCanceled();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+     public final void end() {
     	elevator.elevate(0);
     	elevator.resetSwitch();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+     public final void interrupted() {
     	end();
     }
 
 	@Override
-	public void update() {
+	public final void update() {
 		// TODO Auto-generated method stub
 		
 	}

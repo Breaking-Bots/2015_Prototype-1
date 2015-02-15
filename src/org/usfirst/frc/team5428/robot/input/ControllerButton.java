@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ControllerButton extends Button {
+public final class ControllerButton extends Button {
 
 	private GenericHID controller;
 	private int mappedNumber;
@@ -15,23 +15,23 @@ public class ControllerButton extends Button {
 		this.mappedNumber = mappedNumber;
 	}
 
-	public boolean get() {
+	public final boolean get() {
 		return controller.getRawButton(mappedNumber);
 	}
 	
-	public void tapped(final Command command){
+	public final void tapped(final Command command){
 		whenPressed(command);
 	}
 	
-	public void held(final Command command){
+	public final void held(final Command command){
 		whileHeld(command);
 	}
 	
-	public void released(final Command command){
+	public final void released(final Command command){
 		whenReleased(command);
 	}
 	
-	public int iterative(){
+	public final int iterative(){
 		return mappedNumber;
 	}
 	

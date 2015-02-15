@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5428.robot.input;
 
-public class PSGamepad extends Controller {
+public final class PSGamepad extends Controller {
 
 	public final ControllerButton X;
 	public final ControllerButton O;

@@ -3,41 +3,41 @@ package org.usfirst.frc.team5428.robot.commands;
 import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
-public class FixedElevation extends CommandBase{
+public final class FixedElevation extends CommandBase{
 
 	public FixedElevation(){
 		requires(elevator);
 	}
 	
 	@Override
-	public void update() {
+	public final void update() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void initialize() {
+	 public final void initialize() {
 		setTimeout(Robot.ELEVATOR_TIME);
 	}
 
 	@Override
-	protected void execute() {
+	 public final void execute() {
 		elevator.elevate(1);
 	}
 
 	@Override
-	protected boolean isFinished() {
+	 public final boolean isFinished() {
 		return elevator.switchStatus() || isTimedOut() || isCanceled();
 	}
 
 	@Override
-	protected void end() {
+	 public final void end() {
 		// TODO Auto-generated method stub
 		elevator.elevate(0);
 	}
 
 	@Override
-	protected void interrupted() {
+	 public final void interrupted() {
 		// TODO Auto-generated method stub
 		end();
 	}

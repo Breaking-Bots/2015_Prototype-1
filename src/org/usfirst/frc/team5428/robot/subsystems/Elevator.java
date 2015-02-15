@@ -14,11 +14,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Zaeem Mohamed
  * @version 1.0
  */
-public class Elevator extends Subsystem {
+public final class Elevator extends Subsystem {
     
-	private Victor victor;
-	private DigitalInput limitSwitch;
-	private Counter counter;
+	private final Victor victor;
+	private final DigitalInput limitSwitch;
+	private final Counter counter;
 	
 	public Elevator(){
 		super();
@@ -29,23 +29,23 @@ public class Elevator extends Subsystem {
 		C.out(getName() + " Initialized");		
 	}
 
-	public void resetSwitch(){
+	public final void resetSwitch(){
 		counter.reset();
 	}
 	
-	public int getCount(){
+	public final int getCount(){
 		return counter.get();
 	}
 	
-	public boolean switchStatus(){
+	public final boolean switchStatus(){
 		return counter.get() > 0;
 	}
 	
-	public void elevate(double mgntd){
+	public final void elevate(double mgntd){
 		victor.set(mgntd);
 	}
 	
-    public void initDefaultCommand() {
+    public final void initDefaultCommand() {
         //setDefaultCommand(new HoldElevation());
     }
 }

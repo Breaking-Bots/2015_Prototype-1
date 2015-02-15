@@ -136,19 +136,19 @@ public abstract class Controller extends GenericHID{
 	@Override
 	public abstract boolean getRawButton(int button);
 
-	public double getDeadzone() {
+	public final double getDeadzone() {
 		return deadzone;
 	}
 
-	public void setDeadZone(double deadzone) {
+	public final void setDeadZone(double deadzone) {
 		this.deadzone = deadzone;
 	}
 
-	public double getTriggerDeadzone() {
+	public final double getTriggerDeadzone() {
 		return triggerDeadzone;
 	}
 
-	public void setTriggerDeadzone(double triggerDeadzone) {
+	public final void setTriggerDeadzone(double triggerDeadzone) {
 		this.triggerDeadzone = triggerDeadzone;
 	}
 	

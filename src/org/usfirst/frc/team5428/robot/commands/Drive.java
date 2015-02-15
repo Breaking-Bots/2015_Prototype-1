@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * A general Drive class, for on the fly drive switching
  */
-public class Drive extends CommandBase {
+public final class Drive extends CommandBase {
 
 	public Drive() {
 		requires(driveTrain);
@@ -16,11 +16,11 @@ public class Drive extends CommandBase {
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	public final void initialize() {
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
+	public final void execute() {
 		update();
 		switch (oi.currentState) {
 		case OI.X3D:
@@ -34,7 +34,7 @@ public class Drive extends CommandBase {
 		}
 	}
 
-	public void update() {
+	public final void update() {
 //		if (oi.subController.B7.get() && currentState != ELN) {
 //			SmartDashboard.putString("Drive Type", "ELN");
 //			C.out("Elon Drive is go");
@@ -47,18 +47,18 @@ public class Drive extends CommandBase {
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
-	protected final boolean isFinished() {
+	public final boolean isFinished() {
 		return isCanceled();
 	}
 
 	// Called once after isFinished returns true
-	protected final void end() {
+	public final void end() {
 		driveTrain.rawDrive(0.0f, 0.0f);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	protected final void interrupted() {
+	public final void interrupted() {
 		end();
 	}
 

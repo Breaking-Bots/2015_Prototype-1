@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5428.robot.input;
 
-public class XGamepad extends Controller {
+public final class XGamepad extends Controller {
 
 	public final ControllerButton A;
 	public final ControllerButton B;

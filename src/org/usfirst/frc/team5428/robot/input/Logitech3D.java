@@ -3,7 +3,7 @@ package org.usfirst.frc.team5428.robot.input;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 
-public class Logitech3D extends GenericHID {
+public final class Logitech3D extends GenericHID {
 
 	public final ControllerButton B1;
 	public final ControllerButton B2;
@@ -18,8 +18,8 @@ public class Logitech3D extends GenericHID {
 	public final ControllerButton B11;
 	public final ControllerButton B12;
 	
-	protected DriverStation ds;
-	protected final int port;
+	public final DriverStation ds;
+	public final int port;
 	
 	private double deadzone;
 	
@@ -46,7 +46,7 @@ public class Logitech3D extends GenericHID {
 	public static final class AxisType{
 		
 		private final int enumerator;
-		protected AxisType(int enumerator){
+		private AxisType(int enumerator){
 			this.enumerator = enumerator;
 		}
 		

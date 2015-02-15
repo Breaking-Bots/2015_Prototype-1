@@ -9,39 +9,39 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Raises elevator
  */
-public class RaiseElevator extends CommandBase {
+public final class RaiseElevator extends CommandBase {
 
     public RaiseElevator() {
         requires(elevator);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+     public final void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+     public final void execute() {
     	elevator.elevate(OI.getSystemMagnitude());
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+     public final boolean isFinished() {
         return elevator.switchStatus() || isCanceled();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+     public final void end() {
     	elevator.elevate(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+     public final void interrupted() {
     	elevator.elevate(0);
     }
 
 	@Override
-	public void update() {
+	public final void update() {
 		// TODO Auto-generated method stub
 		
 	}
