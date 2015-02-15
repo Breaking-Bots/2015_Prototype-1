@@ -4,7 +4,7 @@ import org.usfirst.frc.team5428.robot.core.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/** This basic autonomous command just make the robot push forward at 100%
+/** This basic autonomous command just make the robot push forward at 50%
  * 
  * @author Zaeem
  * @version 1.0
@@ -19,7 +19,7 @@ public class AutoBasicRush extends CommandBase {
 	}
 
 	protected void execute() {
-		driveTrain.rawDrive(1.0f, 0.0f);
+		driveTrain.rawDrive(0.5f, 0.0f);
 	}
 
 	protected boolean isFinished() {

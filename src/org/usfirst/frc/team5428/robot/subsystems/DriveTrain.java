@@ -35,6 +35,7 @@ public class DriveTrain extends PIDSubsystem {
 		super(Robot.DRIVE_TRAIN_P, Robot.DRIVE_TRAIN_I, Robot.DRIVE_TRAIN_D);
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(true);
+		getPIDController();
 		squaredInput = false;
 
 		frontLeft = new Talon(RobotMap.DT_FRONTLEFT);
@@ -53,17 +54,17 @@ public class DriveTrain extends PIDSubsystem {
 		C.out(getName() + " Initialized");
 	}
 
-	public void elonDrive(double fwd, double turn, float mgntd){
+	public void elonDrive(double fwd, double turn, double mgntd){
 		zLinear = mgntd * fwd;
 		xLinear = mgntd * turn;
 	}
 	
-	public void enhancedDrive(double fwd, double gturn, double lturn, float mgntd){
+	public void enhancedDrive(double fwd, double gturn, double lturn, double mgntd){
 		zLinear = fwd * mgntd;
 		xLinear = mgntd * ((gturn*(1-Robot.JOYSTK_OFFSET)) + (lturn * Robot.JOYSTK_OFFSET));
 	}
 	
-	public void rawDrive(float speed, float curve){
+	public void rawDrive(double speed, double curve){
 		drive.arcadeDrive(speed, curve, squaredInput);
 	}
 

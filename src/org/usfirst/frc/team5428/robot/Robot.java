@@ -32,46 +32,44 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	private static final float dSPEED_MINIMUM = 0.3000f;
-	private static final float dSPEED_DEFAULT = 0.5000f;
-	private static final float dSPEED_MAXIMUM = 1.0000f;
-	private static final int dCAM_QUALITY_MIN = 0000001;	
-	private static final int dCAM_QUALITY_MAX = 0000040;
-	private static final float dCORNER_TIME_L = 0.2000f;
-	private static final float dCORNER_TIME_R = 0.2000f;
-	private static final float dDRIVE_TRAIN_P = 1.0000f;
-	private static final float dDRIVE_TRAIN_I = 1.0000f;
-	private static final float dDRIVE_TRAIN_D = 1.0000f;
-	private static final float dLOWERED_SPEED = 0.2000f;
-	private static final float dHOLD_POSITION = 0.3500f;
-	private static final float dELEVATOR_TIME = 1.4000f;
-	private static final float dDECLINER_TIME = 0.3500f; 
-	private static final float dJOYSTK_OFFSET = 0.2000f;
-	private static final float dCAM_PAN_SPEED = 2.5000f;
-	private static final float dCAM_NEAR_POSY = 0.4205f;
-	private static final float dCAM_DIST_POSY = 0.5988f;
-	private static final float dDRIVE_TRAIN_A = 0.0000f;
-	private static final float dDRIVE_TRAIN_K = 1.0000f;
-	public static float SPEED_MINIMUM = dSPEED_MINIMUM;
-	public static float SPEED_DEFAULT = dSPEED_DEFAULT;
-	public static float SPEED_MAXIMUM = dSPEED_MAXIMUM;
-	public static int CAM_QUALITY_MIN = dCAM_QUALITY_MIN;	
-	public static int CAM_QUALITY_MAX = dCAM_QUALITY_MAX;
-	public static float CORNER_TIME_L = dCORNER_TIME_L;
-	public static float CORNER_TIME_R = dCORNER_TIME_R;
-	public static float DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
-	public static float DRIVE_TRAIN_I = dDRIVE_TRAIN_I;
-	public static float DRIVE_TRAIN_D = dDRIVE_TRAIN_D;
-	public static float LOWERED_SPEED = dLOWERED_SPEED;
-	public static float HOLD_POSITION = dHOLD_POSITION;
-	public static float ELEVATOR_TIME = dELEVATOR_TIME;
-	public static float DECLINER_TIME = dDECLINER_TIME;
-	public static float JOYSTK_OFFSET = dJOYSTK_OFFSET;
-	public static float CAM_PAN_SPEED = dCAM_PAN_SPEED;
-	public static float CAM_NEAR_POSY = dCAM_NEAR_POSY;
-	public static float CAM_DIST_POSY = dCAM_DIST_POSY;
-	public static float DRIVE_TRAIN_A = dDRIVE_TRAIN_A;
-	public static float DRIVE_TRAIN_K = dDRIVE_TRAIN_K;
+	private static final int dCVIEWING_QUALITY = 000040;
+	private static final double dSPEED_MINIMUM = 0.3000;
+	private static final double dSPEED_DEFAULT = 0.5000;
+	private static final double dSPEED_MAXIMUM = 1.0000;
+	private static final double dCORNER_TIME_L = 0.2000;
+	private static final double dCORNER_TIME_R = 0.2000;
+	private static final double dDRIVE_TRAIN_P = 1.0000;
+	private static final double dDRIVE_TRAIN_I = 1.0000;
+	private static final double dDRIVE_TRAIN_D = 1.0000;
+	private static final double dLOWERED_SPEED = 0.2000;
+	private static final double dHOLD_POSITION = 0.3500;
+	private static final double dELEVATOR_TIME = 1.4000;
+	private static final double dDECLINER_TIME = 0.3500; 
+	private static final double dJOYSTK_OFFSET = 0.2000;
+	private static final double dCAM_PAN_SPEED = 2.5000;
+	private static final double dCAM_NEAR_POSY = 0.4205;
+	private static final double dCAM_DIST_POSY = 0.5988;
+	private static final double dDRIVE_TRAIN_A = 0.0000;
+	private static final double dDRIVE_TRAIN_K = 1.0000;
+	public static double SPEED_MINIMUM = dSPEED_MINIMUM;
+	public static double SPEED_DEFAULT = dSPEED_DEFAULT;
+	public static double SPEED_MAXIMUM = dSPEED_MAXIMUM;
+	public static double CORNER_TIME_L = dCORNER_TIME_L;
+	public static double CORNER_TIME_R = dCORNER_TIME_R;
+	public static double DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
+	public static double DRIVE_TRAIN_I = dDRIVE_TRAIN_I;
+	public static double DRIVE_TRAIN_D = dDRIVE_TRAIN_D;
+	public static double LOWERED_SPEED = dLOWERED_SPEED;
+	public static double HOLD_POSITION = dHOLD_POSITION;
+	public static double ELEVATOR_TIME = dELEVATOR_TIME;
+	public static double DECLINER_TIME = dDECLINER_TIME;
+	public static double JOYSTK_OFFSET = dJOYSTK_OFFSET;
+	public static double CAM_PAN_SPEED = dCAM_PAN_SPEED;
+	public static double CAM_NEAR_POSY = dCAM_NEAR_POSY;
+	public static double CAM_DIST_POSY = dCAM_DIST_POSY;
+	public static double DRIVE_TRAIN_A = dDRIVE_TRAIN_A;
+	public static double DRIVE_TRAIN_K = dDRIVE_TRAIN_K;
+	public static int CVIEWING_QUALITY = dCVIEWING_QUALITY;
 
     Command autonomousCommand;
     private Preferences prefs;
@@ -117,32 +115,31 @@ public class Robot extends IterativeRobot {
         
         
         {
-        	SPEED_MINIMUM = (float) prefs.getDouble("MIN_SPEED", dSPEED_MINIMUM);
-        	SPEED_DEFAULT = (float) prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
-        	SPEED_MAXIMUM = (float) prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
-        	JOYSTK_OFFSET = (float) prefs.getDouble("C2_OFFSET", dJOYSTK_OFFSET);
+        	SPEED_MINIMUM = prefs.getDouble("MIN_SPEED", dSPEED_MINIMUM);
+        	SPEED_DEFAULT = prefs.getDouble("DEF_SPEED", dSPEED_DEFAULT);
+        	SPEED_MAXIMUM = prefs.getDouble("MAX_SPEED", dSPEED_MAXIMUM);
+        	JOYSTK_OFFSET = prefs.getDouble("C2_OFFSET", dJOYSTK_OFFSET);
 		
-        	CAM_QUALITY_MIN = (int) prefs.getInt("CAM_QUALITY_MIN", dCAM_QUALITY_MIN);
-        	CAM_QUALITY_MAX = (int) prefs.getInt("CAM_QUALITY_MAX", dCAM_QUALITY_MAX);
+        	CVIEWING_QUALITY =  prefs.getInt("CAM_QUALITY_MAX", dCVIEWING_QUALITY);
 		
-        	CORNER_TIME_L = (float) prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
-        	CORNER_TIME_R = (float) prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
+        	CORNER_TIME_L = prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
+        	CORNER_TIME_R = prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
 		
-        	DRIVE_TRAIN_P = (float) prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
-        	DRIVE_TRAIN_I = (float) prefs.getDouble("DRIVE_TRAIN_I", dDRIVE_TRAIN_I);
-        	DRIVE_TRAIN_D = (float) prefs.getDouble("DRIVE_TRAIN_D", dDRIVE_TRAIN_D);
-        	DRIVE_TRAIN_A = (float) prefs.getDouble("DRIVE_TRAIN_A", dDRIVE_TRAIN_A);
-        	DRIVE_TRAIN_K = (float) prefs.getDouble("DRIVE_TRAIN_K", dDRIVE_TRAIN_K);
+        	DRIVE_TRAIN_P = prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
+        	DRIVE_TRAIN_I = prefs.getDouble("DRIVE_TRAIN_I", dDRIVE_TRAIN_I);
+        	DRIVE_TRAIN_D = prefs.getDouble("DRIVE_TRAIN_D", dDRIVE_TRAIN_D);
+        	DRIVE_TRAIN_A = prefs.getDouble("DRIVE_TRAIN_A", dDRIVE_TRAIN_A);
+        	DRIVE_TRAIN_K = prefs.getDouble("DRIVE_TRAIN_K", dDRIVE_TRAIN_K);
 		
-        	LOWERED_SPEED = (float) prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
-        	HOLD_POSITION = (float) prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
+        	LOWERED_SPEED = prefs.getDouble("LOWERED_SPEED", dLOWERED_SPEED);
+        	HOLD_POSITION = prefs.getDouble("HOLD_POSITION", dHOLD_POSITION);
         	
-        	ELEVATOR_TIME = (float) prefs.getDouble("RISE_TIME_STEP", dELEVATOR_TIME);
-        	DECLINER_TIME = (float) prefs.getDouble("FALL_TIME_STEP", dDECLINER_TIME);
+        	ELEVATOR_TIME = prefs.getDouble("RISE_TIME_STEP", dELEVATOR_TIME);
+        	DECLINER_TIME = prefs.getDouble("FALL_TIME_STEP", dDECLINER_TIME);
         	
-        	CAM_PAN_SPEED = (float) prefs.getDouble("CAM_PAN_SPEED", dCAM_PAN_SPEED);
-        	CAM_NEAR_POSY = (float) prefs.getDouble("CAM_NEAR_POSY", dCAM_NEAR_POSY);
-        	CAM_DIST_POSY = (float) prefs.getDouble("CAM_DIST_POSY", dCAM_DIST_POSY);
+        	CAM_PAN_SPEED = prefs.getDouble("CAM_PAN_SPEED", dCAM_PAN_SPEED);
+        	CAM_NEAR_POSY = prefs.getDouble("CAM_NEAR_POSY", dCAM_NEAR_POSY);
+        	CAM_DIST_POSY = prefs.getDouble("CAM_DIST_POSY", dCAM_DIST_POSY);
         } // This block gets input from the users preferences to get default values
         
         Vision.teleopInit();

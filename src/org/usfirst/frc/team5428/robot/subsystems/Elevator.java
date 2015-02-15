@@ -41,7 +41,7 @@ public class Elevator extends Subsystem {
 		return counter.get() > 0;
 	}
 	
-	public void elevate(float mgntd){
+	public void elevate(double mgntd){
 		victor.set(mgntd);
 	}
 	

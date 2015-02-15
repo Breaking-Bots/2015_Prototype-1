@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public final class OI {
 	
 	private static OI instance;
-	private static float magnitude;
+	private static double magnitude;
 			
 	public static OI getInstance(){
 		if(instance == null) instance = new OI();
@@ -78,7 +78,8 @@ public final class OI {
 		//C.out(CommandBase.elevator.getCount());
 		//C.out(subController.getX() + "|" + subController.getY() + "|" + subController.getZ());
 		
-		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, (float) -subController.getThrottle()));
+		setSystemMagnitude(MathUtil.zaeem(Robot.SPEED_MINIMUM, Robot.SPEED_DEFAULT, Robot.SPEED_MAXIMUM, -driverController.getT()));
+		setSystemMagnitude(MathUtil.lerp(Robot.SPEED_MINIMUM, Robot.SPEED_MAXIMUM, -subController.getThrottle()));
 		Scheduler.getInstance().run(); 
 		if (!disable) {
 			CommandBase.driveTrain.update();
@@ -87,11 +88,11 @@ public final class OI {
 		}
 	}
 	
-    public static float getSystemMagnitude() {
+    public static double getSystemMagnitude() {
 		return magnitude;
 	}
 
-	public static void setSystemMagnitude(float mgntd) {
+	public static void setSystemMagnitude(double mgntd) {
 		magnitude = mgntd;
 	}
 	

@@ -21,7 +21,7 @@ public class Logitech3D extends GenericHID {
 	protected DriverStation ds;
 	protected final int port;
 	
-	private float deadzone;
+	private double deadzone;
 	
 	public Logitech3D(int port) {
 		this.port = port;
@@ -63,8 +63,8 @@ public class Logitech3D extends GenericHID {
 	public static Hand RIGHT_HAND = Hand.kRight;
 	
 	public final double checkDeadzone(double value) {
-		int sign = (int) Math.signum(value); 
-		return (sign*value > deadzone)? (value - deadzone*sign)/(1 - deadzone):0;
+		double sign = Math.signum(value); 
+		return (sign*value > deadzone)? (value - deadzone*sign)/(1.0 - deadzone):0.0;
 	}
 	
 	@Override
@@ -132,7 +132,7 @@ public class Logitech3D extends GenericHID {
 		return deadzone;
 	}
 
-	public void setDeadZone(float deadzone) {
+	public void setDeadZone(double deadzone) {
 		this.deadzone = deadzone;
 	}
 	

@@ -51,7 +51,6 @@ public class ControlCamera extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	camera.setPos(camera.START_POS);    	
     }
 
     // Called when another command which requires one or more of the same

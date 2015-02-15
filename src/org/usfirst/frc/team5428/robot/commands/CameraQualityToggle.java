@@ -20,7 +20,7 @@ public class CameraQualityToggle extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	C.out("Camera Quality HIGH");
-    	CameraServer.getInstance().setQuality(Robot.CAM_QUALITY_MAX);
+    	CameraServer.getInstance().setQuality(Robot.CVIEWING_QUALITY);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +35,7 @@ public class CameraQualityToggle extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	C.out("Camera Quality LOW");
-    	CameraServer.getInstance().setQuality(Robot.CAM_QUALITY_MIN);
+    	CameraServer.getInstance().setQuality(Robot.CVIEWING_QUALITY);
     }
 
     // Called when another command which requires one or more of the same

@@ -13,16 +13,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Camera extends Subsystem {
     
 	private Servo servo;
-	public final double START_POS;
 	
 	public Camera(){
 		super();
 		servo = new Servo(RobotMap.CAM_SERVO);
-		START_POS = servo.getPosition();
 		C.out(getName() + " Initialized");		
 	}
 
-	public void orient(float angle){
+	public void orient(double angle){
 		servo.setAngle(servo.getAngle() + angle);
 	}
 	

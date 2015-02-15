@@ -24,7 +24,7 @@ public class DistVision extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return MathUtil.epsilonEquals(Robot.CAM_DIST_POSY,(float) camera.getPos(), 0.01f);
+        return MathUtil.epsilonEquals(Robot.CAM_DIST_POSY, camera.getPos(), 0.01);
     }
 
     // Called once after isFinished returns true

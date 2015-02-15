@@ -9,16 +9,16 @@ public abstract class Controller extends GenericHID{
 	protected DriverStation ds;
 	protected final int port;
 	
-	private float deadzone;
-	private float triggerDeadzone;
+	private double deadzone;
+	private double triggerDeadzone;
 	
 	protected Controller(int port) {
 		super();
 		this.port = port;
 		ds = DriverStation.getInstance();
 		
-		deadzone = 0.20f;
-		triggerDeadzone = 0.00f;
+		deadzone = 0.20;
+		triggerDeadzone = 0.00;
 		
 	}
 	
@@ -41,8 +41,8 @@ public abstract class Controller extends GenericHID{
 	}
 	
 	public final double checkDeadzone(double value) {
-		int sign = (int) Math.signum(value); 
-		return (sign*value > deadzone)? (value - deadzone*sign)/(1 - deadzone):0;
+		double sign = Math.signum(value); 
+		return (sign*value > deadzone)? (value - deadzone*sign)/(1.0 - deadzone):0.0;
 	}
 	
 	public final boolean checkTriggerDeadzone(double value) {
@@ -140,7 +140,7 @@ public abstract class Controller extends GenericHID{
 		return deadzone;
 	}
 
-	public void setDeadZone(float deadzone) {
+	public void setDeadZone(double deadzone) {
 		this.deadzone = deadzone;
 	}
 
@@ -148,7 +148,7 @@ public abstract class Controller extends GenericHID{
 		return triggerDeadzone;
 	}
 
-	public void setTriggerDeadzone(float triggerDeadzone) {
+	public void setTriggerDeadzone(double triggerDeadzone) {
 		this.triggerDeadzone = triggerDeadzone;
 	}
 	
