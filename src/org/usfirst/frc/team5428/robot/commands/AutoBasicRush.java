@@ -15,7 +15,7 @@ public final class AutoBasicRush extends CommandBase {
 		requires(driveTrain);
 		
 		setInterruptible(true);
-		setTimeout(15.0);
+		setTimeout(5.0);
 	}
 
 	public final void execute() {

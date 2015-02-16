@@ -1,5 +1,10 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtensionCompat">
+		<location x="402" y="10"/>
+		<width>1659</width>
+		<height>1086</height>
+	</static-widget>
 	<widget field="DriveTrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="1961" y="82"/>
 	</widget>
@@ -32,12 +37,6 @@
 		<height>71</height>
 		<property name="Connection Color" value="0.255.255.255"/>
 		<property name="Graphics" value="Rounded"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="-17" y="2"/>
-		<width>2516</width>
-		<height>1084</height>
-		<property name="FPS" value="24"/>
 	</static-widget>
 </dashboard>
 <live-window>
