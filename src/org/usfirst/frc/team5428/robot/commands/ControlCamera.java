@@ -22,22 +22,22 @@ public final class ControlCamera extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public final void execute() {
-    	switch (oi.currentState) {
-		case OI.X3D:
-			if(oi.subController.getPOV() == 0)
-				camera.orient(Robot.CAM_PAN_SPEED);
-			else if(oi.subController.getPOV() == 180)
-				camera.orient(-Robot.CAM_PAN_SPEED);
-			break;
-		case OI.XGP:
+//    	switch (oi.currentState) {
+//		case OI.X3D:
+//			if(oi.subController.getPOV() == 0)
+//				camera.orient(Robot.CAM_PAN_SPEED);
+//			else if(oi.subController.getPOV() == 180)
+//				camera.orient(-Robot.CAM_PAN_SPEED);
+////			break;
+////		case OI.XGP:
 			if(oi.driverController.getPOV() == 0)
 				camera.orient(Robot.CAM_PAN_SPEED);
 			else if(oi.driverController.getPOV() == 180)
 				camera.orient(-Robot.CAM_PAN_SPEED);
-			break;
-		default:
-			C.err("Invalid Control state");
-		}
+//			break;
+//		default:
+//			C.err("Invalid Control state");
+//		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

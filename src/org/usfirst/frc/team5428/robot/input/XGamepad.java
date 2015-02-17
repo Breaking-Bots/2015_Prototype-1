@@ -15,16 +15,16 @@ public final class XGamepad extends Controller {
 	
 	public XGamepad(int port) {
 		super(port);
-		A = new ControllerButton(this, 0);
-		B = new ControllerButton(this, 1);
-		X = new ControllerButton(this, 2);
-		Y = new ControllerButton(this, 3);
-		LB = new ControllerButton(this, 4);
-		RB = new ControllerButton(this, 5);
-		BACK = new ControllerButton(this, 6);
-		START = new ControllerButton(this, 7);
-		L3 = new ControllerButton(this, 8);
-		R3 = new ControllerButton(this, 9);
+		A = new ControllerButton(this, 1);
+		B = new ControllerButton(this, 2);
+		X = new ControllerButton(this, 3);
+		Y = new ControllerButton(this, 4);
+		LB = new ControllerButton(this, 5);
+		RB = new ControllerButton(this, 6);
+		BACK = new ControllerButton(this, 7);
+		START = new ControllerButton(this, 8);
+		L3 = new ControllerButton(this, 9);
+		R3 = new ControllerButton(this, 10);
 	}
 
 
@@ -48,7 +48,7 @@ public final class XGamepad extends Controller {
 
 	@Override
 	public boolean getRawButton(int button) {
-	        return ((0x1 << (button)) & ds.getStickButtons(port)) != 0;
+	        return ds.getStickButton(port, (byte) button); //((0x1 << (button)) & ds.getStickButtons(port)) != 0;
 	}
 	
 	

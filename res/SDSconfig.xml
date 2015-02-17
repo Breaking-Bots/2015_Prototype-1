@@ -1,9 +1,9 @@
 <xml version="1.0">
 <dashboard>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtensionCompat">
-		<location x="402" y="10"/>
-		<width>1659</width>
-		<height>1086</height>
+		<location x="0" y="0"/>
+		<width>300</width>
+		<height>222</height>
 	</static-widget>
 	<widget field="DriveTrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="1961" y="82"/>
@@ -12,9 +12,9 @@
 		<location x="1976" y="112"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="21" y="6"/>
-		<width>483</width>
-		<height>517</height>
+		<location x="745" y="0"/>
+		<width>260</width>
+		<height>237</height>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="2081" y="32"/>

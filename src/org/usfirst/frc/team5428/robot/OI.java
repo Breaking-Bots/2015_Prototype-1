@@ -40,59 +40,60 @@ public final class OI {
 	private boolean disable;
 
 	private OI() {
-		subController = new Logitech3D(XGP);
-		driverController = new XGamepad(X3D);
+		driverController = new XGamepad(XGP);
+		subController = new Logitech3D(X3D);
 
 		magnitude = Robot.SPEED_DEFAULT;
 		disable = true;
 	}
 
 	public final void init() {
-		switch (currentState) {
-		case X3D:
-			subController.B2.held(new LowerElevator());
-			subController.B1.held(new RaiseElevator());
-			subController.B3.tapped(new FixedElevation());
-			subController.B4.tapped(new FixedDeclination());
-			subController.B5.tapped(new NearVision());
-			subController.B6.tapped(new DistVision());
-			break;
-		case XGP:
+//		switch (currentState) {
+//		case X3D:
+//			subController.B2.held(new LowerElevator());
+//			subController.B1.held(new RaiseElevator());
+//			subController.B3.tapped(new FixedElevation());
+//			subController.B4.tapped(new FixedDeclination());
+//			subController.B5.tapped(new NearVision());
+//			subController.B6.tapped(new DistVision());
+//			break;
+//		case XGP:
 			driverController.LB.held(new LowerElevator());
 			driverController.RB.held(new RaiseElevator());
-			driverController.L3.tapped(new FixedElevation());
-			driverController.R3.tapped(new FixedDeclination());
+			driverController.R3.tapped(new FixedElevation());
+			driverController.L3.tapped(new FixedDeclination());
 			driverController.A.tapped(new NearVision());
 			driverController.Y.tapped(new DistVision());
-			break;
-		default:
-			C.err("Invalid Control state");
-		}
+//			break;
+//		default:
+//			C.err("Invalid Control state");
+//		}
 	}
 
 	public final void update() {
-		C.out(CommandBase.driveTrain.getGyro());
+		// C.out(CommandBase.driveTrain.getGyro());
 		// C.out(CommandBase.camera.getPos());
 		// C.out(CommandBase.elevator.getCount());
 		// C.out(subController.getX() + "|" + subController.getY() + "|" +
 		// subController.getZ());
+		C.out(driverController.Y.get());
 
-		switch (currentState) {
-		case X3D:
-			if (subController.B11.get() && !disable) {
-				C.out("Control Disabled");
-				disable();
-			} else if (subController.B9.get() && disable) {
-				C.out("Control Enabled");
-				enable();
-			}
-			setSystemMagnitude(MathUtil.lerp(Robot.SPEED_MINIMUM,
-					Robot.SPEED_MAXIMUM, -subController.getThrottle()));
-			setElevatorRate(MathUtil.lerp(Robot.SPEED_DEFAULT,
-					Robot.SPEED_MAXIMUM,
-					MathUtil.normalizeAlpha(-subController.getThrottle())));
-			break;
-		case XGP:
+//		switch (currentState) {
+//		case X3D:
+//			if (subController.B11.get() && !disable) {
+//				C.out("Control Disabled");
+//				disable();
+//			} else if (subController.B9.get() && disable) {
+//				C.out("Control Enabled");
+//				enable();
+//			}
+//			setSystemMagnitude(MathUtil.lerp(Robot.SPEED_MINIMUM,
+//					Robot.SPEED_MAXIMUM, -subController.getThrottle()));
+//			setElevatorRate(MathUtil.lerp(Robot.SPEED_DEFAULT,
+//					Robot.SPEED_MAXIMUM,
+//					MathUtil.normalizeAlpha(-subController.getThrottle())));
+//			break;
+//		case XGP:
 			if (driverController.BACK.get() && !disable) {
 				C.out("Control Disabled");
 				disable();
@@ -106,10 +107,10 @@ public final class OI {
 			setElevatorRate(MathUtil.lerp(Robot.SPEED_DEFAULT,
 					Robot.SPEED_MAXIMUM,
 					MathUtil.normalizeAlpha(driverController.getT())));
-			break;
-		default:
-			C.err("Invalid Control state");
-		}
+//			break;
+//		default:
+//			C.err("Invalid Control state");
+//		}
 
 		Scheduler.getInstance().run();
 		if (!disable) {

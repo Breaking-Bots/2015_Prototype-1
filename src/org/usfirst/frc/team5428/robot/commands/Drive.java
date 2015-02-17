@@ -22,16 +22,16 @@ public final class Drive extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	public final void execute() {
 		update();
-		switch (oi.currentState) {
-		case OI.X3D:
-			driveTrain.enhancedDrive(-oi.subController.getY(),-oi.subController.getX(), -oi.subController.getZ(), OI.getSystemMagnitude());
-			break;
-		case OI.XGP:
-			driveTrain.elonDrive(-oi.driverController.getLY(),-oi.driverController.getRX() , OI.getSystemMagnitude());
-			break;
-		default:
-			C.err("Invalid Control state");
-		}
+//		switch (oi.currentState) {
+//		case OI.X3D:
+//			driveTrain.enhancedDrive(-oi.subController.getY(),-oi.subController.getX(), -oi.subController.getZ(), OI.getSystemMagnitude());
+//			break;
+//		case OI.XGP:
+			driveTrain.elonDrive(-oi.driverController.getLY(), -oi.driverController.getRX() , OI.getSystemMagnitude());
+//			break;
+//		default:
+//			C.err("Invalid Control state");
+//		}
 	}
 
 	public final void update() {

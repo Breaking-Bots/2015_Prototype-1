@@ -33,11 +33,11 @@ public final class Robot extends IterativeRobot {
 
 	public static OI oi;
 	private static final int dCVIEWING_QUALITY = 000040;
-	private static final int dCONTROLLER_TYPEV = 000001;
-	private static final double dSPEED_MINIMUM = 0.3000;
-	private static final double dSPEED_DEFAULT = 0.5000;
+	private static final int dCONTROLLER_TYPEV = 000000;
+	private static final double dSPEED_MINIMUM = 0.2500;
+	private static final double dSPEED_DEFAULT = 0.4500;
 	private static final double dSPEED_MAXIMUM = 1.0000;
-	private static final double dCORNER_TIME_L = 0.2000;
+	private static final double dCORNER_TIME_L = 6.0000;
 	private static final double dCORNER_TIME_R = 0.2000;
 	private static final double dDRIVE_TRAIN_P = 1.0000;
 	private static final double dDRIVE_TRAIN_I = 1.0000;
@@ -74,7 +74,7 @@ public final class Robot extends IterativeRobot {
 	public static int CVIEWING_QUALITY = dCVIEWING_QUALITY;
 
     Command autonomousCommand;
-    private Preferences prefs;
+    public Preferences prefs;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -99,6 +99,7 @@ public final class Robot extends IterativeRobot {
 
     public final void autonomousInit() {
         // schedule the autonomous command (example)
+    	CORNER_TIME_L = prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
     	C.out("Master has given me choice! ELON IS MASTER NOW!");
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -126,7 +127,6 @@ public final class Robot extends IterativeRobot {
         	CVIEWING_QUALITY = prefs.getInt("CAM_QUALITY_MAX", dCVIEWING_QUALITY);
         	CONTROLLER_TYPEV = prefs.getInt("CONTROLLER_TYPEV", dCONTROLLER_TYPEV);
 		
-        	CORNER_TIME_L = prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
         	CORNER_TIME_R = prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
 		
         	DRIVE_TRAIN_P = prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);

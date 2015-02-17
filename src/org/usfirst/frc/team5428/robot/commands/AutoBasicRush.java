@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5428.robot.commands;
 
+import org.usfirst.frc.team5428.robot.Robot;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,15 +12,18 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public final class AutoBasicRush extends CommandBase {
 
-	public final void initialize() {
+	public AutoBasicRush(){		
 		requires(driveTrain);
 		
 		setInterruptible(true);
-		setTimeout(5.0);
+	}
+	
+	public final void initialize() {
+		setTimeout(Robot.CORNER_TIME_L);
 	}
 
 	public final void execute() {
-		driveTrain.rawDrive(0.5f, 0.0f);
+		driveTrain.rawDrive(0.3f, 0.0f);
 	}
 
 	public final boolean isFinished() {
@@ -27,12 +31,12 @@ public final class AutoBasicRush extends CommandBase {
 	}
 
 	public final void end() {
-		// TODO Auto-generated method stub
-
+		driveTrain.rawDrive(0.0f, 0.0f);
 	}
 
 	public final void interrupted() {
-		// TODO Auto-generated method stub
+
+		end();
 
 	}
 
