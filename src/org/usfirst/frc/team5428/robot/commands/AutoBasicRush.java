@@ -19,7 +19,7 @@ public final class AutoBasicRush extends CommandBase {
 	}
 	
 	public final void initialize() {
-		setTimeout(Robot.CORNER_TIME_L);
+		setTimeout(Robot.AUTO_RUN_TIME);
 	}
 
 	public final void execute() {

@@ -37,8 +37,7 @@ public final class Robot extends IterativeRobot {
 	private static final double dSPEED_MINIMUM = 0.2500;
 	private static final double dSPEED_DEFAULT = 0.4500;
 	private static final double dSPEED_MAXIMUM = 1.0000;
-	private static final double dCORNER_TIME_L = 6.0000;
-	private static final double dCORNER_TIME_R = 0.2000;
+	private static final double dAUTO_RUN_TIME = 6.0000;
 	private static final double dDRIVE_TRAIN_P = 1.0000;
 	private static final double dDRIVE_TRAIN_I = 1.0000;
 	private static final double dDRIVE_TRAIN_D = 1.0000;
@@ -55,8 +54,7 @@ public final class Robot extends IterativeRobot {
 	public static double SPEED_MINIMUM = dSPEED_MINIMUM;
 	public static double SPEED_DEFAULT = dSPEED_DEFAULT;
 	public static double SPEED_MAXIMUM = dSPEED_MAXIMUM;
-	public static double CORNER_TIME_L = dCORNER_TIME_L;
-	public static double CORNER_TIME_R = dCORNER_TIME_R;
+	public static double AUTO_RUN_TIME = dAUTO_RUN_TIME;
 	public static double DRIVE_TRAIN_P = dDRIVE_TRAIN_P;
 	public static double DRIVE_TRAIN_I = dDRIVE_TRAIN_I;
 	public static double DRIVE_TRAIN_D = dDRIVE_TRAIN_D;
@@ -93,13 +91,13 @@ public final class Robot extends IterativeRobot {
     }
 	
 	public final void disabledPeriodic() {
-		 C.out(-oi.subController.getThrottle() * ((-oi.subController.getX()*(1-Robot.JOYSTK_OFFSET)) + (-oi.subController.getZ() * Robot.JOYSTK_OFFSET)));
+		
 		//Scheduler.getInstance().run();
 	}
 
     public final void autonomousInit() {
         // schedule the autonomous command (example)
-    	CORNER_TIME_L = prefs.getDouble("CORNER_TIME_L", dCORNER_TIME_L);
+    	AUTO_RUN_TIME = prefs.getDouble("AUTO_RUN_TIME", dAUTO_RUN_TIME);
     	C.out("Master has given me choice! ELON IS MASTER NOW!");
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -126,8 +124,6 @@ public final class Robot extends IterativeRobot {
 		
         	CVIEWING_QUALITY = prefs.getInt("CAM_QUALITY_MAX", dCVIEWING_QUALITY);
         	CONTROLLER_TYPEV = prefs.getInt("CONTROLLER_TYPEV", dCONTROLLER_TYPEV);
-		
-        	CORNER_TIME_R = prefs.getDouble("CORNER_TIME_R", dCORNER_TIME_R);
 		
         	DRIVE_TRAIN_P = prefs.getDouble("DRIVE_TRAIN_P", dDRIVE_TRAIN_P);
         	DRIVE_TRAIN_I = prefs.getDouble("DRIVE_TRAIN_I", dDRIVE_TRAIN_I);
