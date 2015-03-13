@@ -36,12 +36,12 @@ public final class OI {
 	}
 
 	public final XGamepad driverController;
-	public final Logitech3D subController;
+	public final XGamepad subController;
 	private boolean disable;
 
 	private OI() {
 		driverController = new XGamepad(XGP);
-		subController = new Logitech3D(X3D);
+		subController = new XGamepad(X3D);
 
 		magnitude = Robot.SPEED_DEFAULT;
 		disable = true;
@@ -64,6 +64,8 @@ public final class OI {
 			driverController.L3.tapped(new FixedDeclination());
 			driverController.A.tapped(new NearVision());
 			driverController.Y.tapped(new DistVision());
+			subController.A.tapped(new NearVision());
+			subController.Y.tapped(new DistVision());
 //			break;
 //		default:
 //			C.err("Invalid Control state");

@@ -47,10 +47,8 @@ public final class DriveTrain extends PIDSubsystem {
 		gyro.startLiveWindowMode();
 
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
-		
 		zLinear = 0;
 		xLinear = 0;
-		
 		C.out(getName() + " Initialized");
 	}
 

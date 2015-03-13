@@ -34,6 +34,10 @@ public final class ControlCamera extends CommandBase {
 				camera.orient(Robot.CAM_PAN_SPEED);
 			else if(oi.driverController.getPOV() == 180)
 				camera.orient(-Robot.CAM_PAN_SPEED);
+			
+			if (oi.subController.getY() != 0){
+				camera.orient(Robot.CAM_PAN_SPEED * -oi.subController.getY());
+			}
 //			break;
 //		default:
 //			C.err("Invalid Control state");
