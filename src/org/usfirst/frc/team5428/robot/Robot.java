@@ -2,15 +2,19 @@
 package org.usfirst.frc.team5428.robot;
 
 import org.usfirst.frc.team5428.robot.commands.AutoBasicRush;
+import org.usfirst.frc.team5428.robot.commands.AutoBlindPickup;
+import org.usfirst.frc.team5428.robot.commands.AutoIdle;
+import org.usfirst.frc.team5428.robot.commands.AutoLift;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
-import org.usfirst.frc.team5428.robot.vision.Vision;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //For help in programming contact: Pat O'Cain: wud2nuq@gmail.com
 
@@ -73,6 +77,8 @@ public final class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     public Preferences prefs;
+    private SendableChooser chooser;
+    
     
     /**
      * This function is run when the robot is first started up and should be
@@ -81,13 +87,18 @@ public final class Robot extends IterativeRobot {
     public final void robotInit() {
     	CommandBase.init();
 		// instantiate the command used for the autonomous period
-        autonomousCommand = new AutoBasicRush();
         C.out("My name is ELON! Master is good!");
 		C.out("Whats up?");
 		oi = OI.getInstance();
 		oi.init();
 		prefs = Preferences.getInstance();
-		Vision.init();
+		
+		chooser = new SendableChooser();
+		chooser.addDefault("RUSH", new AutoBasicRush());
+		chooser.addObject("NULL", new AutoIdle());
+		chooser.addObject("LIFT AND DRIVE", new AutoBlindPickup());
+		chooser.addObject("LIFT", new AutoLift());
+		SmartDashboard.putData("Choose", chooser);
     }
 	
 	public final void disabledPeriodic() {
@@ -99,7 +110,8 @@ public final class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
     	AUTO_RUN_TIME = prefs.getDouble("AUTO_RUN_TIME", dAUTO_RUN_TIME);
     	C.out("Master has given me choice! ELON IS MASTER NOW!");
-        if (autonomousCommand != null) autonomousCommand.start();
+    	autonomousCommand = (Command) chooser.getSelected();
+		if (autonomousCommand != null)autonomousCommand.start();
     }
 
     /**
@@ -142,7 +154,6 @@ public final class Robot extends IterativeRobot {
         	CAM_DIST_POSY = prefs.getDouble("CAM_DIST_POSY", dCAM_DIST_POSY);
         } // This block gets input from the users preferences to get default values
         oi.currentState = CONTROLLER_TYPEV;
-        Vision.teleopInit();
         
         C.out("Yes Master?");
     }
@@ -154,6 +165,7 @@ public final class Robot extends IterativeRobot {
     public final void disabledInit(){
     	oi.disable();
     	C.out("Goodnight Master");
+    	SmartDashboard.putData("Choose", chooser);
     }
 
     /**

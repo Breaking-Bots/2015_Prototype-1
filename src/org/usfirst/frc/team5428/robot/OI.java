@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5428.robot;
 
-import org.usfirst.frc.team5428.robot.commands.DistVision;
 import org.usfirst.frc.team5428.robot.commands.FixedDeclination;
 import org.usfirst.frc.team5428.robot.commands.FixedElevation;
 import org.usfirst.frc.team5428.robot.commands.LowerElevator;
-import org.usfirst.frc.team5428.robot.commands.NearVision;
 import org.usfirst.frc.team5428.robot.commands.RaiseElevator;
 import org.usfirst.frc.team5428.robot.core.C;
 import org.usfirst.frc.team5428.robot.core.CommandBase;
@@ -62,10 +60,6 @@ public final class OI {
 			driverController.RB.held(new RaiseElevator());
 			driverController.R3.tapped(new FixedElevation());
 			driverController.L3.tapped(new FixedDeclination());
-			driverController.A.tapped(new NearVision());
-			driverController.Y.tapped(new DistVision());
-			subController.A.tapped(new NearVision());
-			subController.Y.tapped(new DistVision());
 //			break;
 //		default:
 //			C.err("Invalid Control state");
