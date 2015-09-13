@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Zaeem Mohamed
@@ -67,6 +68,11 @@ public class DriveTrain extends Subsystem {
 
 	public void setSquaredInput(boolean squaredInput) {
 		this.squaredInput = squaredInput;
+	}
+
+	public void updateStatus() {
+		SmartDashboard.putNumber("Output Power Left", frontLeft.getSpeed());
+		SmartDashboard.putNumber("Output Power Right", frontRight.getSpeed());
 	}
 
 }

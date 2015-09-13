@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //For help in programming contact: Pat O'Cain: wud2nuq@gmail.com
 
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 		oi = OI.getInstance();
 		oi.init();
 		Vision.init();
+		
+		SmartDashboard.putData(Scheduler.getInstance());
     }
 	
 	public void disabledPeriodic() {
@@ -62,6 +65,8 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         C.out("Teleoperator control Initialized");
+        
+        updateStatus();
     }
 
     /**
@@ -69,7 +74,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
+    	updateStatus();
     }
 
     /**
@@ -77,6 +82,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         oi.update();
+      Scheduler.getInstance().run();
     }
     
     /**
@@ -85,4 +91,9 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    public void updateStatus()
+	{
+		CommandBase.driveTrain.updateStatus();
+	}
 }
